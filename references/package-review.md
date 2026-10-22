@@ -3,7 +3,7 @@
 Updated October 22, 2026. This is one Skill with English documentation and an English review interface. It supports English and Chinese film production. It has not been installed globally on the author's machine.
 
 ```text
-vibe-knowledge-video/
+zhulong-skill/
 ├── SKILL.md
 ├── references/          Guides, visual handbook, and verification notes
 ├── scripts/             Runtime setup, production tools, and review server

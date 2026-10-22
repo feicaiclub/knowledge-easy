@@ -18,7 +18,7 @@ Commands check for existing tools before installing missing ones. Writing alone 
 | Qwen and ASR weights | The user's Hugging Face cache, downloaded on first use |
 | Fonts, maps, and the voice reference | Bundled creative assets, not runtime installations |
 
-Default runtime directories are `~/Library/Caches/FEICAI/vibe-knowledge-video` on macOS, `%LOCALAPPDATA%/FEICAI/vibe-knowledge-video` on Windows, and `$XDG_CACHE_HOME/feicai/vibe-knowledge-video` or `~/.cache/feicai/vibe-knowledge-video` on Linux. `VIBE_RUNTIME_HOME` can override the location, but must remain outside the Skill. Existing Hugging Face and uv caches are reused.
+Default runtime directories are `~/Library/Caches/FEICAI/vibe-knowledge-video` on macOS, `%LOCALAPPDATA%/FEICAI/vibe-knowledge-video` on Windows, and `$XDG_CACHE_HOME/feicai/vibe-knowledge-video` or `~/.cache/feicai/vibe-knowledge-video` on Linux. `VIBE_RUNTIME_HOME` can override the location, but must remain outside the Skill. Existing Hugging Face and uv caches are reused. The original `vibe-knowledge-video` cache namespace and `VIBE_RUNTIME_HOME` override are retained so the rename does not trigger duplicate model or dependency downloads.
 
 `VIBE_FFMPEG` and `VIBE_FFPROBE` can point to an existing tool pair. `VIBE_PYTHON` can select an existing environment; its version and packages are still checked. No virtual environment, node_modules, browser, model weights, or download cache belongs in the Skill folder. Outputs belong in the selected film project.
 

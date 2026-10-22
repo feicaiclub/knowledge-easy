@@ -18,7 +18,7 @@ The map geometry comes from Natural Earth and is public domain. See the [source 
 
 ## Demonstration media
 
-The handbook's still previews show the visual system in use. Some contain third-party footage. Those underlying images, performances, and footage are **not relicensed under MIT**. The still previews document the layouts; they do not grant rights to extract or redistribute the underlying footage as stock media.
+The handbook's still previews and README screenshots show the visual system and completed edits. Studio screenshots were captured in an isolated demonstration workspace; sample comments are illustrative. Some contain third-party footage. Those underlying images, performances, and footage are **not relicensed under MIT**. The still previews document the layouts; they do not grant rights to extract or redistribute the underlying footage as stock media.
 
 Raw third-party sample clips and the original film/TV source footage are not distributed in this repository. Supply footage you are licensed to use when rebuilding a catalog or making a film. See [demo media](assets/packaging/demo-media/README.md) and the [recorded asset sources](references/assets.md). Mixkit's [licenses](https://mixkit.co/license/) and [terms](https://mixkit.co/terms/) govern its items separately.
 
