@@ -2,7 +2,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-# 烛龙 · Zhulong
+# Knowledge Easy
 
 **Ideas, brought to light.**
 
@@ -11,7 +11,7 @@
 [![English + Chinese](https://img.shields.io/badge/Films-English%20%2B%20Chinese-8db7b2)](references/language.md)
 [![FEICAI CLUB](https://img.shields.io/badge/By-FEICAI%20CLUB-2B4CF5)](https://www.feicaiclub.cn)
 
-Give Codex a question. Zhulong researches it, shapes a story, builds the visual explanation,<br>
+Give Codex a question. Knowledge Easy researches it, shapes a story, builds the visual explanation,<br>
 and brings the finished film into a local review room.
 
 <img src="assets/showcase/history-question.jpg" alt="A question from the finished Xun Yu film: did supporting Cao Cao still mean supporting the Han?" width="100%" />
@@ -27,7 +27,7 @@ and brings the finished film into a local review room.
 **Copy this into a Codex chat and send it:**
 
 ```text
-$skill-installer Install https://github.com/feicaiclub/zhulong-skill from the repository root (path: .), with the skill name zhulong-skill.
+$skill-installer Install https://github.com/feicaiclub/knowledge-easy from the repository root (path: .), with the skill name knowledge-easy.
 ```
 
 The skill is available on your next turn; if it does not appear, restart Codex. This uses Codex's [built-in Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use).
@@ -35,7 +35,7 @@ The skill is available on your next turn; if it does not appear, restart Codex. 
 Then tell it what you want to make:
 
 ```text
-$zhulong-skill Make an English explainer about why we rationalize decisions we have already made. Build it around a concrete story. Use the series narrator and visual system, with footage, music, and graphics that follow the argument. Deliver a finished film and open it in Lazy Studio for review.
+$knowledge-easy Make an English explainer about why we rationalize decisions we have already made. Build it around a concrete story. Use the series narrator and visual system, with footage, music, and graphics that follow the argument. Deliver a finished film and open it in Lazy Studio for review.
 ```
 
 You can ask for a complete film, topic ideas, a script, or a revision. Dependencies are checked and installed **when needed**, outside the skill folder. If setup fails on your machine, Codex diagnoses the cause and works through compatible alternatives, explaining meaningful differences in the result.
@@ -111,7 +111,7 @@ The screenshots were captured through actual UI interactions in a separate demon
 
 ## A consistent narrator, a different performance for each story
 
-Zhulong uses the approved **Qwen3-TTS D reference and body-v1 finishing**. The speaker identity stays consistent while emphasis, emotion, pacing, and phrasing follow the subject.
+Knowledge Easy uses the approved **Qwen3-TTS D reference and body-v1 finishing**. The speaker identity stays consistent while emphasis, emotion, pacing, and phrasing follow the subject.
 
 [Listen to the approved English pilot](assets/voice/english-pilot.wav) · [Mandarin reference](assets/voice/reference.wav) · [Voice guide](references/voice.md)
 
@@ -133,7 +133,7 @@ The quality floor comes from completed films and repeated revisions. The topic s
 ## What's included
 
 ```text
-zhulong-skill/
+knowledge-easy/
 ├── SKILL.md                  One skill: the production workflow
 ├── references/               Visual handbook and production guides
 ├── scripts/                  Setup, voice, transcription, editing, review tools
@@ -155,15 +155,10 @@ The original narration and transcription ran on Apple Silicon Macs. Other machin
 
 The original generic component catalogs can be rebuilt with licensed local footage using `catalog --media-dir`; raw third-party clips are not distributed. See [demo media](assets/packaging/demo-media/README.md).
 
-## Why Zhulong?
-
-In the *Shan Hai Jing*, Zhulong brings daylight by opening his eyes. That is the image behind the name: bringing an idea into view, so a viewer can see its structure, stakes, and consequences. [Source text](https://quanxue.cn/ct_baijia/shanhai/shanhai09.html).
-
-Zhulong was previously published as **Vibe Knowledge Video**. The name changed; the production baseline, fixed narrator, and visual system remain.
 
 ## Contributing and license
 
-Open an [issue](https://github.com/feicaiclub/zhulong-skill/issues) with your OS, hardware, the failing step, and a redacted error message. For visual changes, show the entrance, reading order, hold, and exit; update the component and handbook together.
+Open an [issue](https://github.com/feicaiclub/knowledge-easy/issues) with your OS, hardware, the failing step, and a redacted error message. For visual changes, show the entrance, reading order, hold, and exit; update the component and handbook together.
 
 Before submitting changes, run `python3 scripts/validate_package.py --manifest` and `python3 scripts/validate_package.py --verify-manifest`. Package CI checks files and references without installing production models.
 

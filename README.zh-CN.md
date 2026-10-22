@@ -2,7 +2,7 @@
 
 [English](README.md) | **简体中文**
 
-# 烛龙 · Zhulong
+# Knowledge Easy
 
 **把道理拍明白。**
 
@@ -11,7 +11,7 @@
 [![中英文视频](https://img.shields.io/badge/视频-中文%20%2B%20English-8db7b2)](references/language.md)
 [![废才俱乐部](https://img.shields.io/badge/作者-废才俱乐部-2B4CF5)](https://www.feicaiclub.cn)
 
-交给 Codex 一个问题，烛龙负责调研、写稿、找素材、配音、剪辑和视觉讲解，<br>
+交给 Codex 一个问题，Knowledge Easy负责调研、写稿、找素材、配音、剪辑和视觉讲解，<br>
 把成片放进审片室，等你逐帧提意见。
 
 <img src="assets/showcase/history-question.jpg" alt="荀彧成片中的一帧：辅曹与扶汉，还能是同一件事吗？" width="100%" />
@@ -27,7 +27,7 @@
 **复制下面这段，粘进 Codex 聊天框发送：**
 
 ```text
-$skill-installer 从 https://github.com/feicaiclub/zhulong-skill 安装仓库根目录（path: .）的 Skill，安装名称为 zhulong-skill。
+$skill-installer 从 https://github.com/feicaiclub/knowledge-easy 安装仓库根目录（path: .）的 Skill，安装名称为 knowledge-easy。
 ```
 
 下一轮对话即可使用；如果没有出现，重启 Codex 后再试。这里使用 Codex 自带的 [Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use)。
@@ -35,7 +35,7 @@ $skill-installer 从 https://github.com/feicaiclub/zhulong-skill 安装仓库根
 然后直接告诉它想做什么：
 
 ```text
-$zhulong-skill 做一条讲“为什么人会合理化自己已经做出的选择”的中文知识短片。用一个具体故事讲清楚，有转折、有反思。沿用系列声线和视觉包装，让素材、音乐和图解跟着内容推进。完成后给我成片，并打开 Lazy Studio 审片。
+$knowledge-easy 做一条讲“为什么人会合理化自己已经做出的选择”的中文知识短片。用一个具体故事讲清楚，有转折、有反思。沿用系列声线和视觉包装，让素材、音乐和图解跟着内容推进。完成后给我成片，并打开 Lazy Studio 审片。
 ```
 
 可以让它做完整成片，也可以只要选题、打磨稿子或修改已有视频。依赖在**实际使用时**检查、按需安装，放在 Skill 外。遇到安装问题，Codex 先说明原因并排查，再寻找兼容方案，讲清对效果的影响。
@@ -133,7 +133,7 @@ $zhulong-skill 做一条讲“为什么人会合理化自己已经做出的选�
 ## 里面有什么
 
 ```text
-zhulong-skill/
+knowledge-easy/
 ├── SKILL.md                  唯一的 Skill，整体制作流程
 ├── references/               视觉手册与制作说明
 ├── scripts/                  依赖准备、配音、转写、剪辑与审片工具
@@ -155,15 +155,10 @@ zhulong-skill/
 
 需要重新渲染通用组件示例集时，用 `catalog --media-dir` 指定有权使用的素材。第三方原始素材不随仓库分发，见[演示素材说明](assets/packaging/demo-media/README.md)。
 
-## 为什么叫烛龙
-
-《山海经》里，烛龙睁眼为昼。我们借的是这个“照亮”的意象：用一条影片，把原来看不清的因果、选择和道理讲明白。[原文出处](https://quanxue.cn/ct_baijia/shanhai/shanhai09.html)。
-
-这个项目此前叫 **Vibe Knowledge Video**。名字更新，已经跑通的制作方案、固定声线和视觉体系继续保留。
 
 ## 反馈、贡献与许可证
 
-遇到问题可提 [issue](https://github.com/feicaiclub/zhulong-skill/issues)，写明系统、硬件、出错步骤和去除敏感信息后的报错。改视觉组件时，展示入场、阅读顺序、停留和退场，源码与手册一起更新。
+遇到问题可提 [issue](https://github.com/feicaiclub/knowledge-easy/issues)，写明系统、硬件、出错步骤和去除敏感信息后的报错。改视觉组件时，展示入场、阅读顺序、停留和退场，源码与手册一起更新。
 
 提交前运行 `python3 scripts/validate_package.py --manifest` 和 `python3 scripts/validate_package.py --verify-manifest`。仓库 CI 只检查包文件和引用，不下载制作模型。
 

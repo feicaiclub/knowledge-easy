@@ -62,5 +62,5 @@ if __name__=='__main__':
         if current!=manifest['sha256']:result['errors'].append('Manifest differs from bundle')
     if a.manifest and not result['errors']:
         files={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in package_paths(ROOT) if p.is_file() and p.name!='package-manifest.json'}
-        (ROOT/'package-manifest.json').write_text(json.dumps({'skill':'zhulong-skill','sha256':files},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+        (ROOT/'package-manifest.json').write_text(json.dumps({'skill':'knowledge-easy','sha256':files},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result,ensure_ascii=False,indent=2));sys.exit(bool(result['errors']))

@@ -48,7 +48,7 @@ def install_pack(project,update=False):
         d=fontdest/p.name
         if d.exists() and sha(d)!=sha(p) and not update:raise ValueError('The installed font has changed: '+p.name)
         shutil.copy2(p,d)
-    lock={'version':version,'source':'zhulong-skill/assets/packaging/src','local_snapshot':'kit/editorial-'+version,
+    lock={'version':version,'source':'knowledge-easy/assets/packaging/src','local_snapshot':'kit/editorial-'+version,
           'files_sha256':{str(p.relative_to(src)):sha(p) for p in files},'fonts_sha256':{p.name:sha(p) for p in fontdest.iterdir() if p.is_file()}}
     save(project/'kit/editorial-lock.json',lock)
     return dest
@@ -60,7 +60,7 @@ def init(project,language="en-US"):
     project.mkdir(parents=True,exist_ok=True)
     for p in ['assets/media','audio','compositions','research','review','final']:(project/p).mkdir(parents=True,exist_ok=True)
     install_pack(project)
-    save(project/'project.json',{'title':project.name,'skill':'zhulong-skill','language':language,'final_file':None,'locked':[]})
+    save(project/'project.json',{'title':project.name,'skill':'knowledge-easy','language':language,'final_file':None,'locked':[]})
     save(project/'film.json',{'title':project.name,'language':language,'fps':30,'duration':0,'scenes':[],'subtitles':[]})
     save(project/'voice-plan.json',{'language':language,'segments':[],'instruction':'Write complete passages. Keep the script in text; use tts_text for pronunciation adjustments only. Direction records delivery intent, not a guaranteed model control.'})
     save(project/'assets.json',{'sources':[],'placements':[]})

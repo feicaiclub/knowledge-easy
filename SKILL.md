@@ -1,5 +1,5 @@
 ---
-name: zhulong-skill
+name: knowledge-easy
 description: Create and revise narrated explainer videos in English or Chinese, including scripts, storyboards, editing, voiceover, music, motion graphics, and frame-by-frame review.
 ---
 

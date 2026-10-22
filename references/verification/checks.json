@@ -1,7 +1,7 @@
 {
   "date": "2026-10-22",
   "platform": "macOS arm64",
-  "skill": "zhulong-skill",
+  "skill": "knowledge-easy",
   "tests_passed": 25,
   "base_designs_built": 12,
   "production_variants_built": 9,
@@ -360,7 +360,7 @@
   },
   "packaging_scope": "Preserve and package the proven production workflow. Cross-machine installation testing is deferred to actual use, not a prerequisite for this package.",
   "public_release": {
-    "repository": "https://github.com/feicaiclub/zhulong-skill",
+    "repository": "https://github.com/feicaiclub/knowledge-easy",
     "direct_codex_install_prompt": true,
     "readme_languages": [
       "en-US",
