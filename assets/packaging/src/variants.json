@@ -1,0 +1,771 @@
+[
+  {
+    "id": "map-decision",
+    "name": "Map: a possible route",
+    "parent_component": "map-route",
+    "version": "1.2.0",
+    "purpose": "Establish the places before showing a possible direction.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "Start with the places",
+        "view": [
+          -77,
+          39,
+          -69,
+          44
+        ],
+        "points": [
+          {
+            "name": "New York",
+            "lon": -74.006,
+            "lat": 40.7128,
+            "side": "left",
+            "label_dy": 40
+          },
+          {
+            "name": "Boston",
+            "lon": -71.0589,
+            "lat": 42.3601,
+            "side": "right"
+          }
+        ],
+        "zoom": 1.12,
+        "map_note": "Illustrative direction, not a historical journey",
+        "stages": [
+          {
+            "label": "A possible route",
+            "text": "Where could\nwe go?"
+          },
+          {
+            "label": "Add the context",
+            "text": "What would\nit change?"
+          }
+        ]
+      },
+      "cues": {
+        "point0": 0.5,
+        "point1": 1.3,
+        "route": 1.65,
+        "callout0": 2.2,
+        "callout1": 4.8
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 0,
+    "preview": "../previews/en-US/map-decision.mp4",
+    "poster": "../previews/en-US/map-decision.jpg",
+    "reading_order": [
+      {
+        "id": "demo-map-decision-point0",
+        "role": "subject",
+        "enter_at": 0.5,
+        "settle_at": 0.92,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-point1",
+        "role": "subject",
+        "enter_at": 1.3,
+        "settle_at": 1.72,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-route-draw",
+        "role": "relationship",
+        "enter_at": 1.65,
+        "settle_at": 2.5,
+        "depends_on": [
+          "demo-map-decision-point0",
+          "demo-map-decision-point1"
+        ]
+      },
+      {
+        "id": "demo-map-decision-arrow",
+        "role": "relationship",
+        "enter_at": 2.35,
+        "settle_at": 2.5,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-atlas",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.6,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-title",
+        "role": "subject",
+        "enter_at": 0.1,
+        "settle_at": 0.58,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-callout0",
+        "role": "evidence",
+        "enter_at": 2.2,
+        "settle_at": 2.65,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-decision-callout1",
+        "role": "conclusion",
+        "enter_at": 4.8,
+        "settle_at": 5.25,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "map-focus-chain",
+    "name": "Map: shifting focus",
+    "parent_component": "map-focus",
+    "version": "1.2.0",
+    "purpose": "Move attention between places without changing the projection.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "Put the sequence in context",
+        "view": [
+          106,
+          30,
+          122,
+          41.5
+        ],
+        "points": [
+          {
+            "name": "Ye",
+            "lon": 114.62,
+            "lat": 36.29,
+            "side": "right"
+          },
+          {
+            "name": "Luoyang",
+            "lon": 112.45,
+            "lat": 34.7,
+            "side": "left",
+            "label_dy": 40
+          }
+        ],
+        "zoom": 1.3,
+        "map_note": "One map, two points of focus",
+        "stages": [
+          {
+            "label": "Look here first",
+            "text": "The immediate\nproblem"
+          },
+          {
+            "label": "Then look ahead",
+            "text": "The next\ndecision"
+          }
+        ]
+      },
+      "cues": {
+        "point0": 0.5,
+        "point1": 3.7,
+        "focus0": 1.4,
+        "focus1": 4.3,
+        "callout0": 1.6,
+        "callout1": 4.5
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 8,
+    "preview": "../previews/en-US/map-focus-chain.mp4",
+    "poster": "../previews/en-US/map-focus-chain.jpg",
+    "reading_order": [
+      {
+        "id": "demo-map-focus-chain-point0",
+        "role": "subject",
+        "enter_at": 0.5,
+        "settle_at": 0.92,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-point1",
+        "role": "subject",
+        "enter_at": 3.7,
+        "settle_at": 4.12,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-focus0",
+        "role": "evidence",
+        "enter_at": 1.4,
+        "settle_at": 2.05,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-focus1",
+        "role": "evidence",
+        "enter_at": 4.3,
+        "settle_at": 4.95,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-atlas",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.6,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-title",
+        "role": "subject",
+        "enter_at": 0.1,
+        "settle_at": 0.58,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-callout0",
+        "role": "evidence",
+        "enter_at": 1.6,
+        "settle_at": 2.05,
+        "depends_on": []
+      },
+      {
+        "id": "demo-map-focus-chain-callout1",
+        "role": "conclusion",
+        "enter_at": 4.5,
+        "settle_at": 4.95,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "credential",
+    "name": "Identity and role",
+    "parent_component": "evidence",
+    "version": "1.2.0",
+    "purpose": "Introduce a person before explaining their role.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "image": {
+          "src": "assets/pack-media/blue.mp4",
+          "type": "video",
+          "start": 0.15,
+          "end": 12.0
+        },
+        "person": "An observer",
+        "issuer": "A role changes what we notice",
+        "role": "Narrator",
+        "details": [
+          "Notice the situation",
+          "Own the judgment"
+        ]
+      },
+      "cues": {
+        "detail0": 2.6,
+        "detail1": 4.8
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 16,
+    "preview": "../previews/en-US/credential.mp4",
+    "poster": "../previews/en-US/credential.jpg",
+    "reading_order": [
+      {
+        "id": "demo-credential-portrait",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.48,
+        "depends_on": []
+      },
+      {
+        "id": "demo-credential-paper",
+        "role": "evidence",
+        "enter_at": 0.1,
+        "settle_at": 0.58,
+        "depends_on": []
+      },
+      {
+        "id": "demo-credential-issuer",
+        "role": "supporting_label",
+        "enter_at": 0.25,
+        "settle_at": 0.73,
+        "depends_on": []
+      },
+      {
+        "id": "demo-credential-role",
+        "role": "subject",
+        "enter_at": 0.38,
+        "settle_at": 0.86,
+        "depends_on": []
+      },
+      {
+        "id": "demo-credential-detail0",
+        "role": "evidence",
+        "enter_at": 2.6,
+        "settle_at": 3.08,
+        "depends_on": []
+      },
+      {
+        "id": "demo-credential-detail1",
+        "role": "evidence",
+        "enter_at": 4.8,
+        "settle_at": 5.28,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "evidence-sheet",
+    "name": "Evidence and interpretation",
+    "parent_component": "evidence",
+    "version": "1.2.0",
+    "purpose": "Give source material and interpretation distinct reading space.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "image": {
+          "src": "assets/pack-media/book.mp4",
+          "type": "video",
+          "start": 0.15,
+          "end": 12.0
+        },
+        "image_label": "Look at the evidence first",
+        "kicker": "Put the claim in context",
+        "title": "Words\nin context",
+        "body": "Who said it?\nIn what setting?",
+        "closing": "Evidence before\ninterpretation"
+      },
+      "cues": {
+        "body": 2.8,
+        "closing": 5.1
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 24,
+    "preview": "../previews/en-US/evidence-sheet.mp4",
+    "poster": "../previews/en-US/evidence-sheet.jpg",
+    "reading_order": [
+      {
+        "id": "demo-evidence-sheet-image",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.48,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-sheet-paper",
+        "role": "evidence",
+        "enter_at": 0.16,
+        "settle_at": 0.64,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-sheet-kicker",
+        "role": "supporting_label",
+        "enter_at": 0.28,
+        "settle_at": 0.76,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-sheet-title",
+        "role": "subject",
+        "enter_at": 0.4,
+        "settle_at": 0.88,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-sheet-body",
+        "role": "evidence",
+        "enter_at": 2.8,
+        "settle_at": 3.28,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-sheet-closing",
+        "role": "conclusion",
+        "enter_at": 5.1,
+        "settle_at": 5.58,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "relation-bridge",
+    "name": "Two sides of a relationship",
+    "parent_component": "relation",
+    "version": "1.2.0",
+    "purpose": "Introduce both sides before revealing the connection.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "What shapes a choice?",
+        "nodes": [
+          {
+            "name": "People nearby",
+            "image": {
+              "src": "assets/pack-media/chess.mp4",
+              "type": "video",
+              "start": 0.15,
+              "end": 12.0
+            },
+            "sub": "Trust"
+          },
+          {
+            "name": "My choices",
+            "image": {
+              "src": "assets/pack-media/notes.mp4",
+              "type": "video",
+              "start": 0.15,
+              "end": 12.0
+            },
+            "sub": "Response"
+          }
+        ],
+        "relation": "Influence"
+      },
+      "cues": {
+        "node0": 0.15,
+        "node1": 0.7,
+        "sub0": 1.8,
+        "sub1": 2.5,
+        "relation": 3.2
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 32,
+    "preview": "../previews/en-US/relation-bridge.mp4",
+    "poster": "../previews/en-US/relation-bridge.jpg",
+    "reading_order": [
+      {
+        "id": "demo-relation-bridge-title",
+        "role": "subject",
+        "enter_at": 0.12,
+        "settle_at": 0.6,
+        "depends_on": []
+      },
+      {
+        "id": "demo-relation-bridge-node0",
+        "role": "subject",
+        "enter_at": 0.15,
+        "settle_at": 0.63,
+        "depends_on": []
+      },
+      {
+        "id": "demo-relation-bridge-sub0",
+        "role": "evidence",
+        "enter_at": 1.8,
+        "settle_at": 2.28,
+        "depends_on": []
+      },
+      {
+        "id": "demo-relation-bridge-node1",
+        "role": "subject",
+        "enter_at": 0.7,
+        "settle_at": 1.18,
+        "depends_on": []
+      },
+      {
+        "id": "demo-relation-bridge-sub1",
+        "role": "evidence",
+        "enter_at": 2.5,
+        "settle_at": 2.98,
+        "depends_on": []
+      },
+      {
+        "id": "demo-relation-bridge-bridge",
+        "role": "relationship",
+        "enter_at": 3.2,
+        "settle_at": 3.85,
+        "depends_on": [
+          "demo-relation-bridge-sub0",
+          "demo-relation-bridge-sub1"
+        ]
+      },
+      {
+        "id": "demo-relation-bridge-relation",
+        "role": "relationship",
+        "enter_at": 3.3,
+        "settle_at": 3.65,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "name-roster",
+    "name": "A structured list",
+    "parent_component": "relation",
+    "version": "1.2.0",
+    "purpose": "Give related items a shared baseline and a clear order.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "image": {
+          "src": "assets/pack-media/book.mp4",
+          "type": "video",
+          "start": 0.15,
+          "end": 12.0
+        },
+        "subject": "Observation and explanation",
+        "title": "An evidence list",
+        "items": [
+          {
+            "name": "Facts",
+            "note": "What happened?"
+          },
+          {
+            "name": "Meaning",
+            "note": "Why did it happen?"
+          }
+        ]
+      },
+      "cues": {
+        "item0": 1.1,
+        "item1": 3.2
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 40,
+    "preview": "../previews/en-US/name-roster.mp4",
+    "poster": "../previews/en-US/name-roster.jpg",
+    "reading_order": [
+      {
+        "id": "demo-name-roster-portrait",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.36,
+        "depends_on": []
+      },
+      {
+        "id": "demo-name-roster-title",
+        "role": "subject",
+        "enter_at": 0.06,
+        "settle_at": 0.4,
+        "depends_on": []
+      },
+      {
+        "id": "demo-name-roster-item0",
+        "role": "evidence",
+        "enter_at": 1.1,
+        "settle_at": 1.48,
+        "depends_on": []
+      },
+      {
+        "id": "demo-name-roster-item1",
+        "role": "evidence",
+        "enter_at": 3.2,
+        "settle_at": 3.58,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "quote-reveal",
+    "name": "A thought, then its implication",
+    "parent_component": "evidence",
+    "version": "1.2.0",
+    "purpose": "Let the premise land before revealing the key line.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "lead": "Knowing the principle",
+        "emphasis": "Is not the same\nas living it"
+      },
+      "cues": {
+        "lead": 0.4,
+        "emphasis": 2.7
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 48,
+    "preview": "../previews/en-US/quote-reveal.mp4",
+    "poster": "../previews/en-US/quote-reveal.jpg",
+    "reading_order": [
+      {
+        "id": "demo-quote-reveal-paper",
+        "role": "evidence",
+        "enter_at": 0,
+        "settle_at": 0.4,
+        "depends_on": []
+      },
+      {
+        "id": "demo-quote-reveal-mark",
+        "role": "supporting_label",
+        "enter_at": 0.06,
+        "settle_at": 0.54,
+        "depends_on": []
+      },
+      {
+        "id": "demo-quote-reveal-lead",
+        "role": "evidence",
+        "enter_at": 0.4,
+        "settle_at": 0.88,
+        "depends_on": []
+      },
+      {
+        "id": "demo-quote-reveal-emphasis",
+        "role": "conclusion",
+        "enter_at": 2.7,
+        "settle_at": 3.18,
+        "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "milestone-pair",
+    "name": "Two moments in time",
+    "parent_component": "timeline",
+    "version": "1.2.0",
+    "purpose": "Compare two moments on matching scales and baselines.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "items": [
+          {
+            "date": "01",
+            "context": "Our first impression",
+            "statement": "A judgment"
+          },
+          {
+            "date": "02",
+            "context": "New information",
+            "statement": "A second look"
+          }
+        ]
+      },
+      "cues": {
+        "panel0": 0.3,
+        "panel1": 2.5,
+        "axis": 3.8
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 56,
+    "preview": "../previews/en-US/milestone-pair.mp4",
+    "poster": "../previews/en-US/milestone-pair.jpg",
+    "reading_order": [
+      {
+        "id": "demo-milestone-pair-panel0",
+        "role": "evidence",
+        "enter_at": 0.3,
+        "settle_at": 0.78,
+        "depends_on": []
+      },
+      {
+        "id": "demo-milestone-pair-panel1",
+        "role": "evidence",
+        "enter_at": 2.5,
+        "settle_at": 2.98,
+        "depends_on": []
+      },
+      {
+        "id": "demo-milestone-pair-axis",
+        "role": "relationship",
+        "enter_at": 3.8,
+        "settle_at": 4.5,
+        "depends_on": [
+          "demo-milestone-pair-panel0",
+          "demo-milestone-pair-panel1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foundation",
+    "name": "A shared foundation",
+    "parent_component": "relation",
+    "version": "1.2.0",
+    "purpose": "Build a group before revealing what its members support.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "Three places. One link.",
+        "note": "Establish the places before the relationship",
+        "items": [
+          "Boston",
+          "New York",
+          "Richmond"
+        ],
+        "conclusion": "A connected region"
+      },
+      "cues": {
+        "node0": 0.8,
+        "node1": 1.2,
+        "node2": 1.6,
+        "conclusion": 3.3
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "start": 64,
+    "preview": "../previews/en-US/foundation.mp4",
+    "poster": "../previews/en-US/foundation.jpg",
+    "reading_order": [
+      {
+        "id": "demo-foundation-title",
+        "role": "subject",
+        "enter_at": 0.05,
+        "settle_at": 0.53,
+        "depends_on": []
+      },
+      {
+        "id": "demo-foundation-note",
+        "role": "supporting_label",
+        "enter_at": 0.2,
+        "settle_at": 0.68,
+        "depends_on": []
+      },
+      {
+        "id": "demo-foundation-node0",
+        "role": "evidence",
+        "enter_at": 0.8,
+        "settle_at": 1.28,
+        "depends_on": []
+      },
+      {
+        "id": "demo-foundation-node1",
+        "role": "evidence",
+        "enter_at": 1.2,
+        "settle_at": 1.68,
+        "depends_on": []
+      },
+      {
+        "id": "demo-foundation-node2",
+        "role": "evidence",
+        "enter_at": 1.6,
+        "settle_at": 2.08,
+        "depends_on": []
+      },
+      {
+        "id": "demo-foundation-group",
+        "role": "relationship",
+        "enter_at": 2.95,
+        "settle_at": 3.37,
+        "depends_on": [
+          "demo-foundation-node0",
+          "demo-foundation-node1",
+          "demo-foundation-node2"
+        ]
+      },
+      {
+        "id": "demo-foundation-conclusion",
+        "role": "conclusion",
+        "enter_at": 3.3,
+        "settle_at": 3.68,
+        "depends_on": []
+      }
+    ]
+  }
+]

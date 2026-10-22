@@ -1,0 +1,62 @@
+[
+  {
+    "case": "map-decision",
+    "valid": true
+  },
+  {
+    "case": "map-focus-chain",
+    "valid": true
+  },
+  {
+    "case": "credential",
+    "valid": true
+  },
+  {
+    "case": "evidence-sheet",
+    "valid": true
+  },
+  {
+    "case": "relation-bridge",
+    "valid": true
+  },
+  {
+    "case": "name-roster",
+    "valid": true
+  },
+  {
+    "case": "quote-reveal",
+    "valid": true
+  },
+  {
+    "case": "milestone-pair",
+    "valid": true
+  },
+  {
+    "case": "foundation",
+    "valid": true
+  },
+  {
+    "case": "route reversed eastward",
+    "valid": true
+  },
+  {
+    "case": "foundation 2 nodes",
+    "valid": true
+  },
+  {
+    "case": "foundation 4 nodes",
+    "valid": true
+  },
+  {
+    "case": "roster 1 rows",
+    "valid": true
+  },
+  {
+    "case": "roster 3 rows",
+    "valid": true
+  },
+  {
+    "case": "reject overlong copy",
+    "valid": true
+  }
+]

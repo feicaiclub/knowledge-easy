@@ -1,0 +1,385 @@
+{
+  "date": "2026-10-22",
+  "platform": "macOS arm64",
+  "skill": "vibe-knowledge-video",
+  "tests_passed": 25,
+  "base_designs_built": 12,
+  "production_variants_built": 9,
+  "relocated_execution": {
+    "folder_name_contains_spaces_and_chinese": true,
+    "package_links_closed": true,
+    "video_seconds": 24.0,
+    "video_width": 1920,
+    "video_height": 1080,
+    "full_decode": "passed",
+    "audio_present": true
+  },
+  "voice": {
+    "variant": "independent-D-body-v1",
+    "samples": 386400,
+    "sample_rate": 24000,
+    "seconds": 16.1,
+    "duration_change_samples": 0,
+    "backend": "mlx",
+    "reference_sha256": "d88c9e123156d2d6a68136274489cfa1b64e0114bd4ba75694fc9e0a972696e4"
+  },
+  "studio": {
+    "saved_frame": 300,
+    "saved_timecode": "00:10:00",
+    "markdown_and_snapshot_exist": true,
+    "side_by_side_checked": true,
+    "silent_video_thumbnails_fixed": true
+  },
+  "dependencies": {
+    "runtime_bundled": false,
+    "models_bundled": false,
+    "python_packages_installed_in_external_env": true,
+    "npm_packages_installed_in_external_cache": true,
+    "existing_python_node_ffmpeg_browser_and_model_reused": true,
+    "check_only_passed": true
+  },
+  "not_certified": [
+    "Windows/Linux real-machine production: outside the requested acceptance scope",
+    "Remote footage downloading"
+  ],
+  "approved_episode_sha256": "170cb7279d3928c9dde6cb633c76a5b92e63c27df7d48324d08becf58474f2d5",
+  "guards": [
+    "Reject mix shorter than narration",
+    "Reject film shorter than mix"
+  ],
+  "global_edition": {
+    "instruction_language": "en-US",
+    "production_languages": [
+      "en-US",
+      "zh-CN"
+    ],
+    "renderer_version": "1.2.0",
+    "english_previews": 21,
+    "chinese_previews": 21,
+    "english_tts_generated": true,
+    "english_tts_seconds": 13.46,
+    "voice_reference_unchanged": true,
+    "english_ui_browser_checked": true,
+    "handbook_language_switch_checked": true,
+    "asr_language_routing_tested": true,
+    "asr_full_run": "The original Xun Yu production completed full MLX Whisper large-v3 transcription and focused checks. No new full inference run was required for restoring that approved implementation.",
+    "media": [
+      {
+        "file": "assets/packaging/previews/en-US/chapter.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/compare.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/context.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/credential.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/evidence-sheet.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/evidence.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/feedback.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/foundation.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/hero.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/map-decision.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/map-focus-chain.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/map-focus.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/map-period.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/map-route.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/milestone-pair.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/name-roster.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/quantity.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/quote-reveal.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/relation-bridge.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/relation.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/en-US/timeline.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/chapter.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/compare.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/context.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/credential.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/evidence-sheet.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/evidence.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/feedback.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/foundation.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/hero.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/map-decision.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/map-focus-chain.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/map-focus.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/map-period.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/map-route.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/milestone-pair.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/name-roster.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/quantity.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/quote-reveal.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/relation-bridge.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/relation.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      },
+      {
+        "file": "assets/packaging/previews/zh-CN/timeline.mp4",
+        "seconds": 8.0,
+        "frames": 240,
+        "fps": "30/1"
+      }
+    ],
+    "relocated_english_build_passed": true,
+    "reference_transcript_preserved": true,
+    "english_voice_approval": {
+      "file": "english-pilot.wav",
+      "sha256": "51a0434d43a16ce60ad0ca41ef5783322a3e127e4a7288e25b9338037cf79ca2",
+      "seconds": 13.46,
+      "status": "user_approved",
+      "date": "2026-10-22",
+      "basis": "User listening; the user explicitly confirmed english-pilot.wav rather than the Mandarin reference.wav.",
+      "scope": "English pilot accent and naturalness. Not an approval of every future take."
+    }
+  },
+  "approved_production_baseline": {
+    "principle": "Reproduce the approved films using their established workflow, models, voice, and visual system; do not substitute them during packaging.",
+    "voice_model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+    "voice_runtime": "mlx-audio==0.6.1",
+    "voice_reference_sha256": "d88c9e123156d2d6a68136274489cfa1b64e0114bd4ba75694fc9e0a972696e4",
+    "finishing": "independent-D-body-v1",
+    "asr_runtime": "mlx-whisper==0.4.3",
+    "asr_model": "mlx-community/whisper-large-v3-mlx",
+    "asr_model_revision": "49e6aa286ad60c14352c404340ded53710378a11",
+    "render_cli": "0.8.185",
+    "baseline_configuration_comparison": "passed",
+    "incompatible_hardware_guard_checked": true,
+    "historical_asr_evidence": [
+      "qa/mature-final-independent-asr.json",
+      "qa/mature-full-d4-asr.json",
+      "qa/narration-content-review.json"
+    ],
+    "historical_asr_evidence_note": "Names identify retained records in the original film project. They are not runtime dependencies or links required by this Skill.",
+    "default_backend": "mlx",
+    "runtime_adaptation": "At use time: diagnose installation failures, repair the original setup when possible, otherwise investigate compatible dependencies or implementations; explain output differences and record and check the adaptation in the user project."
+  },
+  "asr_packaging_review": {
+    "status": "approved implementation restored",
+    "original_workflow_evidence": "Full-film and focused ASR records were inspected in the original Xun Yu project.",
+    "wrapper_checks": "Passed en-US and zh-CN argument routing, word-timestamp preservation, and source-audio SHA256 binding using a stubbed library call.",
+    "fresh_model_inference": false,
+    "scope": "Preserve the previously validated production stack. This correction checks packaging and call compatibility, not the external model accuracy again.",
+    "dependency_installation": "On use, on the recipient machine, outside the Skill. A redundant local download was stopped; no dependencies or model weights were bundled."
+  },
+  "packaging_scope": "Preserve and package the proven production workflow. Cross-machine installation testing is deferred to actual use, not a prerequisite for this package.",
+  "public_release": {
+    "repository": "https://github.com/feicaiclub/vibe-knowledge-video",
+    "direct_codex_install_prompt": true,
+    "readme_languages": [
+      "en-US",
+      "zh-CN"
+    ],
+    "license": "MIT with third-party asset notices",
+    "raw_third_party_source_clips_bundled": false,
+    "approved_model_voice_and_renderer_files_unchanged": 31,
+    "catalog_with_external_licensed_media": {
+      "english_variants": 9,
+      "chinese_base_designs": 12,
+      "missing_media_fails_before_project_creation": true
+    },
+    "secret_scan_findings": 0,
+    "existing_tests_passed": 25,
+    "ci_scope": "Package integrity and source syntax; no model installation or cross-machine production claim.",
+    "pre_rendered_demo_videos_bundled": false,
+    "still_previews_bundled": 42,
+    "original_local_package_intact": true,
+    "historical_render_checks": "The media entries record earlier local render checks, not video files shipped in the public package."
+  }
+}

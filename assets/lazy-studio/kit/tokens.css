@@ -1,0 +1,87 @@
+
+:root {
+  
+  --bg: #0F0F11;
+  --island: #17181B;
+  --island-2: #1E1F24;
+  --island-3: #262730;
+  --line: #26272D;          
+  --line-2: #33343C;        
+
+  
+  --text: #EDEEF0;
+  --t2: #A3A6B1;           
+  --t3: #7C8090;           
+  --ink: #EDEEF0;           
+  --ink-fg: #0F0F11;
+
+  
+  --acc: #8B93FF;  --acc-soft: rgba(139, 147, 255, 0.14); --acc-fg: #0F0F11;
+  --ok: #3DD68C;   --ok-soft: rgba(61, 214, 140, 0.14);  --ok-fg: #0F0F11;
+  --warn: #F2B84B; --warn-soft: rgba(242, 184, 75, 0.16);
+  --bad: #F0655E;  --bad-soft: rgba(240, 101, 94, 0.16);
+
+  
+  --font: -apple-system, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "SF Mono", Menlo, Consolas, "PingFang SC", monospace;
+  --fs-title: 20px; --lh-title: 28px;   
+  --fs-h: 16px;     --lh-h: 24px;       
+  --fs-body: 14px;  --lh-body: 22px;    
+  --fs-read: 17px;  --lh-read: 30px;    
+  --fs-s: 13px;     --lh-s: 20px;       
+  --fs-xs: 12px;    --lh-xs: 18px;      
+  --fs-mono: 11px;                      
+
+  
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+
+  
+  --r-island: 18px; --r-panel: 14px; --r-ctl: 10px; --r-xs: 6px; --r-pill: 999px;
+
+  
+  --gap: 16px; --nav-w: 60px; --aux-w: 360px; --content-pad: 64px;
+
+  
+  --shadow-pop: 0 0 0 1px var(--line-2), 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-knob: 0 1px 2px rgba(0, 0, 0, 0.35);
+
+  
+  --chevron: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A3A6B1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  --sel: rgba(139, 147, 255, 0.35);
+
+  --h-1: 24px; --h-2: 28px; --h-3: 32px;
+  --dur: 140ms; --ease: cubic-bezier(0.2, 0, 0, 1);
+  color-scheme: dark;
+}
+
+
+:root[data-theme="light"] {
+  --bg: #F3F3F5; --island: #FFFFFF; --island-2: #F1F1F4; --island-3: #E6E6EB;
+  --line: #E8E8EC; --line-2: #D4D4DB;
+  --text: #16171B; --t2: #55596A; --t3: #6F7380; --ink: #16171B; --ink-fg: #FFFFFF;
+  --acc: #4C5BD4; --acc-soft: rgba(76, 91, 212, 0.12); --acc-fg: #FFFFFF;
+  --ok: #147F47; --ok-soft: rgba(20, 127, 71, 0.12); --ok-fg: #FFFFFF;
+  --warn: #9A6300; --warn-soft: rgba(154, 99, 0, 0.14);
+  --bad: #C93A32; --bad-soft: rgba(201, 58, 50, 0.12);
+  --shadow-pop: 0 0 0 1px var(--line), 0 12px 40px rgba(0, 0, 0, 0.14);
+  --shadow-knob: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --chevron: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2355596A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  --sel: rgba(76, 91, 212, 0.25);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F3F3F5; --island: #FFFFFF; --island-2: #F1F1F4; --island-3: #E6E6EB;
+    --line: #E8E8EC; --line-2: #D4D4DB;
+    --text: #16171B; --t2: #55596A; --t3: #6F7380; --ink: #16171B; --ink-fg: #FFFFFF;
+    --acc: #4C5BD4; --acc-soft: rgba(76, 91, 212, 0.12); --acc-fg: #FFFFFF;
+    --ok: #147F47; --ok-soft: rgba(20, 127, 71, 0.12); --ok-fg: #FFFFFF;
+    --warn: #9A6300; --warn-soft: rgba(154, 99, 0, 0.14);
+    --bad: #C93A32; --bad-soft: rgba(201, 58, 50, 0.12);
+    --shadow-pop: 0 0 0 1px var(--line), 0 12px 40px rgba(0, 0, 0, 0.14);
+    --shadow-knob: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --chevron: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2355596A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    --sel: rgba(76, 91, 212, 0.25);
+    color-scheme: light;
+  }
+}

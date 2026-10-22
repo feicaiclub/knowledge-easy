@@ -1,0 +1,7 @@
+{
+  "source": "Natural Earth",
+  "url": "https://www.naturalearthdata.com/",
+  "repository": "https://github.com/nvkelso/natural-earth-vector",
+  "license": "Public domain",
+  "use": "Physical land and rivers only. Historical administrative boundaries require separate dated evidence."
+}

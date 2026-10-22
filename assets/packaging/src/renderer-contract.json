@@ -1,0 +1,142 @@
+{
+  "version": "1.2.0",
+  "renderer": "editorial.py",
+  "styles": [
+    "pack.css",
+    "editorial.css"
+  ],
+  "geography": "geography.py",
+  "entry_point": "render(component, instance_id, duration_seconds, content_data, local_semantic_cues, locale)",
+  "returns": [
+    "html",
+    "js",
+    "reading_order",
+    "component",
+    "parent",
+    "version"
+  ],
+  "episode_may_change": [
+    "copy",
+    "media and focal point",
+    "facts and coordinates",
+    "semantic cue times",
+    "duration",
+    "named layout variants"
+  ],
+  "library_owns": [
+    "typographic hierarchy",
+    "palette",
+    "card geometry",
+    "alignment",
+    "margins",
+    "connector geometry",
+    "motion dependencies",
+    "map-note collision avoidance"
+  ],
+  "rules": [
+    "Episodes call the renderer rather than copying or replacing component CSS.",
+    "The handbook and films must use the same renderer version and source hashes.",
+    "Release snapshots are explicit and immutable after delivery; upgrades are intentional.",
+    "Scenes contain content and cue configuration, not arbitrary component x/y coordinates.",
+    "A new generic variant is documented with another subject and actually rendered before release.",
+    "Every generated instance records parent family, version, data, cues and reading order."
+  ],
+  "public_variants": {
+    "map-decision": {
+      "parent": "map-route",
+      "points": 2,
+      "required": [
+        "title",
+        "view",
+        "points",
+        "stages"
+      ],
+      "directions": "all directions; proposed route uses a dashed path",
+      "stages": "1 to 3"
+    },
+    "map-focus-chain": {
+      "parent": "map-focus",
+      "points": "2 to 4",
+      "required": [
+        "title",
+        "view",
+        "points",
+        "stages"
+      ]
+    },
+    "credential": {
+      "parent": "evidence",
+      "required": [
+        "image",
+        "person",
+        "issuer",
+        "role",
+        "details"
+      ]
+    },
+    "evidence-sheet": {
+      "parent": "evidence",
+      "required": [
+        "image",
+        "title"
+      ],
+      "optional": [
+        "image_label",
+        "kicker",
+        "body",
+        "closing"
+      ]
+    },
+    "relation-bridge": {
+      "parent": "relation",
+      "nodes": 2,
+      "required": [
+        "nodes",
+        "relation"
+      ],
+      "optional": [
+        "title",
+        "node sublabels"
+      ]
+    },
+    "name-roster": {
+      "parent": "relation",
+      "items": "1 to 3",
+      "layouts": [
+        "portrait",
+        "closing"
+      ]
+    },
+    "quote-reveal": {
+      "parent": "evidence",
+      "required": [
+        "lead",
+        "emphasis"
+      ]
+    },
+    "milestone-pair": {
+      "parent": "timeline",
+      "items": 2,
+      "required": [
+        "date",
+        "context",
+        "statement"
+      ]
+    },
+    "foundation": {
+      "parent": "relation",
+      "nodes": "2 to 4",
+      "node_shape": "city",
+      "required": [
+        "title",
+        "note",
+        "items",
+        "conclusion"
+      ]
+    }
+  },
+  "languages": [
+    "en-US",
+    "zh-CN"
+  ]
+}

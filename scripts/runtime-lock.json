@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "python": "3.12",
+  "uv_installer": "0.11.3",
+  "node_fallback": "22.22.2",
+  "npm": {
+    "hyperframes": "0.8.185",
+    "@hyperframes/core": "0.8.185",
+    "gsap": "3.13.0"
+  },
+  "python_groups": {
+    "core": [
+      "static-ffmpeg==3.0"
+    ],
+    "audio": [
+      "numpy==2.5.4",
+      "scipy==1.18.1",
+      "soundfile==0.14.0",
+      "pedalboard==0.9.26"
+    ],
+    "voice_mlx": [
+      "mlx-audio==0.6.1"
+    ],
+    "asr": [
+      "mlx-whisper==0.4.3"
+    ],
+    "download": [
+      "yt-dlp==2026.10.21"
+    ]
+  },
+  "models": {
+    "mlx": {
+      "repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+      "revision": "a6eb4f68e4b056f1215157bb696209bc82a6db48"
+    },
+    "asr": {
+      "repo": "mlx-community/whisper-large-v3-mlx",
+      "revision": "49e6aa286ad60c14352c404340ded53710378a11"
+    }
+  }
+}

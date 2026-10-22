@@ -1,0 +1,21 @@
+# Local projects, credentials, and generated environments
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.part
+*.safetensors
+*.gguf
+*.ckpt
+
+# Third-party source clips are supplied locally, not redistributed.
+assets/packaging/demo-media/*.mp4
+
+# Rendered demonstration videos stay outside the installable skill.
+assets/packaging/previews/**/*.mp4

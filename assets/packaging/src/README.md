@@ -1,0 +1,14 @@
+# Shared visual components
+
+[Visual handbook](../../../references/visual-handbook.html) · [Production guide](../../../references/packaging.md)
+
+- `editorial.py` and `editorial.css`: shared production renderer and layouts.
+- `pack.css` and `tokens.json`: fonts, colors, spacing, and information hierarchy.
+- `variants.json` and `renderer-contract.json`: production variants and their inputs.
+- `base_catalog.py`, `components.json`, and `examples.json`: twelve base designs and editable slots.
+- `locales/`: language-specific example copy; layout behavior stays in the shared renderer.
+- `geography.py` and `maps/`: map projection, land, and river data.
+- `acceptance.json` and `motion-contract.json`: layout and reveal-order requirements.
+- `validation-baseline.json`: prior cross-content checks.
+
+`scripts/vibe.py install-pack` copies a versioned snapshot into a film project. Fonts come from `../fonts/`. Runtime dependencies are prepared outside this Skill by `scripts/bootstrap.py`.

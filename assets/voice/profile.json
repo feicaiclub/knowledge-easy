@@ -1,0 +1,68 @@
+{
+  "status": "Approved series voice identity",
+  "name": "D: mature, grounded narrator",
+  "voice_design_model": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-8bit",
+  "voice_design_snapshot": "f90d617701d9f7f4ca499291e0b57f2b3c2fd2ee",
+  "synthesis_model": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+  "base_snapshot": "a6eb4f68e4b056f1215157bb696209bc82a6db48",
+  "runtime": "mlx-audio 0.6.1",
+  "reference_file": "reference.wav",
+  "reference_sha256": "d88c9e123156d2d6a68136274489cfa1b64e0114bd4ba75694fc9e0a972696e4",
+  "reference_text": "事实和判断，是两件不同的事。你可以不同意我的看法，但我们得先确认，讨论的是不是同一个问题。有些话要说得坚定，有些疑问，也应该留一点余地。把话说清楚，再慢慢往下谈。",
+  "identity_target": "Mature male voice with a low register, a little grain, and a warm, grounded presence. Conversational rather than a newsreader.",
+  "identity_design_instruction": "Originally designed as a Mandarin-speaking man around fifty: a low, warm voice with a little natural grain and an actor’s presence. Clear articulation, connected thoughts, natural emphasis, and an unhurried conversational pace. Avoid an exaggerated announcer delivery, whispering, or forced gravel.",
+  "voice_design_seed": 22102261,
+  "voice_design_settings": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 50,
+    "repetition_penalty": 1.08
+  },
+  "scope": [
+    "logic",
+    "psychology",
+    "philosophy",
+    "history"
+  ],
+  "performance_is_per_episode": true,
+  "performance_rule": "Keep the speaker identity fixed. Design emotion, emphasis, pacing, and phrasing for each topic and narrative beat.",
+  "generation_policy": "Generate complete passages with the same reference and model. Reject omitted, repeated, or token-limited takes. Split at meaningful narrative boundaries rather than stitching isolated sentences or rerecording an isolated ending.",
+  "rate_change": false,
+  "pitch_change": false,
+  "human_voice_recording": false,
+  "lexicon": "pronunciations.json",
+  "tts_only_overrides": {
+    "钟繇": "钟遥",
+    "名分": "名份"
+  },
+  "decoder_policy": "Preserve full waveform for explicitly unpadded batch-one generated codes; do not infer padding from internal zero codec values.",
+  "documentation": [
+    "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base"
+  ],
+  "approval_limit": "Speaker metrics and recognition cannot certify perceived maturity, tone accuracy or naturalness.",
+  "approval_note": "The user approved the Chinese film baseline and explicitly approved english-pilot.wav on 2026-10-22. D plus body-v1 remains the series default.",
+  "default_finishing_variant": {
+    "id": "independent-D-body-v1",
+    "settings": "timbre-body-v1.json",
+    "status": "user_approved"
+  },
+  "reference_language": "zh-CN",
+  "production_languages": [
+    "en-US",
+    "zh-CN"
+  ],
+  "language_validation": {
+    "zh-CN": "Approved Chinese baseline",
+    "en-US": "The user listened to english-pilot.wav and approved its accent and naturalness on 2026-10-22. Future takes still require content and delivery review."
+  },
+  "english_pilot_approval": {
+    "file": "english-pilot.wav",
+    "sha256": "51a0434d43a16ce60ad0ca41ef5783322a3e127e4a7288e25b9338037cf79ca2",
+    "seconds": 13.46,
+    "status": "user_approved",
+    "date": "2026-10-22",
+    "basis": "User listening; the user explicitly confirmed english-pilot.wav rather than the Mandarin reference.wav.",
+    "scope": "English pilot accent and naturalness. Not an approval of every future take."
+  }
+}

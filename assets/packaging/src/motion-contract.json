@@ -1,0 +1,56 @@
+{
+  "status": "manual contract, not an installed Skill",
+  "version": "2026-10-22",
+  "scene_required": [
+    "explanation_task",
+    "settled_layout",
+    "visual_anchor",
+    "reading_order",
+    "narration_triggers",
+    "reading_hold",
+    "exit_handoff"
+  ],
+  "element_required": [
+    "id",
+    "role",
+    "alignment_group",
+    "narration_trigger",
+    "enter_at",
+    "settle_at",
+    "exit_at",
+    "depends_on"
+  ],
+  "roles": [
+    "subject",
+    "evidence",
+    "relationship",
+    "conclusion",
+    "supporting_label"
+  ],
+  "dependencies": [
+    "relationship depends on both visible endpoints",
+    "conclusion depends on the evidence or explanation it summarizes",
+    "supporting label stays attached to its object"
+  ],
+  "layout_rules": [
+    "design settled frame first",
+    "share baselines and margins",
+    "center a group conclusion against the full group",
+    "assess image and negative-space weight as well as rectangles"
+  ],
+  "motion_rules": [
+    "one coherent direction per semantic group",
+    "allow small overlaps for continuity without reversing reading order",
+    "do not delay every word mechanically",
+    "reserve readable hold after settling",
+    "coordinate exit with next shot"
+  ],
+  "verification_required": [
+    "settled frame",
+    "entry mid hold exit samples",
+    "cut-adjacent frames",
+    "continuous excerpt",
+    "actual delivery MP4"
+  ],
+  "fixed_voice_profile": "../series-voice/profile.json"
+}

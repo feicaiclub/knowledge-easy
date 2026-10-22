@@ -1,0 +1,22 @@
+{
+  "status": "per-episode template; fill from the approved script",
+  "fixed_identity_profile": "profile.json",
+  "genre": "",
+  "subject": "",
+  "narrator_role": "",
+  "emotional_arc": [],
+  "narrative_layers": [],
+  "connected_thoughts": [],
+  "meaningful_resets": [],
+  "emphasis_words": [],
+  "pronunciation_overrides": [],
+  "generation_capabilities_and_limits": [],
+  "actual_pause_measurements": [],
+  "review": {
+    "independent_content_check": "pending",
+    "first_and_last_syllables": "pending",
+    "semantic_phrasing": "pending",
+    "subjective_voice_approval": "pending"
+  },
+  "language": "en-US"
+}
