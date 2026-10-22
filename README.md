@@ -14,9 +14,7 @@
 Give Codex a question. Knowledge Easy researches it, shapes a story, builds the visual explanation,<br>
 and brings the finished film into a local review room.
 
-<img src="assets/showcase/history-question.jpg" alt="A question from the finished Xun Yu film: did supporting Cao Cao still mean supporting the Han?" width="100%" />
-
-<sub>A real frame from a finished film. The screenshots below come from our actual edits and review tools.</sub>
+<img src="assets/readme/knowledge-easy-banner.png" alt="Knowledge Easy: FEICAI's 3D cartoon portrait beside a book and film projector, bringing ideas to light" width="100%" />
 
 [Install](#install-in-codex) · [Finished films](#from-finished-films) · [Visual system](#one-visual-language-many-kinds-of-explanation) · [Lazy Studio](#lazy-studio-a-local-review-room) · [About](#about-the-author)
 
@@ -53,6 +51,8 @@ The film about Xun Yu follows the tension between the man he helped and the dyna
 <tr><td width="50%"><img src="assets/showcase/history-context.jpg" alt="Shift attention across the same map" width="100%" /><br><b>Shift attention across the same map</b></td><td width="50%"><img src="assets/showcase/history-evidence.jpg" alt="Put a proposal beside its implications" width="100%" /><br><b>Put a proposal beside its implications</b></td></tr>
 <tr><td width="50%"><img src="assets/showcase/history-relationships.jpg" alt="Separate two centers of power" width="100%" /><br><b>Separate two centers of power</b></td><td width="50%"><img src="assets/showcase/history-roster.jpg" alt="Bring in names when the story needs them" width="100%" /><br><b>Bring in names when the story needs them</b></td></tr>
 </table>
+
+<img src="assets/showcase/history-question.jpg" alt="The central conflict in the Xun Yu film: did supporting Cao Cao still mean supporting the Han?" width="100%" />
 
 ### Psychology: an everyday situation becomes a clearer judgment
 

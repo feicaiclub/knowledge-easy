@@ -4,6 +4,10 @@
 
 FEICAI's original code, instructions, documentation, and independently synthesized voice reference and English pilot are provided under the [MIT License](LICENSE). The voice profile records how the reference was created. The FEICAI name and logo identify the author; the software license does not imply endorsement of a downstream project.
 
+## Project branding
+
+The [Knowledge Easy banner](assets/readme/knowledge-easy-banner.png) was generated with OpenAI's image-generation tool using a portrait supplied by FEICAI for this project. The original photograph is not included. The banner and FEICAI likeness identify the project and its author; the software's MIT License does not grant rights to use the author's likeness or imply their endorsement of another project.
+
 ## Fonts and map data
 
 The bundled fonts retain their SIL Open Font License terms:

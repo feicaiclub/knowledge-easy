@@ -11,12 +11,10 @@
 [![中英文视频](https://img.shields.io/badge/视频-中文%20%2B%20English-8db7b2)](references/language.md)
 [![废才俱乐部](https://img.shields.io/badge/作者-废才俱乐部-2B4CF5)](https://www.feicaiclub.cn)
 
-交给 Codex 一个问题，Knowledge Easy负责调研、写稿、找素材、配音、剪辑和视觉讲解，<br>
+交给 Codex 一个问题，Knowledge Easy 负责调研、写稿、找素材、配音、剪辑和视觉讲解，<br>
 把成片放进审片室，等你逐帧提意见。
 
-<img src="assets/showcase/history-question.jpg" alt="荀彧成片中的一帧：辅曹与扶汉，还能是同一件事吗？" width="100%" />
-
-<sub>这里展示的是我们已经做出的成片画面，以及真实操作中的审片界面。</sub>
+<img src="assets/readme/knowledge-easy-banner.png" alt="Knowledge Easy 品牌头图：废才的 3D 卡通形象，与书本、放映机和被照亮的知识画面" width="100%" />
 
 [安装](#在-codex-里安装) · [成片效果](#先看已经做出的片子) · [视觉包装](#一套视觉语言讲清不同的内容) · [Lazy Studio](#lazy-studio把意见落到具体一帧) · [关于作者](#关于作者)
 
@@ -53,6 +51,8 @@ $knowledge-easy 做一条讲“为什么人会合理化自己已经做出的选�
 <tr><td width="50%"><img src="assets/showcase/history-context.jpg" alt="在同一张地图上转移叙述重点" width="100%" /><br><b>在同一张地图上转移叙述重点</b></td><td width="50%"><img src="assets/showcase/history-evidence.jpg" alt="让提议与后果同时看得见" width="100%" /><br><b>让提议与后果同时看得见</b></td></tr>
 <tr><td width="50%"><img src="assets/showcase/history-relationships.jpg" alt="区分两套权力关系" width="100%" /><br><b>区分两套权力关系</b></td><td width="50%"><img src="assets/showcase/history-roster.jpg" alt="讲到举荐人才时，再让名字出现" width="100%" /><br><b>讲到举荐人才时，再让名字出现</b></td></tr>
 </table>
+
+<img src="assets/showcase/history-question.jpg" alt="荀彧成片中的核心冲突：辅曹与扶汉，还能是同一件事吗？" width="100%" />
 
 ### 心理学篇：从一张电影票，讲到下一次选择
 
