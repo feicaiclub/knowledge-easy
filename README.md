@@ -22,13 +22,28 @@ and brings the finished film into a local review room.
 
 ## Install in Codex
 
-**Copy this into a Codex chat and send it:**
+**Run this in a terminal** with Node.js 22.20+ (including npm/npx) and Git installed:
+
+```bash
+npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
+```
+
+This uses Vercel's [Skills CLI](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) to download the skill from GitHub and install it for Codex. `--agent codex` selects Codex; `--global` makes it available across projects. The skill and its bundled resources go into `~/.agents/skills/knowledge-easy/`.
+
+<details>
+<summary>Alternative: install directly from a Codex chat</summary>
+
+If you do not have Node.js or prefer to let Codex handle installation, paste this into a Codex chat:
 
 ```text
 $skill-installer Install https://github.com/feicaiclub/knowledge-easy from the repository root (path: .), with the skill name knowledge-easy.
 ```
 
-The skill is available on your next turn; if it does not appear, restart Codex. This uses Codex's [built-in Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use).
+This is an instruction for Codex's [built-in Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use), not a terminal command. Choose either installation method; you do not need both.
+
+</details>
+
+Codex detects newly installed skills automatically. If Knowledge Easy does not appear, restart Codex.
 
 Then tell it what you want to make:
 

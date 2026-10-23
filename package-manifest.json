@@ -3,11 +3,11 @@
   "sha256": {
     "LICENSE": "3c475ce91a94d63f6c60a7ed9dbfc6f2f3e4b67d16ef09f281b96bab40364b60",
     "THIRD_PARTY_NOTICES.md": "0bc2d4ffe354acaf18d2d00133647b2752a173247119182addaaedf0b1379504",
-    "README.md": "2c140e1f86a98f705915a05a969f518939a75a49297a4aa86e251aca4bc9e798",
+    "README.md": "338d34c1de4a665471883ee94f599ff8ec0ed28a6b8187057a110d15afafbfa9",
     ".gitignore": "4df89ef6c2f92a0966d8c4db11d2f87bb12a6670b338beb93556c6e1d08d69db",
     "SKILL.md": "7e610f09313a6d66187ae52b9082e2d6246bf0badb3c936590ae4da1e5275355",
     ".gitattributes": "04ab3af742b50131a0f88c9b17a721fbbbcafd430d0de0316cb04d745e209b63",
-    "README.zh-CN.md": "a9e62ca151ccef84379f890e0798ae3823ae6095324be8f6edd92c5c0ee8e304",
+    "README.zh-CN.md": "761d66764849f25fc71b234f6fe3b3ac8d298ca212e5a020594dc7d140f44741",
     "references/language.md": "7f838fb601d38ddbc72e25bb705c0fa19a014c03e122bfc4b81d3e38707173b1",
     "references/assets.md": "58d15ec763cf978243370cb6c63e3c2c78c9422fe41db34ce608d7223f9e83d5",
     "references/voice.md": "d3b5e981e04532cc37af9f840e4838fccf51d032a0c3c568ac3e6792a688b1c2",

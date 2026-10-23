@@ -22,13 +22,28 @@
 
 ## 在 Codex 里安装
 
-**复制下面这段，粘进 Codex 聊天框发送：**
+**在终端运行下面这条命令**，需要先安装 Node.js 22.20 或更高版本（包含 npm/npx）和 Git：
+
+```bash
+npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
+```
+
+它使用 Vercel 的 [Skills CLI](https://github.com/vercel-labs/skills/blob/main/docs/commands.md)，从 GitHub 下载 Skill 并安装到 Codex。`--agent codex` 指定 Codex，`--global` 表示所有项目都能使用。Skill 和配套资源会放进 `~/.agents/skills/knowledge-easy/`。
+
+<details>
+<summary>备选：直接在 Codex 聊天里安装</summary>
+
+如果没有安装 Node.js，或者希望让 Codex 处理安装，可以把下面这段粘进 Codex 聊天框：
 
 ```text
 $skill-installer 从 https://github.com/feicaiclub/knowledge-easy 安装仓库根目录（path: .）的 Skill，安装名称为 knowledge-easy。
 ```
 
-下一轮对话即可使用；如果没有出现，重启 Codex 后再试。这里使用 Codex 自带的 [Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use)。
+这是一段给 Codex 自带 [Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use) 的安装指令，不是终端命令。两种方式选一种即可，不用重复安装。
+
+</details>
+
+Codex 会自动识别新安装的 Skill；如果没有出现 Knowledge Easy，重启 Codex 后再试。
 
 然后直接告诉它想做什么：
 
