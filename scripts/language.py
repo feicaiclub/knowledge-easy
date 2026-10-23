@@ -20,12 +20,16 @@ def resolve(project,document=None):
     return language
 
 def caption_lines(text,language):
-    limit=58 if language=='en-US' else 26
+    language=normalize(language)
+    if language=='zh-CN':
+        line=text.strip()
+        if len(line.splitlines())>1 or len(line)>26:
+            raise ValueError('Chinese captions must stay on one line. Split the sentence into separate phrase-timed cues; do not wrap, truncate, or shrink the font.')
+        return line
+    limit=58
     lines=[]
     for paragraph in text.splitlines():
-        if language=='en-US':
-            lines+=textwrap.wrap(paragraph,width=limit,break_long_words=False,break_on_hyphens=False)
-        else:lines += [paragraph[i:i+limit] for i in range(0,len(paragraph),limit)]
+        lines+=textwrap.wrap(paragraph,width=limit,break_long_words=False,break_on_hyphens=False)
     if len(lines)>2:raise ValueError('Caption exceeds two lines. Split it at a phrase boundary and retime the cues.')
     if any(len(s)>limit for s in lines):raise ValueError('Caption contains an unbroken word that will not fit.')
     return '\n'.join(lines)

@@ -8,7 +8,10 @@ from pathlib import Path
 import html, json, math, importlib.util, re
 
 ROOT = Path(__file__).resolve().parent
-VERSION = '1.2.0'
+VERSION = '1.3.0'
+_layout_spec = importlib.util.spec_from_file_location('editorial_layout', ROOT/'layout.py')
+LAYOUT = importlib.util.module_from_spec(_layout_spec)
+_layout_spec.loader.exec_module(LAYOUT)
 E = html.escape
 FAMILIES = {
     'map-decision': 'map-route', 'map-focus-chain': 'map-focus',
@@ -19,6 +22,8 @@ FAMILIES = {
     'portrait-question': 'hero', 'annotation': 'typography',
     'dateline': 'typography', 'concept-stack': 'compare',
     'declaration': 'compare',
+    'feedback-loop': 'feedback', 'evidence-collage': 'evidence',
+    'context-reveal': 'context',
 }
 
 def css(asset_prefix='../assets/fonts/', locale='en-US'):
@@ -46,7 +51,8 @@ class Component:
         assert duration >= .6
         self.kind,self.p,self.duration,self.data,self.cues = kind,prefix,duration,data,cues
         self.locale=locale
-        self.body=[];self.js=[];self.order=[];self.starts={}
+        self.body=[];self.js=[];self.order=[];self.starts={};self.settles={}
+        self.geometry=None
 
     def id(self,key):return self.p+'-'+key
     def cue(self,key,default=.1):
@@ -54,20 +60,22 @@ class Component:
 
     def enter(self,key,when=None,role='evidence',deps=(),axis='y',distance=24,duration=.48):
         at=self.cue(key) if when is None else max(0,float(when))
-        if deps:at=max(at,max(self.starts[x]+.24 for x in deps))
+        if deps:at=max(at,max(self.settles[x]+.04 for x in deps))
         assert at < self.duration-.20,(self.kind,key,at,self.duration)
         duration=min(duration,self.duration-at-.10)
         self.js.append(f"tl.fromTo('#{self.id(key)}',{{opacity:0,{axis}:{distance}}},{{opacity:1,{axis}:0,duration:{duration:.4f},ease:'power3.out'}},{at:.4f});")
         self.starts[key]=at
+        self.settles[key]=at+duration
         self.order.append({'id':self.id(key),'role':role,'enter_at':round(at,4),'settle_at':round(at+duration,4),'depends_on':[self.id(x) for x in deps]})
         return at
 
     def draw(self,key,at,deps=(),duration=.65):
-        if deps:at=max(at,max(self.starts[x]+.28 for x in deps))
+        if deps:at=max(at,max(self.settles[x]+.04 for x in deps))
         duration=min(duration,self.duration-at-.15)
         assert duration>.05,(key,at,self.duration)
         self.js.append(f"{{const el=document.getElementById('{self.id(key)}'),n=el.getTotalLength();el.style.strokeDasharray=n;tl.fromTo(el,{{strokeDashoffset:n,opacity:0}},{{strokeDashoffset:0,opacity:1,duration:{duration:.4f},ease:'power2.inOut'}},{at:.4f});}}")
         self.starts[key]=at
+        self.settles[key]=at+duration
         self.order.append({'id':self.id(key),'role':'relationship','enter_at':round(at,4),'settle_at':round(at+duration,4),'depends_on':[self.id(x) for x in deps]})
 
     def text(self,key,text,x,y,w,size=64,color=None,role='ev-title',align='left'):
@@ -89,15 +97,95 @@ class Component:
             rate=min(1.,available/self.duration-.001);assert rate>=.6,('Choose a longer shot for',key)
             grade=E(json.dumps({'adjust':{'exposure':.12,'shadows':.08,'saturation':-.08,'contrast':.025,'temperature':.012}}),quote=True)
             media=f'<video id="{self.id(key+"-media")}" class="clip" src="{E(info["src"])}" data-start="0" data-duration="{self.duration}" data-media-start="{start}" data-playback-rate="{rate:.6f}" data-hf-media-start-basis="local" data-color-grading="{grade}" muted playsinline style="{style}"></video>'
-        else:media=f'<img src="{E(info["src"])}" style="{style}">'
+        else:media=f'<img id="{self.id(key+"-media")}" src="{E(info["src"])}" style="{style}">'
         return f'<div id="{self.id(key)}" class="ev-photo" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px">'+media+(f'<div class="ev-photo-caption">{E(label)}</div>' if label else '')+'</div>'
 
     def svg(self,body):return f'<svg class="ev-svg" viewBox="0 0 1920 1080">{body}</svg>'
     def path(self,key,path,color='#d8b676',width=3):return f'<path id="{self.id(key)}" d="{path}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="butt" stroke-linejoin="round"/>'
 
+    def connector(self,key,points,at,deps=(),arrow=True):
+        self.body.append(self.svg(self.path(key,LAYOUT.path_data(points))))
+        self.draw(key,at,deps)
+        if arrow:
+            self.body.append(self.svg(self.path(key+'-tip',LAYOUT.path_data(LAYOUT.arrow_points(points)))))
+            self.enter(key+'-tip',self.settles[key]-.12,role='relationship',distance=0,duration=.12)
+
+    def diagram(self):
+        d=self.data;k=self.kind
+        if k=='feedback-loop':
+            nodes=d['nodes']
+            if len(nodes)!=3:raise ValueError('feedback-loop uses three stages; adapt the shared layout for another cycle size.')
+            self.body.append(self.text('title',d['title'],190,95,1540,70))
+            self.enter('title',.05,role='subject',distance=16)
+            positions=[(260,250),(1280,250),(770,550)]
+            boxes={'title':(190,95,1540,100)};lines=[]
+            for i,(n,(x,y)) in enumerate(zip(nodes,positions)):
+                if '\n' in n['label']:raise ValueError('Keep loop labels to one short line; put detail in the narration.')
+                key=f'node{i}'
+                picture=self.image(key+'-picture',n['image'],0,0,380,180)
+                label=self.text(key+'-label',n['label'],0,196,380,32,align='center')
+                self.body.append(f'<div id="{self.id(key)}" class="ev-diagram-node" style="left:{x}px;top:{y}px;width:380px;height:238px">{picture}{label}</div>')
+                boxes[key]=(x,y,380,238)
+                self.enter(key,self.cue(key,.25+i*.9),role='evidence',distance=18)
+            paths=[[(664,350),(1256,350)],[(1470,512),(1470,669),(1174,669)],[(746,669),(450,669),(450,512)]]
+            for i,points in enumerate(paths):
+                key=f'link{i}';lines.append({'id':key,'points':points})
+                deps=[f'node{i}',f'node{(i+1)%3}']
+                self.connector(key,points,self.cue(key,1.5+i*.9),deps)
+            if d.get('conclusion'):
+                self.body.append(self.text('conclusion',d['conclusion'],700,426,520,34,'#d8b676',align='center'))
+                boxes['conclusion']=(700,426,520,90)
+                self.enter('conclusion',self.cue('conclusion',4.6),role='conclusion',deps=['link2'],distance=12)
+            self.geometry=LAYOUT.validate_layout(boxes,lines)
+        elif k=='evidence-collage':
+            items=d['items']
+            if len(items)!=2:raise ValueError('evidence-collage compares two source artifacts.')
+            self.body.append(self.text('title',d['title'],190,95,1540,70))
+            self.enter('title',.05,role='subject',distance=16)
+            boxes={'title':(190,95,1540,100)}
+            for i,item in enumerate(items):
+                x,y,w,h=(190,235,660,410) if i==0 else (1080,285,650,360)
+                key=f'item{i}'
+                paper=f'<div class="ev-proof-mount" style="width:{w+24}px;height:{h+24}px"></div>'
+                pic=self.image(key+'-image',item['image'],0,0,w,h,focus=item.get('focus','50% 50%'))
+                self.body.append(f'<div id="{self.id(key)}" class="ev-diagram-node" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px">{paper}{pic}</div>')
+                self.body.append(self.text(key+'-label',item['label'],x,684,w,40))
+                self.body.append(self.text(key+'-note',item.get('note',''),x,745,w,28,'#d8b676','ev-sans'))
+                boxes[key]=(x,y,w,h);boxes[key+'-caption']=(x,684,w,110)
+                at=self.cue(key,.2+i*1.25)
+                self.enter(key,at,role='evidence',axis='x',distance=-18 if i==0 else 18)
+                self.enter(key+'-label',at+.2,role='supporting_label',distance=12)
+                self.enter(key+'-note',at+.35,role='supporting_label',distance=12)
+            points=[(878,455),(1052,455)]
+            self.connector('relation',points,self.cue('relation',3.2),['item0','item1'],arrow=False)
+            if d.get('relation'):
+                self.body.append(self.text('relation-label',d['relation'],886,505,154,26,'#d8b676','ev-sans','center'))
+                boxes['relation-label']=(886,505,154,95)
+                self.enter('relation-label',self.cue('relation',3.2),role='relationship',deps=['item0','item1'],distance=12)
+            self.geometry=LAYOUT.validate_layout(boxes,[{'id':'relation','points':points,'arrow':False}])
+        elif k=='context-reveal':
+            self.body.append(self.text('title',d['detail'],190,95,1540,70))
+            picture=self.image('detail-media',d['image'],0,0,1050,590,focus=d.get('focus','50% 50%'))
+            self.body.append(f'<div id="{self.id("window")}" class="ev-context-window">{picture}</div>')
+            self.body.append(self.text('context',d['context'],1300,360,430,42,'#d8b676'))
+            self.enter('window',0,role='subject',distance=18)
+            self.enter('title',.1,role='subject',distance=16)
+            at=max(self.cue('widen',1.7),self.settles['window']+.1)
+            duration=min(float(d.get('reveal_duration',2.0)),self.duration-at-.9)
+            if duration<.6:raise ValueError('Leave time for the context reveal and its reading hold.')
+            zoom=float(d.get('detail_scale',1.8))
+            if not 1<zoom<=3:raise ValueError('detail_scale must be between 1 and 3.')
+            self.js.append(f"tl.fromTo('#{self.id('detail-media')}',{{scale:{zoom},transformOrigin:'{E(d.get('focus','50% 50%'))}'}},{{scale:1,duration:{duration},ease:'power2.inOut'}},{at});")
+            self.starts['widen']=at;self.settles['widen']=at+duration
+            self.order.append({'id':self.id('widen'),'role':'evidence','enter_at':at,'settle_at':at+duration,'depends_on':[self.id('window')]})
+            self.enter('context',self.cue('context',at+duration+.1),role='conclusion',deps=['widen'],distance=12)
+            self.geometry=LAYOUT.validate_layout({'title':(190,95,1540,100),'window':(190,220,1050,590),'context':(1300,360,430,42*1.3*len(d['context'].split('\n')))})
+
     def render(self):
         d=self.data;p=self.p;k=self.kind
-        if k in ['map-decision','map-focus-chain']:
+        if k in ['feedback-loop','evidence-collage','context-reveal']:
+            self.diagram()
+        elif k in ['map-decision','map-focus-chain']:
             self.map()
         elif k=='annotation':
             place=d.get('placement','lower-left');x,y,w={'lower-left':(150,620,1380),'lower-right':(1110,650,660),'upper-left':(150,165,1500)}[place]
@@ -171,7 +259,7 @@ class Component:
                     self.body += [self.text(f'sub{i}',n['sub'],x,675,550,47,align='center')]
                     self.enter(f'sub{i}',self.cue(f'sub{i}',1+i*.6),role='evidence')
             if any(n.get('sub') for n in nodes):
-                widths=[sum(1 if ord(ch)>255 else .56 for ch in n.get('sub',''))*47+max(0,len(n.get('sub',''))-1)*2 for n in nodes]
+                widths=[max(sum(1 if ord(ch)>255 else .56 for ch in line)*47+max(0,len(line)-1)*2 for line in n.get('sub','').split('\n')) for n in nodes]
                 left=455+widths[0]/2+28;right=1465-widths[1]/2-28
                 bridge=f'M455 635 V655 M1465 635 V655 M{left} 710 H{right}'
             else:bridge='M760 435 H1160'
@@ -179,6 +267,15 @@ class Component:
             deps=['sub0','sub1'] if all(n.get('sub') for n in nodes) else ['node0','node1']
             at=max(self.cue('relation',2.0),max(self.starts[x] for x in deps)+.32)
             self.draw('bridge',at,deps);self.enter('relation',at+.1,role='relationship',distance=12,duration=.35)
+            boxes={'node0':(180,225,550,390),'node1':(1190,225,550,390)}
+            has_sub=any(n.get('sub') for n in nodes)
+            boxes['relation']=(765,630 if has_sub else 345,390,38*1.55*len(d['relation'].split('\n')))
+            if has_sub:
+                for i,n in enumerate(nodes):
+                    if n.get('sub'):boxes[f'sub{i}']=((455 if i==0 else 1465)-widths[i]/2,675,widths[i],47*1.3*len(n['sub'].split('\n')))
+                lines=[{'id':'left-stem','points':[(455,635),(455,655)],'arrow':False},{'id':'right-stem','points':[(1465,635),(1465,655)],'arrow':False},{'id':'bridge','points':[(left,710),(right,710)],'arrow':False}]
+            else:lines=[{'id':'bridge','points':[(760,435),(1160,435)],'arrow':False}]
+            self.geometry=LAYOUT.validate_layout(boxes,lines)
         elif k=='foundation':
             items=d['items'];assert 2<=len(items)<=4
             self.body += [self.text('title',d['title'],190,135,1540,83),self.text('note',d['note'],195,265,1500,35,'#d8b676','ev-sans')]
@@ -226,6 +323,7 @@ class Component:
             'html':'<div class="ev-component" data-editorial-component="'+k+'" data-editorial-version="'+VERSION+'">'+''.join(self.body)+'</div>',
             'js':''.join(self.js), 'reading_order':self.order,
             'component':k,'parent':FAMILIES[k],'version':VERSION,'locale':self.locale,
+            'layout':self.geometry,
         }
 
     def map(self):

@@ -35,8 +35,10 @@ description: Create and revise narrated explainer videos in English or Chinese, 
 
 [Visuals]
     Follow the [visual handbook](references/visual-handbook.html) for typography, color, and layout. Use the actual bundled renderer as described in the [component guide](references/packaging.md).
-    Use graphics to explain. Prefer scenes and diagrams over walls of text. Place explanatory cards over consistently graded, softly blurred video when appropriate.
-    Settle the layout first: type hierarchy, alignment, spacing, and visual balance. Then time entrances, holds, and exits to the narration.
+    Choose a visual form for the reasoning: cycles, evidence, context, comparisons, or sequences. Check the full library; do not default to whichever text or card template is easiest to call. Use no component when footage explains enough.
+    Put explanatory cards and diagrams over graded, softly blurred moving video that remains visible. Use a full-frame map, document, or intentional interlude only when it serves the explanation; record the reason instead of silently using a solid background.
+    Settle type hierarchy, alignment, spacing, and visual balance first. Route connectors through clear space between real anchors; keep arrowheads, images, labels, and captions from covering each other. Reserve safe margins throughout the animation, then time reveals to the narration.
+    Keep Chinese subtitles on one line and English subtitles to at most two. Split long speech into separate, phrase-timed cues; do not shrink or truncate it to fit.
     Review the full motion, not just a settled frame. Adapt or create components when needed. Add reusable, tested variants and examples to the library and handbook.
 
 [Sound]
@@ -47,7 +49,7 @@ description: Create and revise narrated explainer videos in English or Chinese, 
     Choose and change music with the story. Plan fades and silence. Give the score feeling and momentum while keeping speech clear; use effects with purpose.
 
 [Review and delivery]
-    Check the actual exported film, especially its opening, turns, diagrams, cuts, captions, and audio transitions. Fix issues before delivery.
+    Read the visual-plan review notes. Check the actual exported film with captions: explanatory variety, visibly moving backgrounds, clear connectors, alignment, safe edges, entrances, exits, and audio transitions. Fix issues before delivery.
     Record what was checked and what was not seen or heard. Frames, transcripts, and measurements do not replace watching and listening.
     Deliver the film and a project that can be rendered again. Identify the current approved version. Keep source files, needed media, settings, and important records; remove only obsolete, reproducible intermediates.
 

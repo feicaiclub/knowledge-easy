@@ -82,7 +82,7 @@ $knowledge-easy 做一条讲“为什么人会合理化自己已经做出的选�
 
 ## 一套视觉语言，讲清不同的内容
 
-包内有 **21 种可编辑设计、42 张中英文静态预览图**。字体、卡片、关系图、时间线、证据版式和地图来自同一套组件。内容、素材、坐标和出场时机，按每期讲述调整。
+包内有 **24 种可编辑设计、48 张中英文静态预览图**。字体、卡片、关系图、时间线、证据版式和地图来自同一套组件。内容、素材、坐标和出场时机，按每期讲述调整。
 
 <table>
 <tr><td width="50%"><img src="assets/packaging/previews/en-US/quote-reveal.jpg" alt="先铺垫，再亮出关键一句" width="100%" /><br><b>先铺垫，再亮出关键一句</b></td><td width="50%"><img src="assets/packaging/previews/zh-CN/map-route.jpg" alt="路线与地理关系" width="100%" /><br><b>路线与地理关系</b></td></tr>

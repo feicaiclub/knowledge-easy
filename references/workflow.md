@@ -13,8 +13,8 @@ This creates the project, a versioned component snapshot, fonts, and empty film 
 1. Research and write. Record the agreed facts, viewpoint, constraints, and approved elements. Keep useful evidence without creating documents just to fill a checklist.
 2. Fill `voice-plan.json` with complete passages. Use `tts_text` for pronunciation changes, `direction` for delivery notes, and `gap_after` only for a pause you have reviewed. Keep the original spelling in the script and captions.
 3. Check the recording for complete sentences, pronunciation, voice consistency, and natural transitions. Transcription can help. Plan shot timing, music changes, and graphic reveals around the finished narration.
-4. Configure scenes and captions in `film.json`. The builder is a starting point, not a creative ceiling. Custom scenes can use the same fonts, colors, layout principles, and shared component source.
-5. Check the composition, watch the motion, render, and review the actual export. Record anything that has not been watched or heard.
+4. Choose each graphic for its explanatory purpose using the [component guide](packaging.md), then configure scenes and captions in `film.json`. The builder is a starting point, not a creative ceiling. Custom scenes use the same visual system and shared source; prefer a suitable base design over a convenient text-only substitute.
+5. Read `review/visual-plan.json`, check the composition with captions, watch the motion, render, and review the actual export. Check that backgrounds still look like moving footage and that no image, label, or transition obscures a connector. Record anything that has not been watched or heard.
 
 ```sh
 sh "<skill>/scripts/run.sh" voice --project "<project>" --plan voice-plan.json
@@ -61,7 +61,9 @@ The default canvas is 1920×1080 at 30 fps. Times are in seconds; component cues
 }
 ```
 
-For a footage-only scene, use `footage` with the same fields as `background` and omit `component`. Caption endpoints are snapped to frames before their duration is calculated. English captions wrap at word boundaries and reject more than two lines. Split a long caption into well-timed phrases instead of shrinking its type.
+For a footage-only scene, use `footage` with the same fields as `background` and omit `component`. Caption endpoints are snapped to frames before their duration is calculated. Chinese captions stay on one line and reject explicit line breaks or overlong cues. English captions wrap at word boundaries and reject more than two lines. Split long speech into separate, phrase-timed cues instead of shrinking, truncating, or forcing it into another Chinese line.
+
+Each component scene needs a `purpose` and normally a moving `background`. For diagrams/cards, omitted grading fields receive a modest grade and blur; inspect and tune the actual result. `annotation` and `dateline` can overlay clear `footage`. To use an intentional full-frame map, document, or interlude without background video, supply `surface_reason` explaining that decision. A missing background is otherwise a build error. Do not place another full-frame `footage` layer over a diagram's background.
 
 All media paths are relative to the project root. Register every moving placement: main shots, backgrounds, and video in cards.
 

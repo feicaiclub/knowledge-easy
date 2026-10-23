@@ -27,6 +27,8 @@ Use English place names or established romanizations in an English film. Confirm
 
 Caption timing comes from the English recording, not the Chinese version. Keep captions to two readable lines and split them at natural phrase boundaries. Word timestamps are a starting point, not a reading-quality verdict.
 
+Chinese subtitles must stay on **one line**; English subtitles may use **up to two lines**. For Chinese, divide long sentences into separate cues at natural phrase boundaries and align each cue to its spoken passage. The default 42 px layout allows up to 26 characters per Chinese cue as a conservative guard; review the actual width. Do not insert a second line, shrink the font, truncate words, or split timing evenly without listening to the speech. Explicit Chinese line breaks and overlong cues fail the build rather than wrapping silently.
+
 ## Review
 
 Check script language, TTS language, ASR language, captions, graphic labels, and typography together. Listen for unexpected language switching, a noticeable accent mismatch, names read incorrectly, and speaker drift. Watch for English text spilling out of a layout or revealing information before the narration reaches it. Chinese examples and the Mandarin reference transcript are intentional bilingual assets, not untranslated interface text.

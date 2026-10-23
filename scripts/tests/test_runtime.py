@@ -46,7 +46,8 @@ class RuntimeTests(unittest.TestCase):
             lock=vibe.load(root/'kit/editorial-lock.json');lock['version']='1.1.0';vibe.save(root/'kit/editorial-lock.json',lock)
             with self.assertRaises(ValueError):vibe.install_pack(root)
             vibe.install_pack(root,update=True)
-            self.assertEqual(vibe.load(root/'kit/editorial-lock.json')['version'],'1.2.0')
+            expected=vibe.load(bootstrap.SKILL/'assets/packaging/src/renderer-contract.json')['version']
+            self.assertEqual(vibe.load(root/'kit/editorial-lock.json')['version'],expected)
 
     def test_new_project_rejects_overwrite(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -60,6 +61,7 @@ class RuntimeTests(unittest.TestCase):
             root=Path(folder);vibe.init(root)
             film={'duration':3,'fps':30,'scenes':[{'id':'test','start':0,'duration':3,'component':'quote-reveal','data':{'lead':'Premise','emphasis':'Judgment'},'cues':{'lead':.1,'emphasis':1}}],
                   'subtitles':[{'start':.03,'end':1.049,'text':'Premise'},{'start':1.051,'end':2.5,'text':'Judgment'}]}
+            film['scenes'][0].update(purpose='Check caption endpoints.',surface_reason='Isolated subtitle-timing test fixture.')
             vibe.save(root/'film.json',film);vibe.build(root)
             self.assertTrue((root/'index.html').exists())
             film['subtitles'][1]['start']=.5;vibe.save(root/'film.json',film)

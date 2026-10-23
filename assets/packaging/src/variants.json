@@ -3,7 +3,7 @@
     "id": "map-decision",
     "name": "Map: a possible route",
     "parent_component": "map-route",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Establish the places before showing a possible direction.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -75,8 +75,8 @@
       {
         "id": "demo-map-decision-route-draw",
         "role": "relationship",
-        "enter_at": 1.65,
-        "settle_at": 2.5,
+        "enter_at": 1.76,
+        "settle_at": 2.61,
         "depends_on": [
           "demo-map-decision-point0",
           "demo-map-decision-point1"
@@ -123,7 +123,7 @@
     "id": "map-focus-chain",
     "name": "Map: shifting focus",
     "parent_component": "map-focus",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Move attention between places without changing the projection.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -241,7 +241,7 @@
     "id": "credential",
     "name": "Identity and role",
     "parent_component": "evidence",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Introduce a person before explaining their role.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -320,7 +320,7 @@
     "id": "evidence-sheet",
     "name": "Evidence and interpretation",
     "parent_component": "evidence",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Give source material and interpretation distinct reading space.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -397,7 +397,7 @@
     "id": "relation-bridge",
     "name": "Two sides of a relationship",
     "parent_component": "relation",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Introduce both sides before revealing the connection.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -500,7 +500,7 @@
     "id": "name-roster",
     "name": "A structured list",
     "parent_component": "relation",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Give related items a shared baseline and a clear order.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -570,7 +570,7 @@
     "id": "quote-reveal",
     "name": "A thought, then its implication",
     "parent_component": "evidence",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Let the premise land before revealing the key line.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -624,7 +624,7 @@
     "id": "milestone-pair",
     "name": "Two moments in time",
     "parent_component": "timeline",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Compare two moments on matching scales and baselines.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -685,7 +685,7 @@
     "id": "foundation",
     "name": "A shared foundation",
     "parent_component": "relation",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "purpose": "Build a group before revealing what its members support.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
@@ -765,6 +765,333 @@
         "enter_at": 3.3,
         "settle_at": 3.68,
         "depends_on": []
+      }
+    ]
+  },
+  {
+    "id": "feedback-loop",
+    "name": "Feedback loop",
+    "parent_component": "feedback",
+    "purpose": "Show how an action, its result, and the next attempt reinforce one another.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "Practice feeds progress",
+        "nodes": [
+          {
+            "image": {
+              "src": "assets/pack-media/notes.mp4",
+              "type": "video"
+            },
+            "label": "Draft"
+          },
+          {
+            "image": {
+              "src": "assets/pack-media/typing.mp4",
+              "type": "video"
+            },
+            "label": "Revise"
+          },
+          {
+            "image": {
+              "src": "assets/pack-media/clock.mp4",
+              "type": "video"
+            },
+            "label": "Try again"
+          }
+        ],
+        "conclusion": "Small changes\ncompound."
+      },
+      "cues": {
+        "node0": 0.3,
+        "node1": 1.3,
+        "node2": 2.6,
+        "link0": 1.9,
+        "link1": 3.2,
+        "link2": 4,
+        "conclusion": 5.1
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "inputs": "title, three nodes with image and short label, optional conclusion; node0..2/link0..2/conclusion cues",
+    "motion": "Reveal each node before its connecting edge; close the cycle before the conclusion.",
+    "version": "1.3.0",
+    "start": 72,
+    "preview": "../previews/en-US/feedback-loop.mp4",
+    "poster": "../previews/en-US/feedback-loop.jpg",
+    "reading_order": [
+      {
+        "id": "demo-feedback-loop-title",
+        "role": "subject",
+        "enter_at": 0.05,
+        "settle_at": 0.53,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-node0",
+        "role": "evidence",
+        "enter_at": 0.3,
+        "settle_at": 0.78,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-node1",
+        "role": "evidence",
+        "enter_at": 1.3,
+        "settle_at": 1.78,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-node2",
+        "role": "evidence",
+        "enter_at": 2.6,
+        "settle_at": 3.08,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-link0",
+        "role": "relationship",
+        "enter_at": 1.9,
+        "settle_at": 2.55,
+        "depends_on": [
+          "demo-feedback-loop-node0",
+          "demo-feedback-loop-node1"
+        ]
+      },
+      {
+        "id": "demo-feedback-loop-link0-tip",
+        "role": "relationship",
+        "enter_at": 2.43,
+        "settle_at": 2.55,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-link1",
+        "role": "relationship",
+        "enter_at": 3.2,
+        "settle_at": 3.85,
+        "depends_on": [
+          "demo-feedback-loop-node1",
+          "demo-feedback-loop-node2"
+        ]
+      },
+      {
+        "id": "demo-feedback-loop-link1-tip",
+        "role": "relationship",
+        "enter_at": 3.73,
+        "settle_at": 3.85,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-link2",
+        "role": "relationship",
+        "enter_at": 4.0,
+        "settle_at": 4.65,
+        "depends_on": [
+          "demo-feedback-loop-node2",
+          "demo-feedback-loop-node0"
+        ]
+      },
+      {
+        "id": "demo-feedback-loop-link2-tip",
+        "role": "relationship",
+        "enter_at": 4.53,
+        "settle_at": 4.65,
+        "depends_on": []
+      },
+      {
+        "id": "demo-feedback-loop-conclusion",
+        "role": "conclusion",
+        "enter_at": 5.1,
+        "settle_at": 5.58,
+        "depends_on": [
+          "demo-feedback-loop-link2"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "evidence-collage",
+    "name": "Evidence collage",
+    "parent_component": "evidence",
+    "purpose": "Put a source artifact beside its recording context.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "title": "Read the record in context",
+        "items": [
+          {
+            "image": {
+              "src": "assets/pack-media/book.mp4",
+              "type": "video"
+            },
+            "label": "What was written",
+            "note": "Start with the source"
+          },
+          {
+            "image": {
+              "src": "assets/pack-media/notes.mp4",
+              "type": "video"
+            },
+            "label": "How it was recorded",
+            "note": "Look at the circumstances"
+          }
+        ],
+        "relation": "Add\ncontext"
+      },
+      "cues": {
+        "item0": 0.25,
+        "item1": 2,
+        "relation": 3.4
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "inputs": "title, two source images with label and optional note, optional relation; item0/item1/relation cues",
+    "motion": "Establish the first artifact, introduce the second, then connect their readings.",
+    "version": "1.3.0",
+    "start": 80,
+    "preview": "../previews/en-US/evidence-collage.mp4",
+    "poster": "../previews/en-US/evidence-collage.jpg",
+    "reading_order": [
+      {
+        "id": "demo-evidence-collage-title",
+        "role": "subject",
+        "enter_at": 0.05,
+        "settle_at": 0.53,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item0",
+        "role": "evidence",
+        "enter_at": 0.25,
+        "settle_at": 0.73,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item0-label",
+        "role": "supporting_label",
+        "enter_at": 0.45,
+        "settle_at": 0.93,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item0-note",
+        "role": "supporting_label",
+        "enter_at": 0.6,
+        "settle_at": 1.08,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item1",
+        "role": "evidence",
+        "enter_at": 2.0,
+        "settle_at": 2.48,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item1-label",
+        "role": "supporting_label",
+        "enter_at": 2.2,
+        "settle_at": 2.68,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-item1-note",
+        "role": "supporting_label",
+        "enter_at": 2.35,
+        "settle_at": 2.83,
+        "depends_on": []
+      },
+      {
+        "id": "demo-evidence-collage-relation",
+        "role": "relationship",
+        "enter_at": 3.4,
+        "settle_at": 4.05,
+        "depends_on": [
+          "demo-evidence-collage-item0",
+          "demo-evidence-collage-item1"
+        ]
+      },
+      {
+        "id": "demo-evidence-collage-relation-label",
+        "role": "relationship",
+        "enter_at": 3.4,
+        "settle_at": 3.88,
+        "depends_on": [
+          "demo-evidence-collage-item0",
+          "demo-evidence-collage-item1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "context-reveal",
+    "name": "Detail into context",
+    "parent_component": "context",
+    "purpose": "Let one continuous image reveal the context missing from a close detail.",
+    "source": "editorial.py",
+    "stylesheet": "editorial.css",
+    "configuration": {
+      "data": {
+        "image": {
+          "src": "assets/pack-media/chess.mp4",
+          "type": "video"
+        },
+        "detail": "A detail draws attention",
+        "context": "Pull back.\nThere is more\nto the scene.",
+        "detail_scale": 2,
+        "focus": "55% 45%",
+        "reveal_duration": 2.2
+      },
+      "cues": {
+        "widen": 2,
+        "context": 4.5
+      },
+      "language": "en-US"
+    },
+    "duration": 8,
+    "inputs": "image, detail, context, focus, detail_scale, reveal_duration; widen/context cues",
+    "motion": "Hold the close detail, widen the same image continuously, then reveal the changed interpretation.",
+    "version": "1.3.0",
+    "start": 88,
+    "preview": "../previews/en-US/context-reveal.mp4",
+    "poster": "../previews/en-US/context-reveal.jpg",
+    "reading_order": [
+      {
+        "id": "demo-context-reveal-window",
+        "role": "subject",
+        "enter_at": 0,
+        "settle_at": 0.48,
+        "depends_on": []
+      },
+      {
+        "id": "demo-context-reveal-title",
+        "role": "subject",
+        "enter_at": 0.1,
+        "settle_at": 0.58,
+        "depends_on": []
+      },
+      {
+        "id": "demo-context-reveal-widen",
+        "role": "evidence",
+        "enter_at": 2.0,
+        "settle_at": 4.2,
+        "depends_on": [
+          "demo-context-reveal-window"
+        ]
+      },
+      {
+        "id": "demo-context-reveal-context",
+        "role": "conclusion",
+        "enter_at": 4.5,
+        "settle_at": 4.98,
+        "depends_on": [
+          "demo-context-reveal-widen"
+        ]
       }
     ]
   }

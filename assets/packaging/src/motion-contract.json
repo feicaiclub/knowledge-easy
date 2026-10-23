@@ -1,6 +1,6 @@
 {
-  "status": "manual contract, not an installed Skill",
-  "version": "2026-10-22",
+  "status": "Bundled production contract",
+  "version": "1.3.0",
   "scene_required": [
     "explanation_task",
     "settled_layout",
@@ -36,7 +36,10 @@
     "design settled frame first",
     "share baselines and margins",
     "center a group conclusion against the full group",
-    "assess image and negative-space weight as well as rectangles"
+    "assess image and negative-space weight as well as rectangles",
+    "route connectors around padded image and label bounds",
+    "reserve caption space and safe edges throughout motion",
+    "keep moving video perceptible behind explanatory graphics"
   ],
   "motion_rules": [
     "one coherent direction per semantic group",
@@ -52,5 +55,5 @@
     "continuous excerpt",
     "actual delivery MP4"
   ],
-  "fixed_voice_profile": "../series-voice/profile.json"
+  "fixed_voice_profile": "../../voice/profile.json"
 }

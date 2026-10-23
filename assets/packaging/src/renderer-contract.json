@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "renderer": "editorial.py",
   "styles": [
     "pack.css",
@@ -13,7 +13,8 @@
     "reading_order",
     "component",
     "parent",
-    "version"
+    "version",
+    "layout"
   ],
   "episode_may_change": [
     "copy",
@@ -39,7 +40,10 @@
     "Release snapshots are explicit and immutable after delivery; upgrades are intentional.",
     "Scenes contain content and cue configuration, not arbitrary component x/y coordinates.",
     "A new generic variant is documented with another subject and actually rendered before release.",
-    "Every generated instance records parent family, version, data, cues and reading order."
+    "Every generated instance records parent family, version, data, cues and reading order.",
+    "Choose a component for the explanatory task, not implementation convenience; inspect base designs as well as production variants.",
+    "Explanatory cards and diagrams use visibly moving, softly blurred video backgrounds; intentional full-frame exceptions record a reason.",
+    "Validate image and label obstacles, connector clearance, alignment, and caption-safe bounds during motion as well as at rest."
   ],
   "public_variants": {
     "map-decision": {
@@ -133,6 +137,47 @@
         "items",
         "conclusion"
       ]
+    },
+    "feedback-loop": {
+      "parent": "feedback",
+      "nodes": 3,
+      "required": [
+        "title",
+        "nodes[].image",
+        "nodes[].label"
+      ],
+      "optional": [
+        "conclusion"
+      ],
+      "geometry": "Three image nodes, reserved connector lanes, short single-line labels"
+    },
+    "evidence-collage": {
+      "parent": "evidence",
+      "items": 2,
+      "required": [
+        "title",
+        "items[].image",
+        "items[].label"
+      ],
+      "optional": [
+        "items[].note",
+        "relation"
+      ],
+      "geometry": "Two source artifacts with separate reading areas and a clear connecting lane"
+    },
+    "context-reveal": {
+      "parent": "context",
+      "required": [
+        "image",
+        "detail",
+        "context"
+      ],
+      "optional": [
+        "focus",
+        "detail_scale",
+        "reveal_duration"
+      ],
+      "geometry": "One media placement widens inside a fixed clipping window"
     }
   },
   "languages": [

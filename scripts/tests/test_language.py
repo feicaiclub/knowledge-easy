@@ -29,6 +29,14 @@ class LanguageTests(unittest.TestCase):
         with self.assertRaises(ValueError):caption_lines('word '*80,'en-US')
         with self.assertRaises(ValueError):caption_lines('x'*70,'en-US')
 
+    def test_chinese_captions_stay_on_one_line_without_losing_words(self):
+        text='我们改变的，也许不是选择，而是解释。'
+        self.assertEqual(caption_lines(text,'zh-CN'),text)
+        self.assertEqual(caption_lines('字'*26,'zh-CN'),'字'*26)
+        for text in ['第一句\n第二句','字'*27]:
+            with self.assertRaisesRegex(ValueError,'one line'):
+                caption_lines(text,'zh-CN')
+
     def test_english_and_chinese_catalogs_use_the_same_code(self):
         p=vibe.SKILL/'assets/packaging/src/base_catalog.py'
         m=vibe.module(p,'localized_base')
@@ -42,6 +50,7 @@ class LanguageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);vibe.init(root,'en-US')
             film={'language':'en-US','duration':4,'fps':30,'scenes':[{'id':'test','start':0,'duration':4,'component':'quote-reveal','data':{'lead':'A premise','emphasis':'A judgment'}}],'subtitles':[{'start':.1,'end':2,'text':'What changes the answer?'}]}
+            film['scenes'][0].update(purpose='Inspect localized type.',surface_reason='Isolated typography test, not a production film.')
             vibe.save(root/'film.json',film);vibe.build(root)
             page=(root/'index.html').read_text();scene=(root/'compositions/test.html').read_text()
             self.assertIn('lang="en-US"',page);self.assertIn('inter.ttf',page)

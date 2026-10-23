@@ -1,6 +1,6 @@
 # Package verification
 
-Updated October 22, 2026. This is one Skill with English documentation and an English review interface. It supports English and Chinese film production. It has not been installed globally on the author's machine.
+Updated October 23, 2026. This is one Skill with English documentation and an English review interface. It supports English and Chinese film production. Runtime dependencies remain outside the Skill.
 
 ```text
 knowledge-easy/
@@ -14,7 +14,16 @@ knowledge-easy/
 └── package-manifest.json
 ```
 
-## Verified
+## Visual quality update · renderer 1.3.0
+
+- Direct production support for `feedback-loop`, `evidence-collage`, and `context-reveal`, adapted from the existing base families. The public handbook now has 24 designs and 48 English/Chinese still previews.
+- Graphic scenes require an explanatory purpose and normally a moving, softly blurred video background. Missing backgrounds, zero blur, and a second full-frame footage layer hiding the background produce actionable build errors. Deliberate full-frame surfaces record an editorial reason.
+- Shared geometry checks cover information bounds, caption reserve, overlapping information boxes, image/label obstacles, connector lanes, and arrowheads for the new diagrams and relation bridge. Connectors wait for their anchors to settle. These checks do not replace visual inspection of other variants or custom scenes.
+- `review/visual-plan.json` exposes component/family usage and prompts a review when text-led forms dominate. It does not impose a variety quota.
+- 34 automated tests cover the new checks and existing language, runtime, and review behavior. English and Chinese 32-second checks were rendered with two-line English captions and single-line Chinese captions; entrance, middle, held, and cut-adjacent frames were inspected. Silent component checks do not assess narration or music.
+- Fixed voice assets, fonts, map data, runtime versions, and Lazy Studio were retained. Existing film projects keep their versioned snapshots until explicitly upgraded.
+
+## Earlier production verification
 
 - One root `SKILL.md`, with the FEICAI startup mark at the end. No extra Skill, CLAUDE.md, or AGENTS.md.
 - American English instructions, reference guides, handbook, example descriptions, CLI messages, and Lazy Studio labels.
@@ -55,6 +64,6 @@ Add `--install` to `doctor` to install missing tools. Production commands do thi
 
 ## Public release
 
-The GitHub edition includes English and Chinese README files, the direct Codex Skill Installer prompt, an MIT license, third-party notices, and package-integrity CI. The public copy excludes pre-rendered demo videos while retaining their still previews. Original local project files are unchanged. The approved model configuration, voice files, and all shared renderer source files were compared with the original package and are unchanged.
+The GitHub edition includes English and Chinese README files, a Skills CLI installation command with a Codex Skill Installer prompt as an alternative, an MIT license, third-party notices, and package-integrity CI. The public copy excludes pre-rendered demo videos while retaining their still previews. Original local film projects are unchanged. The approved model configuration and voice files are preserved; renderer changes are versioned explicitly.
 
-Raw third-party catalog clips are excluded from distribution. Still previews remain in the public handbook; `catalog --media-dir` accepts licensed local clips to rebuild examples. The nine English variants and twelve Chinese base designs were built using that option. Missing-media errors are checked before creating a project. The existing 25 tests pass. No new production dependency or cross-machine installation test was introduced for publication.
+Raw third-party catalog clips are excluded from distribution. Still previews remain in the public handbook; `catalog --media-dir` accepts licensed local clips to rebuild examples. The nine English variants and twelve Chinese base designs were built using that option. Missing-media errors are checked before creating a project. At initial publication, the 25 existing tests passed. No new production dependency or cross-machine installation test was introduced for publication.

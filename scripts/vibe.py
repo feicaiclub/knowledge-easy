@@ -2,7 +2,8 @@
 """One public entry for the portable FEICAI knowledge-video toolset."""
 import sys
 sys.dont_write_bytecode=True
-import argparse,hashlib,html,importlib.util,inspect,json,os,re,shutil,subprocess
+import argparse,hashlib,html,importlib.util,inspect,json,os,re,shutil,subprocess,copy
+from collections import Counter
 from pathlib import Path
 from bootstrap import SKILL,contained,ensure,run
 from language import normalize,resolve,caption_lines,CONFIG
@@ -75,6 +76,31 @@ def media_tag(project,item,id,duration,background=False):
     return f'<video id="{id}" class="clip scene-film" src="{html.escape(src,quote=True)}" data-start="0" data-duration="{duration}" data-media-start="{start}" data-playback-rate="{rate}" data-color-grading="{grading}" muted playsinline></video>'
 
 
+def visual_background(scene):
+    """Make a missing/hidden diagram background an actionable build error."""
+    background=copy.deepcopy(scene.get('background'))
+    kind=scene.get('component')
+    if not kind:return background
+    if not str(scene.get('purpose','')).strip():
+        raise ValueError(scene['id']+': state what this graphic explains in purpose.')
+    overlay=kind in ('annotation','dateline')
+    if not background:
+        if (overlay and scene.get('footage')) or str(scene.get('surface_reason','')).strip():return None
+        raise ValueError(scene['id']+': supply a moving background video for this graphic. For a deliberate full-frame map, document, or interlude, record surface_reason; never fall back to a solid canvas silently.')
+    if scene.get('footage'):
+        raise ValueError(scene['id']+': footage would cover the background. Use one background, or put the foreground media inside the component.')
+    if Path(background.get('src','')).suffix.lower() not in ('.mp4','.mov','.webm','.m4v','.mkv'):
+        raise ValueError(scene['id']+': background must be a moving video, not a still image.')
+    if not overlay:
+        grade=background.setdefault('grading',{})
+        adjust=grade.setdefault('adjust',{})
+        adjust.setdefault('exposure',-.55);adjust.setdefault('saturation',-.2)
+        effects=grade.setdefault('effects',{});effects.setdefault('blur',.7)
+        if not 0<float(effects['blur'])<=1:
+            raise ValueError(scene['id']+': explanatory backgrounds need visible defocus (grading.effects.blur in (0, 1]).')
+    return background
+
+
 def build(project,manifest=None):
     film=load(manifest or project/'film.json');language=resolve(project,film);duration=float(film['duration']);fps=float(film.get('fps',30))
     if duration<=0 or fps<=0:raise ValueError('Set the duration, frame rate, and scenes first.')
@@ -91,7 +117,11 @@ def build(project,manifest=None):
         ids.add(cid)
         if start<0 or d<=0 or start+d>duration+1/fps:raise ValueError('Scene extends beyond the timeline: '+cid)
         body='';js=''
-        if scene.get('background'):body+=media_tag(project,scene['background'],cid+'-background',d,True)
+        background=visual_background(scene)
+        if background:
+            body+=media_tag(project,background,cid+'-background',d,True)
+            if scene.get('component') not in (None,'annotation','dateline'):
+                body+='<div class="scene-shade" aria-hidden="true"></div>'
         if scene.get('footage'):body+=media_tag(project,scene['footage'],cid+'-footage',d)
         if scene.get('component'):
             def check_content(v):
@@ -102,9 +132,9 @@ def build(project,manifest=None):
                     for x in v:check_content(x)
             check_content(scene.get('data',{}))
             r=kit.render(scene['component'],cid,d,scene['data'],scene.get('cues',{}),**locale_options);body+=r['html'];js+=r['js']
-            usage.append({'id':cid,'start':start,'duration':d,'purpose':scene.get('purpose',''),'data':scene['data'],'cues':scene.get('cues',{}),**{k:r[k] for k in ['component','parent','version','reading_order']}})
+            usage.append({'id':cid,'start':start,'duration':d,'purpose':scene['purpose'],'background':background,'surface_reason':scene.get('surface_reason'),'layout':r.get('layout'),'data':scene['data'],'cues':scene.get('cues',{}),**{k:r[k] for k in ['component','parent','version','reading_order']}})
         if not body:raise ValueError('Scene has no visual content: '+cid)
-        css=kit.css('assets/fonts/',**locale_options)+'.scene-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}#root{position:absolute;inset:0;overflow:hidden}'
+        css=kit.css('assets/fonts/',**locale_options)+'.scene-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.scene-shade{position:absolute;inset:0;background:rgba(9,15,16,.25);z-index:1;pointer-events:none}.ev-component{z-index:10}#root{position:absolute;inset:0;overflow:hidden}'
         doc=f'''<!doctype html><html lang="{language}"><head><meta charset="utf-8"></head><body><template><style>{css}</style><div id="root" data-composition-id="{cid}" data-width="1920" data-height="1080" data-duration="{d}">{body}</div><script>const tl=gsap.timeline({{paused:true}});{js}window.__timelines=window.__timelines||{{}};window.__timelines['{cid}']=tl;</script></template></body></html>'''
         (project/'compositions'/f'{cid}.html').write_text(doc,encoding='utf-8')
         hosts.append(f'<div id="host-{cid}" class="clip" data-composition-id="{cid}" data-composition-src="compositions/{cid}.html" data-start="{start}" data-duration="{d}" data-width="1920" data-height="1080" data-track-index="1" data-track-kind="graphics"></div>')
@@ -119,8 +149,14 @@ def build(project,manifest=None):
         local(project,film['mix']);hosts.append(f'<audio id="film-mix" class="clip" src="{html.escape(film["mix"],quote=True)}" data-start="0" data-duration="{duration}" data-volume="1" data-track-index="20"></audio>')
     doc='''<!doctype html><html lang="{language}"><head><meta charset="utf-8"><script src="assets/vendor/gsap.min.js"></script><style>@font-face{font-family:CaptionSans;src:url('assets/fonts/notosanssc-NotoSansSC[wght].ttf')}html,body{margin:0;overflow:hidden;background:#151c1c}.clip{position:absolute;inset:0}#root{width:100%;height:100%;position:relative}.captions{display:flex;align-items:flex-end;justify-content:center;box-sizing:border-box;padding:0 192px 105px;pointer-events:none}.captions span{white-space:pre-line;font:42px/1.4 CaptionSans,sans-serif;color:#fff;text-shadow:0 2px 8px #000;background:#0008;padding:4px 18px;border-radius:4px}</style></head><body>'''+f'<div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-fps="{fps}" data-duration="{duration}">'+''.join(hosts)+'''</div><script>window.__timelines=window.__timelines||{};window.__timelines.film=gsap.timeline({paused:true});</script></body></html>'''
     doc=doc.replace('{language}',language).replace('notosanssc-NotoSansSC[wght].ttf',CONFIG[language]['caption_font'])
+    if language=='zh-CN':doc=doc.replace('white-space:pre-line','white-space:nowrap')
     (project/'index.html').write_text(doc,encoding='utf-8');save(project/'hyperframes.json',{})
     save(project/'research/component-usage.json',usage);save(project/'review/timeline.json',{'objects':objects})
+    simple=sum(row['component'] in ('annotation','dateline','quote-reveal','concept-stack','declaration') for row in usage)
+    notes=[]
+    if not film.get('catalog_only') and len(usage)>=4 and simple/len(usage)>.5:
+        notes.append('Text-led forms dominate. Review whether a loop, source-artifact comparison, context reveal, timeline, or another explanatory form would show the reasoning better. Keep repeated forms when the content warrants them; this is not a variety quota.')
+    save(project/'review/visual-plan.json',{'components':dict(Counter(row['component'] for row in usage)),'families':dict(Counter(row['parent'] for row in usage)),'review_notes':notes,'limits':'Configured geometry and background checks do not prove visible motion, contrast, text fit, or lack of occlusion in the rendered film. Review the export with captions.'})
     print(json.dumps({'scenes':len(film['scenes']),'components':len(usage),'seconds':duration}))
 
 
@@ -150,7 +186,7 @@ def catalog(project,base=False,language="en-US",media_dir=None):
     for i,row in enumerate(variants):
         conf=json.loads(json.dumps(row['configuration']).replace('assets/pack-media/','assets/media/'))
         scenes.append({'id':'demo-'+row['id'],'start':i*8,'duration':8,'component':row['id'],**conf,
-                       'purpose':row['purpose'],'background':{'src':'assets/media/street.mp4','grading':{'adjust':{'exposure':-.7,'saturation':-.25},'effects':{'blur':.6}}}})
+                       'purpose':row['purpose'],'background':{'src':'assets/media/street.mp4'}})
     save(project/'film.json',{'title':'Shared component examples','language':language,'fps':30,'duration':len(scenes)*8,'scenes':scenes,'subtitles':[],'catalog_only':True})
     build(project)
     # Historical twelve-design source is included as base_catalog.py; new production uses the shared renderer.
