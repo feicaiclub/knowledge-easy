@@ -136,8 +136,8 @@ The English pilot was approved through user listening. Transcription checks cont
 
 | Stage | What happens |
 | --- | --- |
-| Research and writing | Find evidence, build a story, and leave viewers with a clearer understanding. |
-| Footage and shot planning | Match images to meaning; plan cuts, music changes, and graphic reveals. |
+| Research and writing | Develop conversational narration and visual reasoning together; preserve the argument when shortening. |
+| Material and shot planning | Source cinematic footage and imagery, generate illustrations, or build editable graphics to explain the subject. |
 | Narration | Use the fixed reference; generate complete passages and review names, phrasing, and endpoints. |
 | Editing and graphics | Call the shared renderer and adapt the composition to the explanation. |
 | Sound | Use separate music cues, purposeful effects, transitions, and silence while keeping speech clear. |

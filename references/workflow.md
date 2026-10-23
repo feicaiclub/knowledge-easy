@@ -10,10 +10,10 @@ This creates the project, a versioned component snapshot, fonts, and empty film 
 
 ## From script to export
 
-1. Research and write. Record the agreed facts, viewpoint, constraints, and approved elements. Keep useful evidence without creating documents just to fill a checklist.
+1. Develop the explanation in words and images. Research the subject, write conversational narration, and consider what viewers should compare, retain, connect, or see change. Use the [material guide](assets.md) to explore suitable footage, illustration, and graphics while the argument is still editable. Keep the spoken script clean and any visual outline separate; use the joint review below before recording.
 2. Fill `voice-plan.json` with complete passages. Use `tts_text` for pronunciation changes, `direction` for delivery notes, and `gap_after` only for a pause you have reviewed. Keep the original spelling in the script and captions.
 3. Check the recording for complete sentences, pronunciation, voice consistency, and natural transitions. Transcription can help. Plan shot timing, music changes, and graphic reveals around the finished narration.
-4. Choose each graphic for its explanatory purpose using the [component guide](packaging.md), then configure scenes and captions in `film.json`. The builder is a starting point, not a creative ceiling. Custom scenes use the same visual system and shared source; prefer a suitable base design over a convenient text-only substitute.
+4. Turn the visual outline into scenes and captions in `film.json`, using the [component guide](packaging.md). Refine the writing or material choices if a planned explanation does not work on screen. Custom scenes use the shared renderer and visual system; adapt a suitable design to the content and actual narration timing.
 5. Read `review/visual-plan.json`, check the composition with captions, watch the motion, render, and review the actual export. Check that backgrounds still look like moving footage and that no image, label, or transition obscures a connector. Record anything that has not been watched or heard.
 
 ```sh
@@ -31,6 +31,16 @@ sh "<skill>/scripts/run.sh" verify --project "<project>" --file final/film-v1.mp
 Transcription uses the original MLX Whisper large-v3 implementation. It saves the recognized text, word timestamps, model revision, and source-audio hash in `review/transcript.json`. For unusual names, add `--prompt "Names and terminology"`; do not supply the expected script as recognition evidence.
 
 Existing delivery files are not overwritten. Use a new output filename for a revision. Set `final_file` and `locked` in `project.json` from actual review decisions; a tool finishing does not make a film approved.
+
+## Review writing and visual logic together
+
+For the important passages, establish what the viewer should understand and what seeing adds to hearing. A brief outline can pair each passage with its explanation, material, and reveal order; use only as much planning as the task needs. A script-only request still delivers natural narration, not a storyboard embedded in the spoken text.
+
+Give comparisons identifiable counterparts and a shared question, lists a meaningful grouping, and processes an understandable sequence. Let a story supply a situation, evidence, or a turning point; keep a longer narrative when its events carry the explanation. Do not force every subject into numbered points or shorten away the reasoning needed to connect them.
+
+Check whether the picture contributes a distinction, context, or relationship. If it can only repeat the subtitle over unrelated footage, reconsider the passage or its material. Sometimes a real action or a quiet shot already does the job. Choose graphics where they improve understanding, and reveal information when the narration earns it rather than displaying the conclusion early.
+
+When studying a reference creator, compare the actual passage with its frames and transitions: note how the writing makes a visual explanation possible and what the image contributes. Borrow the useful relationship between words and images, with original wording and topic-specific material. Keep approved lines, viewpoint, and conclusions when condensing; change the structure when the requested revision calls for it. Record the decisions and sources that matter to the project.
 
 ## Film configuration
 

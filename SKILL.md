@@ -10,7 +10,7 @@ description: Create and revise narrated explainer videos in English or Chinese, 
 [Working approach]
     If the user asks for a script, deliver a script. If they ask for a finished video, complete production and review before delivering it.
     Make decisions the user has delegated to you. Ask only when essential information is missing and you cannot reasonably infer it.
-    Research and write first, then plan footage, narration, music, and graphics. Revisit earlier work when the film needs it.
+    Develop the argument and its visual explanation together. Let research, writing, material selection, and design inform one another; settle detailed timing around natural narration.
     Take responsibility for the writing and design. Build on the proven workflow and adapt the creative treatment to each topic.
     Save requirements, decisions, approvals, and progress in the project. Read those records when resuming, and load other references only as needed.
 
@@ -23,19 +23,21 @@ description: Create and revise narrated explainer videos in English or Chinese, 
     For English films, use natural American English, English narration and captions, and the English typography presets. Keep Chinese production available. See [language support](references/language.md).
 
 [Writing]
-    Open with a question, situation, or conflict worth following. Use events, details, and evidence to make the reasoning clear.
-    Let the ending follow from the story. Avoid a forced moral or a tacked-on call to action.
+    Open with a question, situation, or conflict worth following. Build a clear argument in natural spoken language, using evidence and concrete examples.
+    While drafting, make the important distinctions, groups, relationships, or changes clear enough to show. Let examples advance the explanation, and let sustained narrative lead when the subject calls for it. Keep production directions separate from the spoken script.
+    Let the ending follow from the reasoning or events and resolve the opening question. Review the spoken logic and visual contribution together before recording, as described in the [production guide](references/workflow.md).
     Check historical facts, numbers, and quotations. Distinguish evidence from interpretation, and keep the viewpoint, names, and chronology consistent.
     Keep sources in project records; do not add source labels to the film by default. Verify dates, locations, boundaries, and values in maps and charts.
 
-[Footage]
-    Prefer relevant film, TV, and real-world footage. Check who and what the shot depicts, and make it support the narration.
+[Visual material]
+    Choose relevant film, TV, or real-world footage, illustrations, and designed graphics for the subject. Use the [material guide](references/assets.md) to decide what to source, generate, adapt, or build.
+    Favor photographic footage with intentional light, readable tonal detail, subject separation, depth, and purposeful movement. Let brightness and color follow the scene's meaning and mood.
     Use each original moving shot only once, including blurred backgrounds and video inside cards. Different shots from the same work are fine; still portraits may repeat.
-    Record sources and used ranges. Exclude smoking shots. Omit brand bugs and closing credits by default.
+    Verify the identity and context of source material; record provenance and used ranges. Exclude smoking shots. Omit brand bugs and closing credits by default.
 
 [Visuals]
     Follow the [visual handbook](references/visual-handbook.html) for typography, color, and layout. Use the actual bundled renderer as described in the [component guide](references/packaging.md).
-    Choose a visual form for the reasoning: cycles, evidence, context, comparisons, or sequences. Check the full library; do not default to whichever text or card template is easiest to call. Use no component when footage explains enough.
+    Give graphics an explanatory job from the writing: make a comparison visible, retain a group, trace a relationship, or reveal a change. Select or adapt from the full library for that job, with editable content and narration-led reveals. Let footage carry passages it already explains; component counts and template variety are not goals.
     Put explanatory cards and diagrams over graded, softly blurred moving video that remains visible. Use a full-frame map, document, or intentional interlude only when it serves the explanation; record the reason instead of silently using a solid background.
     Settle type hierarchy, alignment, spacing, and visual balance first. Route connectors through clear space between real anchors; keep arrowheads, images, labels, and captions from covering each other. Reserve safe margins throughout the animation, then time reveals to the narration.
     Keep Chinese subtitles on one line and English subtitles to at most two. Split long speech into separate, phrase-timed cues; do not shrink or truncate it to fit.
@@ -56,7 +58,7 @@ description: Create and revise narrated explainer videos in English or Chinese, 
 [Feedback and revisions]
     Use [Lazy Studio](references/studio.md): press M to mark a frame, write a comment, and press Enter to save. Keep side-by-side comparison and the Marks and Review tabs; do not add a separate chat or model runner.
     When the user says feedback is ready, read the project's review/feedback.md and linked images. Use the path reported by Studio for older projects. Check the version and frame before editing.
-    Address the feedback and look for the same issue elsewhere. Preserve approved work that is unaffected, and deliver a new version for review.
+    Address the feedback and look for the same issue elsewhere. Preserve approved work outside its scope. When shortening a script, condense its existing argument and examples while retaining effective phrasing and necessary transitions. Deliver a new version for review.
 
 [Startup]
     Show this FEICAI mark in the conversation the first time the Skill is used. Do not repeat it when resuming the same project or add it to the film.

@@ -8,7 +8,9 @@ The [source directory](../assets/packaging/src/README.md) contains the shared re
 
 ## Choose the explanation before the template
 
-For each graphic, write its `purpose`: what becomes clearer by seeing it? Select from the full library before building. Repeated components are fine when the reasoning repeats; there is no component quota. Avoid using annotations and quote cards as substitutes for showing a mechanism.
+Use the script and visual outline developed in the [production guide](workflow.md). For each graphic, write its `purpose`: what becomes clearer by seeing it? Select or adapt from the full library for the actual entities, evidence, and relationships. Repeated components are fine when the reasoning repeats; there is no component quota. If the graphic only restates a subtitle, reconsider its purpose or let the footage carry the passage.
+
+Keep precise text, values, diagrams, and connectors editable in the shared renderer's HTML/SVG. Source or generate illustrations and cutouts when they help explain the idea, then compose them with the same hierarchy, palette, and reveal logic. Existing SVGs or motion assets are useful ingredients when their style, meaning, and timing fit; they do not determine the argument. See the [material guide](assets.md) for sourcing and construction choices.
 
 | What the viewer needs to understand | Starting form | Production entry |
 | --- | --- | --- |
