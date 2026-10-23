@@ -14,7 +14,15 @@ knowledge-easy/
 └── package-manifest.json
 ```
 
-## Visual quality update · renderer 1.3.0
+## Production and visual acceptance · renderer 1.4.0
+
+All twelve base designs now run through the normal production entry with explicit content/media slots and semantic cues. Scenes can compose independent instances by time and region. Custom implementations use a declared source and handbook reference; in-memory renderer replacements are rejected.
+
+Visual review uses actual export frames and complete scene clips beside the handbook baseline. Render success leaves design review pending. Acceptance checks evidence coverage, specific judgments and source/export hashes, while listening and user approval stay separate. Review prompts inspect generated markup instead of trusting component names.
+
+45 tests passed. Both languages' twelve-base catalogs (96 seconds each) and a composition/customization fixture (36 seconds) were rendered and fully decoded; representative export phases were inspected. The remaining silent-fixture prompt is intentional; layout, runtime, contrast and type-size checks have no errors or warnings. This is not narrated-film or listening approval. Source snapshots match the release. See the [verification record](verification/visual-system-1.4.0.json).
+
+## Earlier visual update · renderer 1.3.0
 
 - Direct production support for `feedback-loop`, `evidence-collage`, and `context-reveal`, adapted from the existing base families. The public handbook now has 24 designs and 48 English/Chinese still previews.
 - Graphic scenes require an explanatory purpose and normally a moving, softly blurred video background. Missing backgrounds, zero blur, and a second full-frame footage layer hiding the background produce actionable build errors. Deliberate full-frame surfaces record an editorial reason.

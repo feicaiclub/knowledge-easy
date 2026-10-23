@@ -13,8 +13,8 @@ This creates the project, a versioned component snapshot, fonts, and empty film 
 1. Develop the explanation in words and images. Research the subject, write conversational narration, and consider what viewers should compare, retain, connect, or see change. Use the [material guide](assets.md) to explore suitable footage, illustration, and graphics while the argument is still editable. Keep the spoken script clean and any visual outline separate; use the joint review below before recording.
 2. Fill `voice-plan.json` with complete passages. Use `tts_text` for pronunciation changes, `direction` for delivery notes, and `gap_after` only for a pause you have reviewed. Keep the original spelling in the script and captions.
 3. Check the recording for complete sentences, pronunciation, voice consistency, and natural transitions. Transcription can help. Plan shot timing, music changes, and graphic reveals around the finished narration.
-4. Turn the visual outline into scenes and captions in `film.json`, using the [component guide](packaging.md). Refine the writing or material choices if a planned explanation does not work on screen. Custom scenes use the shared renderer and visual system; adapt a suitable design to the content and actual narration timing.
-5. Read `review/visual-plan.json`, check the composition with captions, watch the motion, render, and review the actual export. Check that backgrounds still look like moving footage and that no image, label, or transition obscures a connector. Record anything that has not been watched or heard.
+4. Turn the visual outline into scenes and captions in `film.json`, using the [component guide](packaging.md). Refine the writing or material choices if a planned explanation does not work on screen. Use a base design directly, combine instances with `components`, or declare a project extension with a handbook reference. Preserve the design quality while adapting content and narration timing.
+5. Read `review/visual-plan.json`, inspect the composition, and render a candidate. Open the generated handbook comparison and review the actual scene clips with captions. Record evidence-based visual judgments in `review/visual-review.json`, repair defects and render again as needed, then run `accept-visuals`. Check sound separately and record anything not seen or heard; the command does not grant user approval.
 
 ```sh
 sh "<skill>/scripts/run.sh" voice --project "<project>" --plan voice-plan.json
@@ -26,6 +26,8 @@ sh "<skill>/scripts/run.sh" snapshot --project "<project>" --at 0.2,1.2,3.5
 sh "<skill>/scripts/run.sh" preview --project "<project>"
 sh "<skill>/scripts/run.sh" render --project "<project>" --output final/film-v1.mp4
 sh "<skill>/scripts/run.sh" verify --project "<project>" --file final/film-v1.mp4
+# After viewing the comparison and recording the visual judgments:
+sh "<skill>/scripts/run.sh" accept-visuals --project "<project>"
 ```
 
 Transcription uses the original MLX Whisper large-v3 implementation. It saves the recognized text, word timestamps, model revision, and source-audio hash in `review/transcript.json`. For unusual names, add `--prompt "Names and terminology"`; do not supply the expected script as recognition evidence.

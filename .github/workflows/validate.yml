@@ -16,3 +16,5 @@ jobs:
         run: |
           python3 -B -m unittest discover -s scripts/tests -p 'test_visuals.py' -q
           python3 -B -m unittest discover -s scripts/tests -p 'test_language.py' -q
+          python3 -B -m unittest discover -s scripts/tests -p 'test_composition.py' -q
+          python3 -B -m unittest discover -s scripts/tests -p 'test_visual_acceptance.py' -q

@@ -15,11 +15,11 @@
 .kp-label,.kp-small,.kp-photo-label{letter-spacing:.2px}
 .kp-photo-label{font-size:32px;line-height:1.25}
 .kp-bookmark .word{letter-spacing:0;line-height:1.1}
-.kp-bookmark .caption{letter-spacing:1px;font-size:28px}
+.kp-bookmark .caption{letter-spacing:1px;font-size:34px}
 .kp-paper h2{font-size:66px;line-height:1.12;letter-spacing:0}
 .kp-paper p{font-size:35px;line-height:1.55;letter-spacing:0}
-.kp-paper .paper-caption{font-size:29px;letter-spacing:0}
+.kp-paper .paper-caption{font-size:34px;letter-spacing:0}
 .kp-timepoint .name{font-size:39px;letter-spacing:0}
 .kp-map-label{letter-spacing:0}
 
-.kp-map-meta{font-size:28px}
+.kp-map-meta{font-size:35px}

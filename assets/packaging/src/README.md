@@ -5,7 +5,8 @@
 - `editorial.py` and `editorial.css`: shared production renderer and layouts.
 - `pack.css` and `tokens.json`: fonts, colors, spacing, and information hierarchy.
 - `variants.json` and `renderer-contract.json`: production variants and their inputs.
-- `base_catalog.py`, `components.json`, and `examples.json`: twelve base designs and editable slots.
+- `base_catalog.py` and `base_support.py`: the original twelve compositions with production inputs, foreground media and narration cues.
+- `components.json` and `locales/*/base-examples.json`: base design definitions and complete content examples.
 - `locales/`: language-specific example copy; layout behavior stays in the shared renderer.
 - `layout.py`: diagram information bounds, image/label obstacles, and connector/arrowhead clearance.
 - `geography.py` and `maps/`: map projection, land, and river data.
@@ -14,4 +15,4 @@
 
 `scripts/vibe.py install-pack` copies a versioned snapshot into a film project. Fonts come from `../fonts/`. Runtime dependencies are prepared outside this Skill by `scripts/bootstrap.py`.
 
-Version 1.3.0 makes `feedback-loop`, `evidence-collage`, and `context-reveal` directly callable by the production renderer. These adapt the existing feedback, evidence, and context families. The production guide explains selection, blurred-video backgrounds, caption clearance, and intentional full-frame exceptions.
+Version 1.4.0 calls all twelve base designs directly through `render`, with explicit text/media inputs and semantic cues. Catalogs use that same path. `scripts/composition.py` combines instances and records explicit project extensions. `scripts/visual_review.py` creates export-bound handbook comparisons and validates recorded visual judgments; technical success never marks design quality approved. See the production guide for complete inputs, composition and acceptance commands.
