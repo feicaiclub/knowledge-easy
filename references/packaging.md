@@ -1,98 +1,65 @@
-# Using the component library
+# Rendering a chosen design
 
-Start with the [visual handbook](visual-handbook.html), then choose a component for the specific explanation the scene needs. The library establishes a visual system; it does not require every film to use the same graphics or opening.
+Choose the treatment using the [direction guide](direction.md), then choose implementation tools. The library is a set of usable techniques and finished example layouts; it is not a compulsory visual identity.
 
-The [source directory](../assets/packaging/src/README.md) contains the shared renderer. `render(component, instance_id, duration, data, cues, locale)` returns editable HTML, deterministic motion, and reading order. `variants.json` provides English examples; `locales/zh-CN/variants.json` retains Chinese examples. `base_catalog.py` contains the twelve base designs and is called by the same production entry. Copy inputs from [English examples](../assets/packaging/src/locales/en-US/base-examples.json) or [Chinese examples](../assets/packaging/src/locales/zh-CN/base-examples.json); sample facts never silently fill missing production inputs.
+## Available routes
 
-`init` installs a versioned source snapshot, maps, and fonts into the film project. `kit/editorial-lock.json` records hashes. `build` calls that snapshot and writes `research/component-usage.json`. Use `install-pack --update` for an intentional upgrade; do not quietly change a delivered film.
+- **Classic editorial layouts:** the twelve base designs (`hero`, `compare`, `chapter`, `evidence`, `relation`, `feedback`, `quantity`, `timeline`, `map-focus`, `map-route`, `map-period`, `context`) and the existing variants. Use their complete compositions when they fit. [Chinese input examples](../assets/packaging/src/locales/zh-CN/base-examples.json) and [English input examples](../assets/packaging/src/locales/en-US/base-examples.json) show the required fields.
+- **Original code artwork:** `artwork` runs a project-owned drawing source using reusable brush, print and shape tools. See the [illustration guide](illustration.md). Its subjects, composition, camera and timeline are authored for the film.
+- **Project-owned renderers:** a project can provide a new HTML/SVG/Canvas implementation and its own design reference. This is the route for a new visual language, custom geometry or a technique not in the library.
+- **Source material:** footage and artifacts can carry a scene on their own. A component is not required for every idea.
 
-## Choose the explanation before the template
+`init` copies a versioned renderer, fonts and map data into the project. `kit/editorial-lock.json` binds the source. `build` uses that snapshot and records the actual implementations in `research/component-usage.json`. `install-pack --update` is an intentional project upgrade; delivered films are never silently changed.
 
-Use the script and visual outline developed in the [production guide](workflow.md). For each graphic, write its `purpose`: what becomes clearer by seeing it? Select or adapt from the full library for the actual entities, evidence, and relationships. Repeated components are fine when the reasoning repeats; there is no component quota. If the graphic only restates a subtitle, reconsider its purpose or let the footage carry the passage.
+## Content and composition
 
-Keep precise text, values, diagrams, and connectors editable in the shared renderer's HTML/SVG. Source or generate illustrations and cutouts when they help explain the idea, then compose them with the same hierarchy, palette, and reveal logic. Existing SVGs or motion assets are useful ingredients when their style, meaning, and timing fit; they do not determine the argument. See the [material guide](assets.md) for sourcing and construction choices.
+`render(component, instance_id, duration, data, cues, locale)` returns editable markup, seekable motion, reading order and provenance. Base designs accept named text/media slots and their own structured fields; missing inputs never silently inherit sample facts. Foreground media can be images or video with a source range and focal point. Keep wording and values editable.
 
-| What the viewer needs to understand | Starting form | Production entry |
-| --- | --- | --- |
-| How an action reinforces itself | A cycle whose last arrow returns to the first stage | `feedback-loop` |
-| What two actual records show or omit | Source images, crops, and attached readings | `evidence-collage`, `evidence-sheet` |
-| How a detail changes meaning in context | One continuous image that opens to a wider view | `context-reveal` |
-| How people, causes, or ideas relate | Nodes and clear connecting lanes | `relation-bridge`, `foundation`, `concept-link` |
-| What changed between moments | A shared time axis or paired milestones | `milestone-pair`, the base timeline design |
-| Where events happened | A large shared map with meaningful routes or focus | `map-decision`, `map-focus-chain` |
+A scene can have one `component` or a `components` array. Each layer in the array has a unique `id`, its `component` and `data`, optional local `cues`, and optional `start`, `duration` and `frame: [x,y,width,height]`. The default is the full scene. This allows temporal sequencing and deliberate spatial composition. A frame scales an existing composition uniformly; it is not an automatic re-layout. Use a new authored arrangement when scaling would reduce readability or weaken staging.
 
-All twelve base IDs work directly in `film.json`: `hero`, `compare`, `chapter`, `evidence`, `relation`, `feedback`, `quantity`, `timeline`, `map-focus`, `map-route`, `map-period`, `context`. The existing production variants remain available. Choose the composition for its explanatory role, replace its subjects and evidence, and set semantic cues. The catalog uses this same entry, so a design shown in the handbook is not a separate demo-only implementation.
+For precise narrative synchronization, native layouts use local semantic cues. Original artwork also receives scene-local values from the optional film beat map; audio can refer to the same events. See [one event clock](direction.md#one-event-clock).
 
+## Surfaces and photographic treatment
 
-## Direct use and composition
+Choose the ground deliberately. It can be clear or graded footage, a document, authored illustration, paper, a solid field or a gradient. The builder no longer adds a dark wash or blur simply because a graphic exists.
 
-Base designs take `data.text` (named text slots), `data.media` (foreground slots), and their structured facts such as `total`/`selected`, `chapters`, `stages`, `focus`, `points`, or `periods`. Examples provide the complete inputs for each language. Text is plain text with `\n` line breaks, never HTML. Media accepts `{ "src": "assets/media/subject.mp4", "type": "video", "start": 0, "end": 12, "focus": "50% 30%" }` or a local image. Put the single shared background on the scene. Cues use element names from `reading_order`, without the instance prefix; unknown slots/cues and relationships scheduled before their anchors are errors.
+- `background` supplies one full-frame moving video; `grading` and optional `shade` are explicit shot choices. Blur may be zero. Preserve material detail, meaningful movement and subject separation.
+- `footage` carries a full-frame shot, optionally with overlays. Do not add it above a second full-frame background.
+- `surface` can be `{ "kind":"solid", "color":"#f3eee3" }`, `paper`, or a `gradient` with `color`, `to`, and `angle`. It is a designed ground, not evidence of an error.
+- Code artwork draws its own ground. Legacy `surface_reason` remains readable, but new films do not need ceremonial exceptions to choose a graphic style.
 
-```json
-{
-  "id": "distinction", "start": 0, "duration": 10,
-  "purpose": "Separate willingness from fear of refusal.",
-  "background": {"src": "assets/media/office.mp4"},
-  "component": "compare",
-  "data": {
-    "text": {"ta": "Willing", "tb": "Reluctant", "a-label": "Can also say no", "b-label": "Fears the response", "q": "One answer. Different reasons.", "ghost": "CHOICE"},
-    "media": {"a-film": {"src": "assets/media/choice.jpg"}, "b-film": {"src": "assets/media/pressure.jpg"}}
-  },
-  "cues": {"a": 0.2, "ta": 0.5, "b": 2.2, "tb": 2.5, "line": 3, "q": 5}
-}
-```
+Background consistency means serving the chosen visual language. It does not mean applying the same exposure, blur and palette to every shot.
 
-For multiple designs in one scene, replace `component`/`data`/`cues` with `components`, an array of those entries, each with a unique `id`. Each may specify local `start`, `duration`, and `frame: [x, y, width, height]` on the 1920×1080 canvas. Defaults fill the scene. Frames preserve aspect ratio; they do not stretch designs. Sequence full designs, or use deliberate regions for complementary graphics. Inspect effective type size when scaling; miniature full layouts are not automatically a good composition. Each layer retains independent IDs, media timing, provenance, reading order and review evidence.
+## Project-owned renderers
 
-## Custom designs
-
-First try changing content, cues or composition. When new geometry is warranted, declare it in `film.extensions`:
+Declare a source in `film.extensions`, for example:
 
 ```json
-{"id":"decision-detail","source":"components/decision_detail.py","design_reference":"compare","reason":"Explain a distinction that needs a different subject arrangement."}
+{"id":"decision-space","source":"components/decision_space.py","design_reference":{"src":"assets/references/look.jpg","reason":"The intended silhouette, material and scale relationship"},"reason":"This idea needs its own spatial action."}
 ```
 
-The Python file exports `render(kit, prefix, duration, data, cues, locale)` and returns `html`, `js`, and `reading_order` (entries with `id`, `role`, `enter_at`, `settle_at`, `depends_on`). It can call `kit.render` to retain a complete base design or use shared methods to construct a new one. Use the supplied prefix for every DOM ID and preserve editable content. Return `layout` evidence when available. The builder records the source hash and always marks this result as custom. Do not replace `Component.render` in memory to pass a new design off as an existing library implementation.
+The file exports `render(kit, prefix, duration, data, cues, locale)` and returns `html`, `js`, and `reading_order`; optional `layout` can hold geometry evidence. Every reading-order entry has `id`, `role`, `enter_at`, `settle_at`, `depends_on`. Use unique prefixed DOM IDs and deterministic timelines. You may call complete library designs, use its drawing methods, or construct a different visual language. Do not replace the shared renderer in memory and present that replacement as an unchanged library implementation.
 
-Customization may change arrangement, subject treatment and motion, but must preserve the handbook's quality of focal hierarchy, material, spacing, contrast, and explanation. A family label, shared fonts, or calls to text/line helpers do not establish that. Compare against the closest base design; if the custom version is weaker, start from the mature composition and revise it. This is a design judgment, not a quota for images or component types.
+`design_reference` can be a classic design ID, `art-etch` / `art-print` / `art-wash`, or a project image with `src` and `reason`. Set a film-level `design_reference` to share one project benchmark; a scene or layer can override it. A project's benchmark is allowed to differ from every preset. The source and reference are tracked for review; a family name does not certify craft.
 
-## Keep the footage visible
+## Quality floor across implementations
 
-An explanatory card or diagram normally has a **playing video** behind it, softly defocused and consistently graded. `build` applies a modest grade and blur when those values are omitted; set the grade for the actual shot. Check that scene changes and motion remain perceptible after export. A heavily darkened, opaque, or over-blurred background that reads as a flat fill fails this intent.
+Make the main subject, supporting material and reading order clear at the delivery size. Keep labels and connections distinct; place connectors between actual anchors and reveal them when the relationship is established. Preserve an appropriate caption reserve through entrances and camera motion. Use the bundled geometry tools where applicable, and inspect authored artwork and footage visually where geometry metadata cannot describe them.
 
-Supply `background.src` and its source timing. Do not add a second full-frame `footage` layer above it. Put foreground media in the component. `annotation` and `dateline` may sit on clear footage. A full-frame map, sourced document, or intentional interlude can omit the video when the explanation calls for it: state why in `surface_reason`. The builder rejects an unexplained missing background rather than silently producing a solid canvas. Never use `surface_reason` just to bypass this check.
+Chinese captions normally use one line, English up to two. Split long speech at natural phrase boundaries rather than shrinking or truncating it. The bundled language fonts are usable defaults; a project's type direction may differ when the required glyphs and font files are available.
 
-## Connectors, alignment, and safe areas
+HyperFrames scenes need timed elements, project-root media paths and one paused seekable timeline. Use media grading for footage rather than CSS filters. Painting/shader effects inside an original illustration are part of that renderer, not footage grading. Run `check` and inspect the actual export.
 
-Lay out image bounds, text bounds, and connector lanes together. Use shared baselines and group centers. Attach lines to defined node edges with a visible gap; route around every intervening image, card, and label. Draw a relationship after both anchors have settled. Keep the arrowhead clear and point it at the intended node. Raising `z-index` alone does not fix a route through a picture.
+## Visual review
 
-The normal stack is background video → surfaces/images → connectors in reserved lanes → labels. Deliberate callouts over an image need their own legible treatment and a meaningful target; they are not a reason to let unrelated pictures obscure diagram edges.
+Rendering produces a candidate, verifies decoding, and prepares comparisons from actual encoded frames and complete component clips. The reference can be the project's chosen artwork or a library example. The report also keeps whole-film direction, rhythm and listening judgments pending; component correctness does not settle them.
 
-At 1920×1080, the shared diagram information area is x=150–1770 and y=80–830. The lower region reserves space for one Chinese subtitle line or up to two English lines; decorative surfaces and full-bleed media can extend beyond the information area. Keep at least 16 px around routed lines and enough additional space for arrowheads and stroke width. These are landscape defaults: redesign and measure for another aspect ratio or caption treatment.
+Open the reported `review/visual-<export hash>/index.html`. Compare material, silhouette, staging, focal hierarchy, meaningful transformation and reading time, then watch the complete film with its mix. In `review/visual-review.json`, record specific observations, actual viewing/listening and unresolved issues. Run `accept-visuals` only after those judgments are complete. It rejects stale source/export bindings, changed evidence and incomplete recorded reviews; it does not itself possess an aesthetic verdict.
 
-Check the entrance, settled state, transitions, and exit with actual captions, long labels, and the selected language. A card can be clear in its final position yet sweep across a line while entering. Use the shared `layout.py` checks when defining routes; `feedback-loop` and `evidence-collage` already validate their image/label obstacles, and `context-reveal` validates its information bounds. Existing variants and custom scenes still require visual inspection; geometry checks are not a general pixel-occlusion detector.
+Read the usage prompts as questions. A sustained shot, pure typography or repeated form can be appropriate. No image, effect, cut or component quota is imposed. New techniques should travel to another subject and staging problem; a second palette or dataset proves only parameter substitution.
 
-`build` writes `review/visual-plan.json` from the actual rendered markup and implementation provenance. All custom designs get comparison prompts; text-led output is detected regardless of its name. These prompts ask for judgment, not additional graphics. Review background visibility, overlapping labels/lines, safe edges and caption collisions in the export.
+## Catalogs and existing projects
 
-```sh
-sh "<skill>/scripts/run.sh" catalog --project "<new-demo-project>" --language en-US --media-dir "<licensed-clips>"
-sh "<skill>/scripts/run.sh" render --project "<new-demo-project>" --output final/catalog.mp4
-```
+`catalog --base` builds the twelve classic designs through the same production renderer; omit `--base` for the variant collection. Supply licensed source clips with `--media-dir`, as described in [demo media](../assets/packaging/demo-media/README.md). These catalogs test techniques and inputs, not new-film direction. The artwork examples are code-only studies and need no stock-media download.
 
-The handbook includes still previews and written motion guidance. Demo videos are not bundled. To render a local motion catalog, supply your own licensed clips as described in [demo media](../assets/packaging/demo-media/README.md); raw third-party source clips are not redistributed. Add `--base` to build the twelve base designs. Select `zh-CN` for Chinese samples. Catalogs reuse sample footage to compare designs; production films still use each original moving shot once. New reusable variants need source, input documentation, a rendered example using another topic, and an updated handbook entry.
-
-Use Source Serif 4 and Inter for English, the Noto families for Chinese, and the same palette and layout principles in both. Preserve words and phrases when wrapping English copy. Do not solve overflow by shrinking it into unreadable type. See [language support](language.md).
-
-HyperFrames scenes declare timed elements with start and duration, use project-root media paths, mute B-roll, and register a single paused timeline in `window.__timelines`. Visible motion must be seekable and deterministic. Use the media-grading contract rather than CSS filters on footage. Run `check` after changes and inspect the export.
-
-Review baselines, group alignment, negative space, visual weight, line endpoints, and caption clearance. Check entrances, moving transitions, holds, and exits. Establish the subject before connections and reveal the conclusion when the narration reaches it. Use the checks above for all graphic scenes, including newly designed ones.
-
-Maps use the bundled Natural Earth land and river data. Verify historical names, boundaries, and routes for each topic. An illustrative area is not a historical border. Keep maps large enough to explain spatial relationships, with coordinated titles, labels, and notes.
-
-## Export-bound visual acceptance
-
-`render` produces a candidate film, verifies decoding, and generates a comparison page with the relevant handbook still, entry/settled/exit frames and a playable full scene clip for every component instance. Open the reported HTML in `review/visual-<export hash>/index.html`. The comparison uses the actual encoded video, with captions, rather than substituting browser snapshots. Repeat generation with `review-visuals --project <project> --file final/film-v1.mp4`.
-
-Watch the motion and compare hierarchy, composition, material treatment and explanatory value. In `review/visual-review.json`, record the reviewer and specific observations for each criterion; mark the scene pass only after defects are corrected. Then run `accept-visuals --project <project>`. It refuses pending/failed judgments, missing observations, altered evidence, uncovered instances and changed source/export hashes. Rendering and technical checks leave design review pending. An acceptance record documents an actual review; filling the fields is not a substitute for viewing the work. Audio/listening and the user's approval remain separate.
-
-This comparison is the quality floor for both reused and custom designs. Subject matter and pixels may differ; a template does not need to appear in every film, and a good typographic scene does not need a decorative image.
+Existing films keep their explicit grading, cues and snapshot. Upgrade deliberately to use the new artwork entry or project reference route. Existing approved colors and footage decisions should remain unchanged unless the requested revision includes them.

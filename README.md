@@ -82,7 +82,7 @@ These stills are taken from completed edits. Underlying film and stock imagery r
 
 ## One visual language, many kinds of explanation
 
-The package includes **24 editable designs and 48 English/Chinese still previews**. The shared system covers typography, cards, diagrams, timelines, evidence layouts, and maps. Content, footage, coordinates, and reveal timing adapt to the story. All twelve base designs can be called directly in films and combined by region or time. Custom designs retain a handbook reference; exported frames and complete scene clips are compared before visual acceptance.
+The package includes **24 classic editorial designs plus three extensible code-illustration languages**. Original scene code can create new subjects, staging and motion; project-owned references and renderers can go beyond the bundle. The shared system covers typography, cards, diagrams, timelines, evidence layouts, and maps. Content, footage, coordinates, and reveal timing adapt to the story. All twelve base designs can be called directly in films and combined by region or time. Custom designs retain a handbook reference; exported frames and complete scene clips are compared before visual acceptance.
 
 <table>
 <tr><td width="50%"><img src="assets/packaging/previews/en-US/quote-reveal.jpg" alt="A thought, then its implication" width="100%" /><br><b>A thought, then its implication</b></td><td width="50%"><img src="assets/packaging/previews/zh-CN/map-route.jpg" alt="Routes and geography" width="100%" /><br><b>Routes and geography</b></td></tr>

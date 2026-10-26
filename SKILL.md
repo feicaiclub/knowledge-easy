@@ -1,67 +1,44 @@
 ---
 name: knowledge-easy
-description: Create and revise narrated explainer videos in English or Chinese, including scripts, storyboards, editing, voiceover, music, motion graphics, and frame-by-frame review.
+description: Create and revise narrated explainers and knowledge films, from research and scripts to visual direction, original illustration, editing, voice, sound and export review. Supports Chinese and English, supplied footage, code-drawn visuals and mixed media.
 ---
 
 [Purpose]
-    Make narrated explainer videos that help viewers understand a question and make a clearer judgment. The narrator stays off camera by default.
-    Reproduce the quality of the approved films with the same production workflow, series voice, and visual system. Let the topic shape the story, length, pace, and treatment.
+    Make a film whose pictures, words and sound help its audience understand and care about its subject. Preserve the user's facts, intent and approved work.
+    Keep a reliable quality floor across topics. Let the topic and audience determine the form; visual libraries provide techniques and examples, not a compulsory house look or story.
 
-[Working approach]
-    If the user asks for a script, deliver a script. If they ask for a finished video, complete production and review before delivering it.
-    Make decisions the user has delegated to you. Ask only when essential information is missing and you cannot reasonably infer it.
-    Develop the argument and its visual explanation together. Let research, writing, material selection, and design inform one another; settle detailed timing around natural narration.
-    Take responsibility for the writing and design. Build on the proven workflow and adapt the creative treatment to each topic.
-    Save requirements, decisions, approvals, and progress in the project. Read those records when resuming, and load other references only as needed.
+[Start]
+    Read the request and existing project decisions. Use the scope already authorized; a script request stays a script request. Resolve ordinary creative decisions yourself when delegated.
+    Use the [production guide](references/workflow.md) for projects and commands. Keep projects outside this Skill; [runtime setup](references/runtime.md) prepares dependencies when needed. Existing projects retain their locked source until intentionally upgraded.
+    Work in the requested language. Honor supplied material, voice and format. Defaults are landscape 1920×1080 at 30 fps and the approved D narration voice; these are starting choices, not a limit on format or performance.
 
-[Setup and language]
-    Follow the [production guide](references/workflow.md) to create a project outside the Skill folder. Set its language to en-US or zh-CN from the user's request.
-    Use [run.sh](scripts/run.sh), or [run.ps1](scripts/run.ps1) on Windows. Commands check the machine and install missing dependencies when needed.
-    Keep dependencies and model weights in the user's cache, never in this Skill. Script-only work needs no production downloads. See [runtime setup](references/runtime.md).
-    Start with the approved dependencies and model revisions in scripts/runtime-lock.json. If setup fails on the user's machine, explain the cause, repair it where possible, and find compatible alternatives when needed. Preserve the approved quality and voice; explain and record any changes that affect the result.
-    Resolve paths from the Skill and project locations. Do not hardcode personal paths or bundle credentials. Explain missing resources and their impact.
-    For English films, use natural American English, English narration and captions, and the English typography presets. Keep Chinese production available. See [language support](references/language.md).
+[Direct the content]
+    Develop the argument and its visual expression together. Preserve effective wording and the existing argument when condensing approved copy. Verify claims, quotations, dates and source identity; distinguish evidence from illustration.
+    Follow the [direction guide](references/direction.md): establish the audience's question, the change in understanding, the emotional progression and the visual premise before choosing a layout. Find references appropriate to this project and state what quality to learn from them.
+    Record the chosen treatment in project notes before reading example story code. The new film owns its subject, structure, opening, ending, shots and timing. Look at library examples afterwards to learn drawing, material and movement techniques.
+    Decide whether a passage needs observed action, evidence, an original image, an evolving mechanism or a deliberate hold. Give each significant shot a reason, a focal subject and a visible change. A list, a character journey, an investigation or an essay may each be right; none is universal.
 
-[Writing]
-    Open with a question, situation, or conflict worth following. Build a clear argument in natural spoken language, using evidence and concrete examples.
-    While drafting, make the important distinctions, groups, relationships, or changes clear enough to show. Let examples advance the explanation, and let sustained narrative lead when the subject calls for it. Keep production directions separate from the spoken script.
-    Let the ending follow from the reasoning or events and resolve the opening question. Review the spoken logic and visual contribution together before recording, as described in the [production guide](references/workflow.md).
-    Check historical facts, numbers, and quotations. Distinguish evidence from interpretation, and keep the viewpoint, names, and chronology consistent.
-    Keep sources in project records; do not add source labels to the film by default. Verify dates, locations, boundaries, and values in maps and charts.
+[Build the visual language]
+    Select, draw, generate or combine material using the [material guide](references/assets.md). Match meaning, performance, framing, light and texture together. Keep searching or design an original image when convenient footage is weak.
+    Choose a coherent visual language for the project: materials, palette logic, type hierarchy, camera and movement. Bright, dark, photographic, graphic and mixed treatments are all available. A plain or textured ground can be intentional; footage does not automatically need a dark overlay or blur.
+    Use the [visual library](references/visual-handbook.html) where it serves the treatment. The [illustration guide](references/illustration.md) supplies three drawing languages, reusable engines and freely authored scene code. Content, objects, poses and composition remain open; extend the techniques or use a project-specific renderer when necessary.
+    Establish subject and background separation, readable silhouettes, balanced visual weight and clear text/connector space. Inspect real style frames and key poses at delivery size before multiplying a design across the film. The [component guide](references/packaging.md) describes implementation without prescribing one aesthetic.
+    Record sources and original shot identities. Avoid accidental or merely cosmetic shot reuse; preserve a series' explicit shot rules. Keep source records in the project and omit source bugs, brand sign-offs and smoking shots by default.
 
-[Visual material]
-    Choose relevant film, TV, or real-world footage, illustrations, and designed graphics for the subject. Use the [material guide](references/assets.md) to decide what to source, generate, adapt, or build.
-    Favor photographic footage with intentional light, readable tonal detail, subject separation, depth, and purposeful movement. Let brightness and color follow the scene's meaning and mood.
-    Use each original moving shot only once, including blurred backgrounds and video inside cards. Different shots from the same work are fine; still portraits may repeat.
-    Verify the identity and context of source material; record provenance and used ranges. Exclude smoking shots. Omit brand bugs and closing credits by default.
+[Shape time and sound]
+    Let natural speech, action and the intended emotional turn set the pacing. Use a shared [beat map](references/direction.md#one-event-clock) when picture, music or effects need a common hit point. A music-led sequence can follow a score; explanation does not need to obey a universal beat grid.
+    Design anticipation, action, consequence and reading time. Vary framing and information density when the reasoning changes; use holds and silence when they have a job. Transitions may come from the subject or medium itself. There is no quota of cuts, camera moves, effects or components.
+    Keep the chosen speaker identity stable while directing delivery for this film. Use the [voice guide](references/voice.md) to calibrate phrasing, emphasis and pace without confusing expressiveness with higher pitch or large speed changes.
+    Build sound from the scene's material and emotional progression. Choose music, ambience and effects deliberately, preserve space for speech, and check the complete mix. A cue's timing and measured loudness do not prove a good performance or mix.
 
-[Visuals]
-    Use the [visual handbook](references/visual-handbook.html) as the design baseline and call its bundled designs through the [component guide](references/packaging.md). The twelve base designs and production variants share the normal build path; combine them with scene components or register an explicit project extension.
-    Give graphics an explanatory job from the writing: make a comparison visible, retain a group, trace a relationship, or reveal a change. Select or adapt from the full library for that job, with editable content and narration-led reveals. Let footage carry passages it already explains; component counts and template variety are not goals.
-    Put explanatory cards and diagrams over graded, softly blurred moving video that remains visible. Use a full-frame map, document, or intentional interlude only when it serves the explanation; record the reason instead of silently using a solid background.
-    Settle type hierarchy, alignment, spacing, and visual balance first. Route connectors through clear space between real anchors; keep arrowheads, images, labels, and captions from covering each other. Reserve safe margins throughout the animation, then time reveals to the narration.
-    Keep Chinese subtitles on one line and English subtitles to at most two. Split long speech into separate, phrase-timed cues; do not shrink or truncate it to fit.
-    Customize content, arrangement and timing while retaining the reference quality of subjects, materials, hierarchy, spacing and motion. Compare custom results against the relevant handbook design; reusing drawing helpers or a family name does not establish design quality. Keep a mature composition when the custom version is weaker. Add reusable variants with other-topic rendered examples.
+[Review the experience]
+    Review the real exported film and its [comparison evidence](references/packaging.md#visual-review). Check visual specificity, explanatory value, material quality, composition, key actions, whole-film rhythm and sound. Compare quality with the chosen references, not resemblance to a demo's layout.
+    Tests establish technical behavior. Actual visual and listening judgments establish craft. Record what was seen or heard and leave unperformed checks pending. Do not replace viewing with counts, hashes or a completed form.
+    Fix causes across the affected sequence and retain approved work elsewhere. For a new reusable style or technique, test a substantially different subject and a different composition; changed text or palette alone is not generalization evidence.
+    Deliver the film, needed sources and a reproducible project. Keep Lazy Studio's M → comment → Enter feedback flow, following the [review-room guide](references/studio.md).
 
-[Sound]
-    Use the approved Qwen3-TTS D voice and body-v1 finishing settings in the [voice profile](assets/voice/profile.json).
-    Keep the voice identity stable. Design emotion, emphasis, pacing, and pauses for each topic using the [voice guide](references/voice.md).
-    Generate complete passages. Include surrounding context when rerecording. Check names, pronunciation, omissions, repetitions, and the first and last syllables.
-    Make the narration sound natural before fitting the visuals. Do not make large speed changes to force it into a cut.
-    Choose and change music with the story. Plan fades and silence. Give the score feeling and momentum while keeping speech clear; use effects with purpose.
-
-[Review and delivery]
-    Review the export-bound handbook comparison generated by render, alongside the actual film with captions. Assess explanatory value, hierarchy, material, composition and complete motion; resolve visual-plan prompts and record specific observations before accept-visuals. Technical checks never grant design approval. Check audio transitions separately and fix issues before delivery.
-    Record what was checked and what was not seen or heard. Frames, transcripts, and measurements do not replace watching and listening.
-    Deliver the film and a project that can be rendered again. Identify the current approved version. Keep source files, needed media, settings, and important records; remove only obsolete, reproducible intermediates.
-
-[Feedback and revisions]
-    Use [Lazy Studio](references/studio.md): press M to mark a frame, write a comment, and press Enter to save. Keep side-by-side comparison and the Marks and Review tabs; do not add a separate chat or model runner.
-    When the user says feedback is ready, read the project's review/feedback.md and linked images. Use the path reported by Studio for older projects. Check the version and frame before editing.
-    Address the feedback and look for the same issue elsewhere. Preserve approved work outside its scope. When shortening a script, condense its existing argument and examples while retaining effective phrasing and necessary transitions. Deliver a new version for review.
-
-[Startup]
-    Show this FEICAI mark in the conversation the first time the Skill is used. Do not repeat it when resuming the same project or add it to the film.
+[Startup mark]
+    Show this mark once per conversation when using the Skill, never inside the film:
     ```text
     ███████╗███████╗██╗ ██████╗ █████╗ ██╗
     ██╔════╝██╔════╝██║██╔════╝██╔══██╗██║
@@ -70,4 +47,3 @@ description: Create and revise narrated explainer videos in English or Chinese, 
     ██║     ███████╗██║╚██████╗██║  ██║██║
     ╚═╝     ╚══════╝╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝
     ```
-    Read the request and existing project records. Briefly state where the work stands and what you will do next.

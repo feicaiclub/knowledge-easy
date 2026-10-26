@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "2.0.0",
   "renderer": "editorial.py",
   "styles": [
     "pack.css",
@@ -19,37 +19,31 @@
     "implementation"
   ],
   "episode_may_change": [
-    "copy",
-    "media and focal point",
-    "facts and coordinates",
-    "semantic cue times",
-    "duration",
-    "named layout variants",
-    "component placement frames and local intervals",
-    "explicit project extensions reviewed against handbook designs"
+    "content and source material",
+    "visual premise and editorial structure",
+    "palette and material language",
+    "typography and layout through project-owned artwork/renderers",
+    "subjects, poses and spatial composition",
+    "camera, semantic events and pace",
+    "voice/performance when requested",
+    "music and sound design",
+    "duration and scene ordering"
   ],
   "library_owns": [
-    "typographic hierarchy",
-    "palette",
-    "card geometry",
-    "alignment",
-    "margins",
-    "connector geometry",
-    "motion dependencies",
-    "map-note collision avoidance"
+    "versioned reusable drawing/layout techniques",
+    "deterministic rendering contracts",
+    "source and provenance tracking",
+    "validation of declared bounds and timeline intervals"
   ],
   "rules": [
-    "Episodes call the renderer rather than copying or replacing component CSS.",
-    "The handbook and films must use the same renderer version and source hashes.",
-    "Release snapshots are explicit and immutable after delivery; upgrades are intentional.",
-    "A new generic variant is documented with another subject and actually rendered before release.",
-    "Every generated instance records parent family, version, data, cues and reading order.",
-    "Explanatory cards and diagrams use visibly moving, softly blurred video backgrounds; intentional full-frame exceptions record a reason.",
-    "Validate image and label obstacles, connector clearance, alignment, and caption-safe bounds during motion as well as at rest.",
-    "All twelve base designs use the production render entry; catalogs call it too.",
-    "Content substitution and component composition preserve the design baseline; helper calls and family labels alone are not visual reuse.",
-    "Project extensions declare a source file and handbook reference; actual rendered markup drives review prompts.",
-    "Technical rendering leaves design review pending. Export-bound comparison evidence and recorded visual judgments are checked by accept-visuals."
+    "The project chooses its visual language and reference; bundled classic layouts are optional.",
+    "Reusable techniques do not prescribe a story, cast, shot sequence or timeline.",
+    "Drawing source, renderer extensions and reference files are tracked in the build/export signature.",
+    "No implicit darkening, desaturation or blur is applied to new 2.x scenes.",
+    "A graphic may use footage, paper, solid/gradient surfaces or original artwork.",
+    "Reading text, facts and relationships remain clear at delivery size.",
+    "Technical success does not certify art direction, motion, whole-film pacing or sound.",
+    "Existing project snapshots are upgraded intentionally."
   ],
   "public_variants": {
     "map-decision": {
@@ -340,6 +334,25 @@
     ],
     "frame": "[x,y,width,height], uniform aspect-preserving fit on a 1920x1080 canvas",
     "defaults": "scene duration and full frame",
-    "extension_signature": "render(kit, prefix, duration, data, cues, locale)"
+    "extension_signature": "render(kit, prefix, duration, data, cues, locale)",
+    "design_reference": "classic/art ID or {src, reason, name?} project image"
+  },
+  "artwork": {
+    "component": "artwork",
+    "engines": [
+      "etch",
+      "print",
+      "wash"
+    ],
+    "source": "project-owned JavaScript drawing body",
+    "inputs": [
+      "t",
+      "ctx",
+      "art",
+      "data",
+      "data.beats"
+    ],
+    "reference": "bundled art reference or project src/reason object",
+    "example_source_is_not_a_template": true
   }
 }

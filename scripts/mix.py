@@ -5,6 +5,7 @@ sys.dont_write_bytecode=True
 import argparse,json,subprocess
 from pathlib import Path
 from vibe import local,save
+from event_clock import cue_start
 
 p=argparse.ArgumentParser();p.add_argument('--project',required=True);p.add_argument('--plan',required=True);a=p.parse_args()
 root=Path(a.project).resolve();plan=json.loads(Path(a.plan).read_text(encoding='utf-8'));duration=float(plan['duration'])
@@ -19,7 +20,7 @@ output.parent.mkdir(parents=True,exist_ok=True)
 cmd=['ffmpeg','-v','error','-y','-i',str(local(root,plan['narration']))];chains=[];music=[];effects=[]
 for i,cue in enumerate(plan.get('cues',[]),1):
     cmd+=['-i',str(local(root,cue['src']))]
-    start=float(cue['start']);length=float(cue['duration']);source=float(cue.get('media_start',0));fi=float(cue.get('fade_in',.25));fo=float(cue.get('fade_out',.5))
+    start=cue_start(cue,json.loads((root/'film.json').read_text()));length=float(cue['duration']);source=float(cue.get('media_start',0));fi=float(cue.get('fade_in',.25));fo=float(cue.get('fade_out',.5))
     if min(start,length,source,fi,fo)<0 or length==0 or start+length>duration+.01 or fi>length or fo>length:raise ValueError('Invalid music or sound-effect cue timing.')
     gain=float(cue.get('gain_db',-18 if cue.get('role','music')=='music' else -12))
     if source+length>seconds(local(root,cue['src']))+.01:raise ValueError('The music or sound-effect source is too short for this cue.')

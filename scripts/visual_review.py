@@ -1,6 +1,11 @@
 """Export-bound handbook comparisons. Technical success never grants design approval."""
-import hashlib, html, json, re, shutil, subprocess
+import hashlib, html, json, re, shutil, subprocess, os
 from pathlib import Path
+
+FILM_CRITERIA={
+    'direction':'The chosen form, subjects and visual premise serve this topic; the work is not merely the demo with replacements.',
+    'rhythm':'Watch the complete film: shot scale, information change, action, holds and transitions form a coherent progression.',
+    'sound':'Listen when audio is present: identity, phrasing, emotion, music, effects and the picture work together.'}
 
 CRITERIA={
     'hierarchy':'Typography, contrast, subject and reading order match the reference quality.',
@@ -40,6 +45,10 @@ def source_signature(project, include_runtime=True):
     paths.update(project/'assets/fonts'/name for name in lock.get('fonts_sha256',{}))
     film=load(project/'film.json')
     paths.update(local(project,x['source']) for x in film.get('extensions',[]))
+    for row in load(project/'research/component-usage.json'):
+        if row.get('provenance',{}).get('drawing_source'):paths.add(local(project,row['provenance']['drawing_source']))
+        reference=row.get('design_reference')
+        if isinstance(reference,dict):paths.add(local(project,reference['src']))
     for page in list(paths):
         if page.suffix=='.html':
             for name in re.findall(r'(?:src|href)=[\"\'](assets/[^\"\']+)',page.read_text()):
@@ -78,9 +87,12 @@ def prepare(project,file,skill,env=None):
     language=film.get('language','zh-CN');folder=project/'review'/('visual-'+receipt['sha256'][:12]);folder.mkdir(parents=True,exist_ok=True)
     rows=[];sections=[];evidence={};export=local(project,file)
     for item in usage:
-        id=item['id'];reference=item['design_reference'];poster=skill/'assets/packaging/previews'/language/(reference+'.jpg')
-        if not poster.is_file():raise ValueError('Missing handbook preview: '+reference)
-        ref=folder/(id+'-reference.jpg');shutil.copy2(poster,ref)
+        id=item['id'];reference=item['design_reference']
+        if isinstance(reference,dict):poster=local(project,reference['src']);name=reference.get('name','Project art direction')
+        elif reference.startswith('art-'):poster=skill/'assets/packaging/illustration-previews'/(reference[4:]+'.jpg');name=reference
+        else:poster=skill/'assets/packaging/previews'/language/(reference+'.jpg');name=reference
+        if not poster.is_file():raise ValueError('Missing design reference: '+str(reference))
+        ref=folder/(id+'-reference'+poster.suffix);shutil.copy2(poster,ref)
         start=item['start'];end=start+item['duration'];scene_start=item.get('scene_start',start)
         order=item['reading_order'];settled=max([start+.1]+[scene_start+float(n['settle_at']) for n in order])
         times=sorted(set(round(min(end-.04,max(start+.04,t)),3) for t in [start+.12,(start+settled)/2,settled+.15,end-.12]))
@@ -98,12 +110,20 @@ def prepare(project,file,skill,env=None):
              'criteria':{k:{'verdict':'pending','observation':''} for k in CRITERIA},'motion_watched':False,'verdict':'pending'}
         rows.append(row)
         pics=''.join('<figure><img src="'+html.escape(Path(x['file']).name)+'"><figcaption>'+str(x['time'])+'s</figcaption></figure>' for x in frames)
-        sections.append('<section><h2>'+html.escape(id)+' · '+html.escape(reference)+'</h2><p>'+html.escape(item['purpose'])+'</p><div class="pair"><figure><img src="'+ref.name+'"><figcaption>Handbook reference · compare design quality, not topic or pixels</figcaption></figure><figure><video controls preload="metadata" src="'+clip.name+'"></video><figcaption>Actual export · watch the complete scene</figcaption></figure></div><div class="phases">'+pics+'</div></section>')
-    review={'schema':1,'export':file,'export_sha256':receipt['sha256'],'source_sha256':receipt['source']['sha256'],
-            'status':'pending','reviewer':'','criteria':CRITERIA,'scenes':rows,'evidence_sha256':evidence,
+        sections.append('<section><h2>'+html.escape(id)+' · '+html.escape(name)+'</h2><p>'+html.escape(item['purpose'])+'</p><div class="pair"><figure><img src="'+ref.name+'"><figcaption>Chosen reference · compare craft, material and clarity; the new film owns its subject, shots and rhythm</figcaption></figure><figure><video controls preload="metadata" src="'+clip.name+'"></video><figcaption>Actual export · watch the complete scene</figcaption></figure></div><div class="phases">'+pics+'</div></section>')
+    sequence=[]
+    for scene in film['scenes']:
+        at=float(scene['start'])+float(scene['duration'])*.5
+        frame=folder/('sequence-'+scene['id']+'.jpg')
+        run(['ffmpeg','-v','error','-y','-ss',at,'-i',export,'-frames:v','1','-vf','scale=640:-2','-q:v','3',frame],env)
+        relative=str(frame.relative_to(project));evidence[relative]=sha(frame)
+        sequence.append({'id':scene['id'],'start':scene['start'],'duration':scene['duration'],'frame':relative,'time':at})
+    review={'schema':2,'export':file,'export_sha256':receipt['sha256'],'source_sha256':receipt['source']['sha256'],
+            'status':'pending','reviewer':'','sequence':sequence,'whole_film':{'watched':False,'listened':False,'audio_present':load(project/'review/technical-check.json').get('audio_present',False),'criteria':{k:{'verdict':'pending','observation':''} for k in FILM_CRITERIA}},'criteria':CRITERIA,'scenes':rows,'evidence_sha256':evidence,
             'limits':'Comparisons require actual visual judgment. Counts, stills and completed fields alone cannot establish aesthetic quality. User approval remains separate.'}
     evidence_index={'export_sha256':receipt['sha256'],'source_sha256':receipt['source']['sha256'],'evidence_sha256':evidence,
                     'scenes':[{k:r[k] for k in ('id','design_reference','implementation','frames','motion_file','reference_file')} for r in rows]}
+    evidence_index['sequence']=sequence
     save(folder/'evidence-index.json',evidence_index)
     review['evidence_index']=str((folder/'evidence-index.json').relative_to(project))
     dest=project/'review/visual-review.json'
@@ -112,8 +132,9 @@ def prepare(project,file,skill,env=None):
         if all(old.get(k)==review[k] for k in ('export_sha256','source_sha256','evidence_sha256')):
             review=old
     save(dest,review)
+    film_view='<section><h2>Whole-film direction, rhythm and sound</h2><video controls preload="metadata" src="'+html.escape(os.path.relpath(export,folder),quote=True)+'"></video><div class="phases">'+''.join('<figure><img loading="lazy" src="'+Path(x['frame']).name+'"><figcaption>'+html.escape(x['id'])+'</figcaption></figure>' for x in sequence)+'</div></section>'
     css='body{margin:32px;background:#151c1c;color:#efe4ce;font:18px/1.6 system-ui}h1{font-size:30px}section{margin:45px 0}img,video{width:100%}.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}figure{margin:0}figcaption{color:#bccbc7;font-size:14px}p{max-width:1100px}'
-    (folder/'index.html').write_text('<!doctype html><html><meta charset="utf-8"><title>Handbook comparison</title><style>'+css+'</style><body><h1>Handbook comparison · '+receipt['sha256'][:12]+'</h1><p>Review hierarchy, composition, material, motion and explanatory value. Record observations in review/visual-review.json; then run accept-visuals. No automatic aesthetic pass.</p>'+''.join(sections)+'</body></html>',encoding='utf-8')
+    (folder/'index.html').write_text('<!doctype html><html><meta charset="utf-8"><title>Handbook comparison</title><style>'+css+'</style><body><h1>Handbook comparison · '+receipt['sha256'][:12]+'</h1><p>Review the whole film for direction, rhythm and sound, then inspect hierarchy, composition, material, motion and explanatory value. Record observations in review/visual-review.json; then run accept-visuals. No automatic aesthetic pass.</p>'+film_view+''.join(sections)+'</body></html>',encoding='utf-8')
     return {'status':review['status'],'scenes':len(rows),'comparison':str((folder/'index.html').relative_to(project)),'record':'review/visual-review.json'}
 
 
@@ -125,6 +146,10 @@ def accept(project):
     if any(index[k]!=v for k,v in expected.items()):raise ValueError('Review evidence index differs.')
     records=[{k:r[k] for k in ('id','design_reference','implementation','frames','motion_file','reference_file')} for r in review['scenes']]
     if records!=index['scenes']:raise ValueError('Review evidence coverage was changed.')
+    if review.get('schema',1)>=2:
+        sequence=review.get('sequence',[])
+        if sequence!=index.get('sequence') or [x['id'] for x in sequence]!=[x['id'] for x in load(project/'film.json')['scenes']]:
+            raise ValueError('Whole-film scene coverage was changed.')
     usage=load(project/'research/component-usage.json')
     if {x['id'] for x in usage}!={x['id'] for x in review['scenes']} or len(usage)!=len(review['scenes']):raise ValueError('Visual review must cover every rendered component instance.')
     if not review.get('reviewer','').strip():raise ValueError('Record who performed the visual review.')
@@ -135,5 +160,12 @@ def accept(project):
         for key in CRITERIA:
             decision=row.get('criteria',{}).get(key,{})
             if decision.get('verdict')!='pass' or not str(decision.get('observation','')).strip():raise ValueError(row['id']+': missing supported judgment for '+key)
+    if review.get('schema',1)>=2:
+        whole=review.get('whole_film',{})
+        if whole.get('watched') is not True:raise ValueError('Watch the full exported film; component clips do not establish whole-film rhythm.')
+        if whole.get('audio_present') and whole.get('listened') is not True:raise ValueError('The full mix still needs listening review.')
+        for key in FILM_CRITERIA:
+            judgment=whole.get('criteria',{}).get(key,{})
+            if judgment.get('verdict')!='pass' or not judgment.get('observation','').strip():raise ValueError('Record a supported whole-film judgment for '+key)
     review['status']='passed';save(project/'review/visual-review.json',review)
     return {'status':'passed','export':review['export'],'sha256':receipt['sha256'],'scope':'Recorded visual review only; listening and user approval remain separate.'}

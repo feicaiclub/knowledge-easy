@@ -8,6 +8,8 @@ Set the project and voice plan to `en-US` or `zh-CN`. English text uses English 
 
 Body-v1 lowers pitch slightly and adds low-mid body while preserving playback speed, sample count, and pauses. Processing uses existing quiet regions with context on each side. It does not trim the first or last syllable.
 
+Calibrate performance on a representative passage before expanding to the full film. Keep identity, pace, phrasing, pitch and emotional emphasis as separate judgments. If a take feels flat, first examine the intended stress, sentence connection and pauses; raising pitch or applying a large speed change is not a substitute. If the user supplies a voice or names another provider, keep that identity and its actual controls in the project instead of changing the global default reference.
+
 Design delivery for the subject. Decide which ideas belong together, where an event ends, where reflection begins, and which words carry weight. `direction` records that intent; the Base model does not provide a reliable emotional instruction parameter. Use wording, punctuation, complete passages, and take selection rather than pretending an unsupported parameter controls the performance.
 
 ```json

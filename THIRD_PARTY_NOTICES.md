@@ -29,3 +29,7 @@ Raw third-party sample clips and the original film/TV source footage are not dis
 ## External software and services
 
 Runtime packages, browsers, and model weights are installed separately and retain their own licenses and terms. This repository does not include them or grant additional rights to them. The approved stack includes Qwen3-TTS, MLX Audio, MLX Whisper, HyperFrames, GSAP, FFmpeg, and Pedalboard. Optional music and effects services require the user's own access and applicable rights.
+
+## Drawing kernels
+
+The brush-stroke and three-plate print kernels in `assets/packaging/src/artwork/brush.js` and `print.js` are adapted from [Lemo-Opuscar](https://github.com/feicaiclub/lemo-opuscar/tree/413a6bd6d78ebd3bdd5abaec9538a26867f890df), originally copyright (c) 2026 LemoLab, under MIT. The complete [license](assets/packaging/src/artwork/LEMO-LICENSE.txt) travels with those files. Knowledge Easy's drawing runtime and six example subjects/staging implementations are original. The kernels are reusable techniques; no upstream demo storyline, character or score is bundled.

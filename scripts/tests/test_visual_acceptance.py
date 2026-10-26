@@ -45,6 +45,18 @@ class AcceptanceTests(unittest.TestCase):
         p=self.p/'film.json';film=vibe.load(p);film['scenes'][0]['data']['lead']='Changed content';vibe.save(p,film)
         with self.assertRaisesRegex(ValueError,'changed since build'):review.require_current_build(self.p)
 
+    def test_whole_film_and_listening_are_not_implied_by_component_passes(self):
+        self.pass_record();r=vibe.load(self.p/'review/visual-review.json');r['schema']=2
+        r['sequence']=[{'id':'scene'}]
+        r['whole_film']={'watched':False,'listened':False,'audio_present':True,'criteria':{k:{'verdict':'pass','observation':'Unit test only.'} for k in review.FILM_CRITERIA}}
+        index=vibe.load(self.p/'review/index.json');index['sequence']=r['sequence'];vibe.save(self.p/'review/index.json',index)
+        vibe.save(self.p/'review/visual-review.json',r)
+        with self.assertRaisesRegex(ValueError,'full exported film'):review.accept(self.p)
+        r['whole_film']['watched']=True;vibe.save(self.p/'review/visual-review.json',r)
+        with self.assertRaisesRegex(ValueError,'listening review'):review.accept(self.p)
+        r['whole_film']['listened']=True;vibe.save(self.p/'review/visual-review.json',r)
+        self.assertEqual(review.accept(self.p)['status'],'passed')
+
     def test_missing_observations_do_not_count_as_a_pass(self):
         self.pass_record();r=vibe.load(self.p/'review/visual-review.json');r['scenes'][0]['criteria']['material']['observation']=''
         vibe.save(self.p/'review/visual-review.json',r)

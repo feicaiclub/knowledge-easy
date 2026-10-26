@@ -1,0 +1,5 @@
+{
+  "etch": {"name":"Expressive ink / 叙事线刻", "engine":"etch", "palette":{"paper":"#f1eee5","ink":"#18272d","accent":"#bb493b","secondary":"#657c72"}, "reference":"art-etch", "texture":true},
+  "print": {"name":"Overprint theatre / 套色剧场", "engine":"print", "palette":{"paper":"#f5eedb","ink":"#164d62","accent":"#e58c3d","secondary":"#8d4361"}, "inks":["#164d62","#e58c3d","#8d4361"], "reference":"art-print"},
+  "wash": {"name":"Living brush / 生长笔触", "engine":"wash", "palette":{"paper":"#eee9da","ink":"#253c3b","accent":"#ba7150","secondary":"#6a8668"}, "reference":"art-wash", "texture":true}
+}

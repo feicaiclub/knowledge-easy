@@ -8,7 +8,7 @@ from pathlib import Path
 import html, json, math, importlib.util, re
 
 ROOT = Path(__file__).resolve().parent
-VERSION = '1.4.0'
+VERSION = '2.0.0'
 _layout_spec = importlib.util.spec_from_file_location('editorial_layout', ROOT/'layout.py')
 LAYOUT = importlib.util.module_from_spec(_layout_spec)
 _layout_spec.loader.exec_module(LAYOUT)
@@ -30,6 +30,10 @@ _base_spec = importlib.util.spec_from_file_location('editorial_base', ROOT/'base
 BASE = importlib.util.module_from_spec(_base_spec)
 _base_spec.loader.exec_module(BASE)
 BASE_IDS = tuple(x[0] for x in BASE.ITEMS)
+_art_spec=importlib.util.spec_from_file_location('editorial_artwork', ROOT/'artwork.py')
+ARTWORK=importlib.util.module_from_spec(_art_spec);_art_spec.loader.exec_module(ARTWORK)
+REFERENCE_IDS=(*BASE_IDS,*ARTWORK.REFERENCES)
+FAMILIES['artwork']='original-art'
 FAMILIES.update({x:x for x in BASE_IDS})
 
 def css(asset_prefix='../assets/fonts/', locale='en-US'):
@@ -392,6 +396,9 @@ class Component:
 
 def render(kind,prefix,duration,data,cues=None,locale='en-US'):
     if locale not in ['en-US','zh-CN']:raise ValueError('Use en-US or zh-CN for component layouts.')
+    if kind=='artwork':
+        result=ARTWORK.render(prefix,duration,data,cues or {},locale)
+        return dict(result,version=VERSION,locale=locale)
     if kind in BASE_IDS:
         result=BASE.render(kind,prefix,duration,data,cues,locale)
         return dict(result,version=VERSION,locale=locale)

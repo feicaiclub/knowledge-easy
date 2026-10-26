@@ -9,6 +9,7 @@ from bootstrap import SKILL,contained,ensure,run
 from language import normalize,resolve,caption_lines,CONFIG
 import composition
 import visual_review
+import event_clock
 
 
 def save(path,value):
@@ -78,34 +79,48 @@ def media_tag(project,item,id,duration,background=False):
     return f'<video id="{id}" class="clip scene-film" src="{html.escape(src,quote=True)}" data-start="0" data-duration="{duration}" data-media-start="{start}" data-playback-rate="{rate}" data-color-grading="{grading}" muted playsinline></video>'
 
 
-def visual_background(scene):
-    """Make a missing/hidden diagram background an actionable build error."""
+def visual_background(scene,legacy=False):
+    """An explicit surface, without prescribing one photographic look."""
     background=copy.deepcopy(scene.get('background'))
-    kind=scene.get('component') or ('composition' if scene.get('components') else None)
-    if not kind:return background
-    if not str(scene.get('purpose','')).strip():
-        raise ValueError(scene['id']+': state what this graphic explains in purpose.')
-    overlay=kind in ('annotation','dateline')
-    if not background:
-        if (overlay and scene.get('footage')) or str(scene.get('surface_reason','')).strip():return None
-        raise ValueError(scene['id']+': supply a moving background video for this graphic. For a deliberate full-frame map, document, or interlude, record surface_reason; never fall back to a solid canvas silently.')
-    if scene.get('footage'):
-        raise ValueError(scene['id']+': footage would cover the background. Use one background, or put the foreground media inside the component.')
-    if Path(background.get('src','')).suffix.lower() not in ('.mp4','.mov','.webm','.m4v','.mkv'):
-        raise ValueError(scene['id']+': background must be a moving video, not a still image.')
-    if not overlay:
-        grade=background.setdefault('grading',{})
-        adjust=grade.setdefault('adjust',{})
+    graphic=bool(composition.layers(scene))
+    if graphic and not str(scene.get('purpose','')).strip():
+        raise ValueError(scene['id']+': state what this scene contributes in purpose.')
+    if background and scene.get('footage'):
+        raise ValueError(scene['id']+': footage would cover the background; keep one full-frame media placement.')
+    if background and Path(background.get('src','')).suffix.lower() not in ('.mp4','.mov','.webm','.m4v','.mkv'):
+        raise ValueError(scene['id']+': video background needs a moving video; use surface for designed grounds.')
+    if background:
+        blur=background.get('grading',{}).get('effects',{}).get('blur',0)
+        if not 0<=float(blur)<=1:raise ValueError('Background blur must be within [0,1].')
+    if graphic and not background and not scene.get('footage') and not scene.get('surface') and not scene.get('surface_reason'):
+        if not all(x.get('component')=='artwork' for x in composition.layers(scene)):
+            raise ValueError(scene['id']+': choose a surface, source footage, or authored artwork; no accidental blank ground.')
+    if legacy and background and graphic and scene.get('component') not in ('annotation','dateline'):
+        grade=background.setdefault('grading',{});adjust=grade.setdefault('adjust',{})
         adjust.setdefault('exposure',-.55);adjust.setdefault('saturation',-.2)
-        effects=grade.setdefault('effects',{});effects.setdefault('blur',.7)
-        if not 0<float(effects['blur'])<=1:
-            raise ValueError(scene['id']+': explanatory backgrounds need visible defocus (grading.effects.blur in (0, 1]).')
+        grade.setdefault('effects',{}).setdefault('blur',.7)
+        background.setdefault('shade',.25)
     return background
+
+
+def surface_markup(surface):
+    if not surface:return ''
+    if not isinstance(surface,dict) or surface.get('kind') not in ('solid','paper','gradient'):
+        raise ValueError('surface needs kind solid, paper or gradient.')
+    color=surface.get('color','#f3eee3')
+    if not re.fullmatch(r'#[0-9a-fA-F]{6}',color):raise ValueError('Surface colors use six-digit hex.')
+    paint=color
+    if surface['kind']=='gradient':
+        other=surface['to']
+        if not re.fullmatch(r'#[0-9a-fA-F]{6}',other):raise ValueError('Surface colors use six-digit hex.')
+        paint=f'linear-gradient({float(surface.get("angle",135))}deg,{color},{other})'
+    return '<div aria-hidden="true" style="position:absolute;inset:0;background:'+paint+'"></div>'
 
 
 def build(project,manifest=None):
     film=load(manifest or project/'film.json');language=resolve(project,film);duration=float(film['duration']);fps=float(film.get('fps',30))
     if duration<=0 or fps<=0:raise ValueError('Set the duration, frame rate, and scenes first.')
+    beat_times=event_clock.beats(film)
     lock=load(project/'kit/editorial-lock.json');path=project/lock['local_snapshot']
     kit=module(path/'editorial.py','editorial')
     locale_options={'locale':language} if 'locale' in inspect.signature(kit.render).parameters else {}
@@ -119,19 +134,20 @@ def build(project,manifest=None):
         if not re.fullmatch(r'[a-zA-Z][\w-]*',cid) or cid in ids:raise ValueError('Duplicate or invalid scene ID.')
         ids.add(cid)
         if start<0 or d<=0 or start+d>duration+1/fps:raise ValueError('Scene extends beyond the timeline: '+cid)
-        body='';js=''
-        background=visual_background(scene)
+        body=surface_markup(scene.get('surface'));js=''
+        background=visual_background(scene,legacy=tuple(int(x) for x in lock['version'].split('.'))<(2,0,0))
         if background:
             body+=media_tag(project,background,cid+'-background',d,True)
-            if composition.layers(scene) and scene.get('component') not in ('annotation','dateline'):
-                body+='<div class="scene-shade" aria-hidden="true"></div>'
+            shade=float(background.get('shade',0))
+            if not 0<=shade<=1:raise ValueError('Background shade must be within [0,1].')
+            if shade:body+='<div aria-hidden="true" style="position:absolute;inset:0;z-index:1;background:rgba(0,0,0,'+str(shade)+')"></div>'
         if scene.get('footage'):body+=media_tag(project,scene['footage'],cid+'-footage',d)
         if composition.layers(scene):
             if not hasattr(kit,'BASE_IDS'):
                 raise ValueError('Upgrade this project with install-pack --update to use the composition and visual review workflow.')
-            graphic,animation,rows=composition.render_scene(project,dict(scene,_locale=language),kit,registry,local)
+            graphic,animation,rows=composition.render_scene(project,dict(scene,_locale=language,_beats=beat_times,_design_reference=film.get('design_reference')),kit,registry,local)
             body+=graphic;js+=animation
-            for row in rows:row.update(background=background,surface_reason=scene.get('surface_reason'))
+            for row in rows:row.update(background=background,surface=scene.get('surface'),surface_reason=scene.get('surface_reason'),visual_change=scene.get('visual_change',''),beat=scene.get('beat',''))
             usage.extend(rows)
         if not body:raise ValueError('Scene has no visual content: '+cid)
         css=kit.css('assets/fonts/',**locale_options)+'.scene-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.scene-shade{position:absolute;inset:0;background:rgba(9,15,16,.25);z-index:1;pointer-events:none}.ev-component{z-index:10}#root{position:absolute;inset:0;overflow:hidden}'
@@ -147,10 +163,11 @@ def build(project,manifest=None):
         hosts.append(f'<div id="subtitle-{i}" class="clip captions" data-start="{a}" data-duration="{b-a}" data-track-kind="captions" data-track-index="10"><span>{html.escape(caption_lines(sub["text"],language))}</span></div>')
     if film.get('mix'):
         local(project,film['mix']);hosts.append(f'<audio id="film-mix" class="clip" src="{html.escape(film["mix"],quote=True)}" data-start="0" data-duration="{duration}" data-volume="1" data-track-index="20"></audio>')
-    doc='''<!doctype html><html lang="{language}"><head><meta charset="utf-8"><script src="assets/vendor/gsap.min.js"></script><style>@font-face{font-family:CaptionSans;src:url('assets/fonts/notosanssc-NotoSansSC[wght].ttf')}html,body{margin:0;overflow:hidden;background:#151c1c}.clip{position:absolute;inset:0}#root{width:100%;height:100%;position:relative}.captions{display:flex;align-items:flex-end;justify-content:center;box-sizing:border-box;padding:0 192px 105px;pointer-events:none}.captions span{white-space:pre-line;font:42px/1.4 CaptionSans,sans-serif;color:#fff;text-shadow:0 2px 8px #000;background:#0008;padding:4px 18px;border-radius:4px}</style></head><body>'''+f'<div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-fps="{fps}" data-duration="{duration}">'+''.join(hosts)+'''</div><script>window.__timelines=window.__timelines||{};window.__timelines.film=gsap.timeline({paused:true});</script></body></html>'''
+    doc='''<!doctype html><html lang="{language}"><head><meta charset="utf-8"><script src="assets/vendor/gsap.min.js"></script><style>@font-face{font-family:CaptionSans;src:url('assets/fonts/notosanssc-NotoSansSC[wght].ttf')}html,body{margin:0;overflow:hidden;background:#151c1c}.clip{position:absolute;inset:0}#root{width:100%;height:100%;position:relative}.captions{z-index:30;display:flex;align-items:flex-end;justify-content:center;box-sizing:border-box;padding:0 192px 105px;pointer-events:none}.captions span{white-space:pre-line;font:42px/1.4 CaptionSans,sans-serif;color:#fff;text-shadow:0 2px 8px #000;background:#0008;padding:4px 18px;border-radius:4px}</style></head><body>'''+f'<div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-fps="{fps}" data-duration="{duration}">'+''.join(hosts)+'''</div><script>window.__timelines=window.__timelines||{};window.__timelines.film=gsap.timeline({paused:true});</script></body></html>'''
     doc=doc.replace('{language}',language).replace('notosanssc-NotoSansSC[wght].ttf',CONFIG[language]['caption_font'])
     if language=='zh-CN':doc=doc.replace('white-space:pre-line','white-space:nowrap')
     (project/'index.html').write_text(doc,encoding='utf-8');save(project/'hyperframes.json',{})
+    save(project/'review/beat-map.json',{'events':beat_times,'source':'film.json'})
     save(project/'research/component-usage.json',usage);save(project/'review/timeline.json',{'objects':objects})
     notes=composition.review_plan(usage)
     save(project/'review/visual-plan.json',{'components':dict(Counter(row['component'] for row in usage)),
@@ -176,6 +193,23 @@ def catalog(project,base=False,language="en-US",media_dir=None):
         scenes.append({'id':'demo-'+row['id'],'start':i*8,'duration':8,'component':row['id'],**conf,
                        'purpose':row['purpose'],'background':{'src':'assets/media/street.mp4'}})
     save(project/'film.json',{'title':'Shared component examples','language':language,'fps':30,'duration':len(scenes)*8,'scenes':scenes,'subtitles':[],'catalog_only':True})
+    build(project)
+
+
+def art_catalog(project,language='en-US'):
+    init(project,language)
+    rows=load(SKILL/'assets/packaging/src/artwork/examples.json');scenes=[]
+    folder=project/'assets/artwork';folder.mkdir(exist_ok=True)
+    for i,row in enumerate(rows):
+        src=SKILL/'assets/packaging/src'/row['source'];shutil.copy2(src,folder/src.name)
+        labels=copy.deepcopy(row['labels'])
+        if language=='en-US':
+            for label in labels:label['text']=row.get('title_en',row['id'].replace('-',' ').title())
+        scenes.append({'id':row['id'],'start':i*12,'duration':12,'purpose':row['purpose'],
+                       'component':'artwork','data':{'source':'assets/artwork/'+src.name,'style':row['style'],
+                       'description':row['purpose'],'configuration':row['configuration'],'labels':labels}})
+    save(project/'film.json',{'title':'Drawing technique studies','language':language,'fps':30,'duration':len(scenes)*12,
+                              'catalog_only':True,'scenes':scenes,'subtitles':[]})
     build(project)
 
 
@@ -221,7 +255,7 @@ def main():
         if name in ['init','catalog']:p.add_argument('--language',choices=['en-US','zh-CN'],default='en-US')
         if name=='install-pack':p.add_argument('--update',action='store_true')
         if name=='catalog':
-            p.add_argument('--base',action='store_true');p.add_argument('--media-dir',help='Folder of licensed demo clips; see assets/packaging/demo-media/README.md.')
+            p.add_argument('--base',action='store_true');p.add_argument('--art',action='store_true');p.add_argument('--media-dir',help='Folder of licensed demo clips; see assets/packaging/demo-media/README.md.')
         if name in ['voice','mix']:p.add_argument('--plan',required=True)
         if name in ['register','verify','transcribe','review-visuals']:p.add_argument('--file',required=True)
         if name=='transcribe':p.add_argument('--prompt',default='',help='Optional names and terminology, not the expected transcript.')
@@ -237,7 +271,11 @@ def main():
         info,_=ensure(filter(None,args.features.split(',')),args.install);print(json.dumps(info,ensure_ascii=False,indent=2));return 0 if info['ready'] else 2
     project=project_path(args.project)
     if args.cmd=='init':init(project,args.language);return 0
-    if args.cmd=='catalog':catalog(project,args.base,args.language,args.media_dir);return 0
+    if args.cmd=='catalog':
+        if args.art and args.base:raise ValueError('Choose --art or --base.')
+        if args.art:art_catalog(project,args.language)
+        else:catalog(project,args.base,args.language,args.media_dir)
+        return 0
     if not (project/'project.json').exists() and args.cmd not in ['register','studio','verify']:raise ValueError('Run init first, or use a registered review project.')
     if args.cmd=='build':build(project);return 0
     if args.cmd=='install-pack':install_pack(project,args.update);return 0

@@ -32,6 +32,13 @@ def verify_renderer(kit):
             raise ValueError('Unregistered render override: declare custom implementations in film.extensions.')
 
 
+def validate_reference(project,reference,kit,local):
+    if isinstance(reference,str) and reference in getattr(kit,'REFERENCE_IDS',kit.BASE_IDS):return
+    if isinstance(reference,dict) and reference.get('src') and reference.get('reason','').strip():
+        local(project,reference['src']);return
+    raise ValueError('Use a library style reference or a project image reference with src and reason.')
+
+
 def extension_registry(project,film,kit,local):
     registry={}
     verify_renderer(kit)
@@ -39,7 +46,7 @@ def extension_registry(project,film,kit,local):
         kind=spec['id']
         if kind in kit.FAMILIES or kind in registry:raise ValueError('Extension must have a new id: '+kind)
         reference=spec.get('design_reference')
-        if reference not in kit.BASE_IDS:raise ValueError(kind+': name a handbook design_reference for comparison.')
+        validate_reference(project,reference,kit,local)
         if not spec.get('reason','').strip():raise ValueError(kind+': state the design reason for the extension.')
         path=local(project,spec['source'])
         module_spec=importlib.util.spec_from_file_location('project_'+kind.replace('-','_'),path)
@@ -72,20 +79,32 @@ def render_scene(project,scene,kit,registry,local):
             elif isinstance(value,list):
                 for child in value:check_content(child)
         data=layer.get('data',{});check_content(data)
+        render_data=copy.deepcopy(data)
+        art_source=None
+        if kind=='artwork':
+            if not hasattr(kit,'ARTWORK'):raise ValueError('This project snapshot predates code artwork; use install-pack --update intentionally.')
+            art_source=local(project,data['source'])
+            source=art_source.read_text(encoding='utf-8')
+            if re.search(r'\b(?:Date\.now|Math\.random|setInterval|setTimeout|fetch)\s*\(',source):
+                raise ValueError('Artwork must be deterministic and local; use t and art.rng(seed).')
+            render_data['_source_code']=source
+            render_data.setdefault('configuration',{})['duration']=duration
+            render_data['configuration']['beats']={k:time-float(scene['start'])-start for k,time in scene.get('_beats',{}).items() if float(scene['start'])+start<=time<float(scene['start'])+start+duration}
         ext=registry.get(kind);locale=scene['_locale']
         if ext:
             result=ext['render'](kit,prefix,duration,copy.deepcopy(data),copy.deepcopy(layer.get('cues',{})),locale)
-            result=dict(result,component=kind,parent=ext['design_reference'],design_reference=ext['design_reference'],version=kit.VERSION,implementation='project-extension')
+            result=dict(result,component=kind,parent=ext['design_reference'] if isinstance(ext['design_reference'],str) else 'project-art-direction',design_reference=ext['design_reference'],version=kit.VERSION,implementation='project-extension')
             verify_renderer(kit)
             provenance={k:ext[k] for k in ('source','sha256','reason')}
         else:
-            result=kit.render(kind,prefix,duration,data,layer.get('cues',{}),locale=locale)
+            result=kit.render(kind,prefix,duration,render_data,layer.get('cues',{}),locale=locale)
             if not result.get('implementation'):raise ValueError(kind+': unregistered render override; use film.extensions for custom designs.')
             provenance={'source':str(kit.ROOT.relative_to(project.resolve())),'version':kit.VERSION}
+            if art_source:provenance.update(drawing_source=data['source'],drawing_sha256=sha(art_source))
         for field in ('html','js','reading_order','component','parent','version'):
             if field not in result:raise ValueError(kind+': renderer omitted '+field)
-        reference=layer.get('design_reference',result.get('design_reference'))
-        if reference not in kit.BASE_IDS:raise ValueError(kind+': a valid handbook design_reference is required.')
+        reference=layer.get('design_reference') or scene.get('design_reference') or scene.get('_design_reference') or result.get('design_reference')
+        validate_reference(project,reference,kit,local)
         frame=layer.get('frame',[0,0,1920,1080])
         if len(frame)!=4:raise ValueError('frame must be [x, y, width, height].')
         x,y,w,h=[float(v) for v in frame]
@@ -112,9 +131,10 @@ def review_plan(usage):
     notes=[]
     for row in usage:
         counts=row['visual_inventory'];reasons=[]
-        if row['implementation']=='project-extension':reasons.append('Custom design: compare actual motion against its handbook reference; helper reuse alone is not design reuse.')
-        if not counts['images'] and not counts['videos']:
+        if row['implementation']=='project-extension':reasons.append('Custom design: compare the actual explanatory result and motion with the chosen project/style reference. Judge craft and meaning, not similarity to a fixed layout.')
+        if not counts['images'] and not counts['videos'] and row['implementation']!='authored-artwork':
             reasons.append('No foreground media: assess whether typography/geometry explains the idea or only restates narration. This is a review prompt, not an image quota.')
+        if row['implementation']=='authored-artwork':reasons.append('Original illustration: inspect silhouette, material, staging, performance and camera across key poses; do not treat a working drawing function as design approval.')
         if row['scale']<.8:reasons.append('Scaled composition: inspect effective text size, whitespace and caption clearance in the export.')
         if reasons:notes.append({'instance':row['id'],'design_reference':row['design_reference'],'reasons':reasons})
     return notes

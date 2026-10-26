@@ -14,7 +14,15 @@ knowledge-easy/
 └── package-manifest.json
 ```
 
-## Production and visual acceptance · renderer 1.4.0
+## Direction and generalization · renderer 2.0.0
+
+The new entry separates shared quality criteria, a project treatment and optional visual languages. It removes compulsory background blur/darkening for new snapshots, permits project-owned visual references, and introduces freely authored Canvas artwork with reusable brush and print kernels. Classic layouts remain available; existing project snapshots retain their rendering choices until intentionally upgraded.
+
+Three drawing languages include two different authored subjects each. A separate mechanical subject exercises a custom palette and project reference without using the bundled subject helpers. Semantic beats can drive drawing and audio from the same clock. Export evidence now includes all-scene context plus pending whole-film rhythm and listening judgments. Tests and encoded samples validate the behavior they exercise; they do not certify every future artistic decision.
+
+The architecture study and validation details are in [the 2.0 record](verification/visual-system-2.0.0.json). Brush and print kernels retain their upstream MIT attribution. No upstream demo storyline or character was adopted.
+
+## Earlier production update · renderer 1.4.0
 
 All twelve base designs now run through the normal production entry with explicit content/media slots and semantic cues. Scenes can compose independent instances by time and region. Custom implementations use a declared source and handbook reference; in-memory renderer replacements are rejected.
 
