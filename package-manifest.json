@@ -53,7 +53,7 @@
     "scripts/tests/test_language.py": "cd7a7b732fa58d4cb1ed02435d812fb39a9d583e416906110c48e7764bf6dbc4",
     "scripts/tests/test_visuals.py": "b973bdba976c04549fe1f100aaa6ab6cec62e7aa99226dc46f095d730d256e51",
     "scripts/tests/test_review.py": "90b38a6fddbf1410e91cb671341ce5e26c81fdc85abf770d1f0e39707b24a90f",
-    ".github/workflows/validate.yml": "4e84f255ad02698be373aa80b2e9bed937a9a80ca9781fd6e90520c6f864e864",
+    ".github/workflows/validate.yml": "fd311479c39cc5866c198c002b2b1f1e6404612288eae9b6b3b72d4fd1874912",
     "assets/packaging/handbook.css": "c5503d7c6436de6201bf690b4fab2b8174160cc88106b0efa58f99edf4db44d3",
     "assets/packaging/demo-media/README.md": "6e20ae18a41530391b074f79ac165702ecf109b39c1f32596e56797caf2fef30",
     "assets/packaging/illustration-previews/print.jpg": "93d6fdc2b1530f7686d25d344985c3df1293b4d470c21ae92b712f79dacb73d0",
