@@ -13,7 +13,7 @@ npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
 更新时如需先卸载旧版：
 
 ```bash
-npx -y skills remove knowledge-easy --agent codex --global --yes
+npx -y skills remove knowledge-easy --global --yes
 npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
 ```
 
