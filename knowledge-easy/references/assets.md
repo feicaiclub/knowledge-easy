@@ -1,23 +1,23 @@
-# 素材来源与记录
+# Media Sources and Records
 
-选材方法、光影标准和混合媒介判断见 [SKILL.md](../SKILL.md)。本页提供搜索入口与记录格式。
+See [SKILL.md](../SKILL.md) for selection methods, lighting standards, and mixed-media decisions. This page provides research starting points and a record format.
 
-## 候选记录
+## Candidate records
 
-在项目已有素材笔记或 assets.json 的 sources 中记录：用途、来源 URL / 原始文件、可用区间、原始镜头身份、动作变化、景别与光线、选中或放弃理由。字段可以沿用项目现有格式，不能只保存一个下载地址。
+In the project's existing media notes or the sources section of assets.json, record each candidate's purpose, source URL or original file, usable range, original shot identity, action changes, shot size, lighting, and reason for selection or rejection. Keep the project's existing format if it serves these needs. A download URL alone is not enough.
 
-例如，同样表现犹豫：一个镜头有手悬在门把前的动作、侧光和清楚的切点；另一个只是人物坐在办公室。前者的具体行为才是选择依据。记录实际观察，不从关键词或封面推断镜头内容。
+For example, two shots might both suggest hesitation. One shows a hand stopping just short of a door handle, with side lighting and a clear edit point; the other simply shows someone sitting in an office. The specific behavior in the first shot is the reason to choose it. Record what you actually observed instead of inferring shot content from keywords or thumbnails.
 
-## 搜索入口
+## Research starting points
 
-- [ShotDeck](https://shotdeck.com/) 与 [Flim](https://flim.ai/) 用于研究动作、构图、景别、色彩和光影；找到参考后核对原作品及可用素材来源。
-- Wikimedia Commons、博物馆开放馆藏与原始文献适合追溯人物、地点、器物和档案；核对身份、时间、语境与使用条件。
-- 素材网站、自摄、用户提供视频或其他可用来源按用途选择，方便下载不是审美标准。不能从画面风格反推某位创作者实际使用了哪个素材库。
-- 特定机制、空间隐喻和难以找到的动作可用原创 SVG、Canvas、照片拼贴或生成素材；生成与重建不得冒充真实记录。
+- Use [ShotDeck](https://shotdeck.com/) and [Flim](https://flim.ai/) to study action, composition, shot size, color, and lighting. After finding a reference, verify the original work and a usable source for the footage.
+- Wikimedia Commons, open museum collections, and primary documents can help identify people, places, objects, and archival material. Check identity, date, context, and terms of use.
+- Choose stock libraries, self-shot footage, user-provided videos, or other available sources according to the shot's purpose. Download convenience is not an aesthetic criterion. A creator's visual style does not establish which stock library they use.
+- Use original SVG, Canvas, photo collage, or generated media for specific mechanisms, spatial metaphors, and actions that are difficult to source. Do not present generated scenes or reconstructions as documentary records.
 
-## 原始镜头核对
+## Original shot identification
 
-项目采用移动镜头不重复约定时，audit-media 读取 placements：
+When a project requires unique moving shots, audit-media reads placements:
 
 ```json
 {
@@ -26,11 +26,11 @@
     "id":"shot-a","file":"assets/media/door.mp4",
     "original_shots":["source-video:shot-012"],
     "source_in":12.4,"source_out":15.8,
-    "use":"手接近门把后停住，作为转折前的动作。"
+    "use":"The hand approaches the door handle, then stops just before the narrative turn."
   }]
 }
 ```
 
-当前工具使用 id、file、original_shots、可选 static；source_in、source_out 和 use 用于人工核对。静态图片可标 static: true。移动素材身份须由原视频核对，不能只用文件名生成一个看似唯一的编号。
+The tool currently uses id, file, original_shots, and optional static. source_in, source_out, and use support manual comparison. Mark a still image with static: true. Establish a moving shot's identity from the original video rather than generating a seemingly unique ID from its filename.
 
-该命令检查台账内的重复，不自动识别剪入画面；制作时应把台账与实际 film.json、素材区间和导出对照。字体、地理数据和默认旁白的来源见 [许可与来源](sources.md)。
+The command checks for repeated identities in the records; it does not recognize the edited footage automatically. During production, compare the records against the actual film.json, source ranges, and export. See [Licenses and Sources](sources.md) for fonts, geographic data, and the default voice.

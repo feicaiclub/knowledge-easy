@@ -1,11 +1,11 @@
-# Lazy Studio 审片
+# Reviewing in Lazy Studio
 
-用户需要审片时，先登记已有导出，版本使用独立 ID 与文件名。启动器绑定本机 127.0.0.1；端口被其他项目占用时换端口，不结束无关进程。
+When the user wants to review a film, register an existing export first, using a distinct ID and filename for each version. The launcher binds to local address 127.0.0.1. If another project occupies the port, choose a different port rather than terminating an unrelated process.
 
-空格播放或暂停，左右键逐帧，M 标记当前画面，写评论后按 Enter 保存文字和截图。Shift + Enter 换行。两个版本保持左右对照。
+Space plays or pauses. The arrow keys step through frames. Press M to mark the current frame, write a comment, then press Enter to save the text and screenshot. Shift + Enter inserts a line break. Keep two versions side by side for comparison.
 
-反馈保存在 review/feedback.md、review/frames/ 与 review/feedback.jsonl。旧项目沿用自己的反馈路径，以接口返回值为准。评论可以修改、删除、复制并跳回原始帧。
+Feedback is saved to review/feedback.md, review/frames/, and review/feedback.jsonl. Older projects retain their own feedback paths; use the paths returned by the interface. Comments can be edited, deleted, copied, and used to jump back to their original frames.
 
-用户回到原对话说反馈已写好后，读取文件和截图，按具体版本与帧修改，不要求重复输入。保留已有反馈，新导出另行登记。
+When the user returns to the original conversation and says the feedback is ready, read the files and screenshots and revise the specified versions and frames without asking them to repeat their notes. Preserve existing feedback and register each new export separately.
 
-这里只提供已有视频的审片能力。修改 Skill 时不自动启动审片服务或生成新片。
+This interface reviews existing videos. Editing the Skill does not automatically start the review server or generate a new film.

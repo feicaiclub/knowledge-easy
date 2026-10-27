@@ -1,141 +1,141 @@
 ---
 name: knowledge-easy
-description: 制作和修改中文知识视频，覆盖文稿、视觉设计、原创插画、素材选择、剪辑、配音、声音与审片。也可单独完成其中一个环节。
+description: Create and revise Chinese-language knowledge videos, covering research and scripts, visual design, original illustration, footage selection, editing, narration, sound, and review. Can also handle any one of these stages on its own.
 ---
 
-[定位]
-    让画面、语言和声音共同完成解释。质量底线落实在造型、层级、材料、动作、阅读与听感上；选题决定故事、画面形式和剪辑方法。复用绘画、布局与运动能力，每个项目重新设计内容。
+[Purpose]
+    Make visuals, language, and sound work together to explain an idea. Set the quality floor through convincing forms, clear hierarchy, material treatment, purposeful motion, readability, and sound. Let the subject determine the story, visual approach, and editing. Reuse drawing, layout, and animation capabilities while designing the content anew for each project.
 
-[工作范围]
-    先读取用户要求、当前文件和已认可决定，按实际请求选择工作范围：
-    写稿、改稿：
-        本轮完成什么：文稿和必要的事实核对；纯口播稿不额外混入画面指令
-        本轮效果状态：不据此宣称视频效果通过
-    修改或审阅 Skill：
-        本轮完成什么：本地说明、配置与必要源码；保持文件引用一致
-        本轮效果状态：未运行的制作与效果检查标记待验
-    制作或修改视频：
-        本轮完成什么：执行受影响的制作步骤，检查实际画面与完整声音
-        本轮效果状态：记录技术、自审及用户确认各自状态
-    本文件承担完整制作指令，不另建 AGENTS.md 或第二套导演规则。参考文件补充接口、参数和来源；展示手册供用户阅读，不是 Agent 的执行依赖。当前只维护中文。依赖、模型、缓存、项目与输出均放在 Skill 目录外。
-    只改 Skill 时，不触发生成、样片、渲染、安装或发布。用户自行试跑时交付源码和未验事项。实际制作需要执行命令时，才读取 [命令与文件](references/workflow.md) 和 [运行环境](references/runtime.md)；已有授权范围内自主推进，不为每个普通设计决定重复请求批准。
+[Scope]
+    Read the user's request, current files, and previously approved decisions before choosing the scope:
+    Writing or revising a script:
+        Deliver in this turn: the script and any necessary fact-checking. Do not add visual directions to a requested narration-only script.
+        What this establishes: script completion does not establish that the video works.
+    Editing or reviewing the Skill:
+        Deliver in this turn: local instructions, configuration, and any source changes needed, with consistent file references.
+        What this establishes: mark production and visual checks that have not been run as pending.
+    Producing or revising a video:
+        Deliver in this turn: complete the affected production steps and review the actual visuals and full audio.
+        What this establishes: record technical checks, self-review, and user approval separately.
+    This file contains the complete production instructions. Do not create a separate AGENTS.md or a second set of directing rules. Reference files provide interfaces, parameters, and sources; the visual handbook is for the user and is not an execution dependency for the Agent. Video production currently supports Chinese only. Keep dependencies, models, caches, projects, and outputs outside the Skill directory.
+    Editing the Skill alone does not trigger generation, sample videos, rendering, installation, or publishing. When the user will run it themselves, deliver the source and identify what remains unverified. Read [Commands and Project Files](references/workflow.md) and [Runtime Setup](references/runtime.md) only when production requires commands. Proceed independently within the authorization already given; do not repeatedly request approval for ordinary design decisions.
 
-[创作方案]
-    先理解文稿的核心疑问、论证转折与结尾落点，再决定画面。浓缩已认可稿件时保留有力开头、观点、具体例子和论证关系；查证事实、概念、引语、数据与人物身份，区分证据、推断和视觉隐喻。
-    在读取示例故事或镜头代码前，用项目已有笔记记录下列决定；没有记录时可使用 research/design.md。简单局部修改只更新受影响部分。
-    理解变化：
-        观众开头以为什么，最后理解了什么；哪一处需要看见证据、对照或机制。
-    呈现方式：
-        这一题为何适合实拍、插画、图解、调查、连续场景或混合形式。选择有分歧时比较不同结构，再说明取舍，不固定候选数量。
-    本片视觉语言：
-        主体造型、空间关系、明暗与配色逻辑、字体角色、材料、镜头和运动。记录项目内需保持一致的品质，以及可以变化的部分。
-    参考品质：
-        选适合本题的图像或作品。用户要求还原具体参考时，按其轮廓、比例、位置、配色、光影与动作逐项对照；临摹图稿保留来源，不冒称原创。制作代码由本项目维护。
-    镜头意图：
-        每个有独立作用的镜头记录“对应语句 → 主体与景别 → 可见动作/信息变化 → 实现来源 → 阅读或动作结束条件”。时间先估计，旁白确定后校准。
-    “有压力”可以表现为负担增加、空间缩小或动作受阻；“两件事不同”可以通过同一尺度下的可见差别说明。不要把每句话都转换成标题卡，也不要把所有主题套进同一个人物旅程。新片的开头、对象、构图、动作与结尾由内容决定。示例源码在方案形成后用于学习实现。
+[Creative Direction]
+    Understand the script's central question, turns in the argument, and final takeaway before choosing visuals. When shortening an approved script, preserve its strong opening, main points, concrete examples, and logical connections. Verify facts, concepts, quotations, data, and identities; distinguish evidence, inference, and visual metaphor.
+    Before reading example stories or shot code, record the following decisions in the project's existing notes, or in research/design.md if none exist. For a small revision, update only what it affects.
+    Change in understanding:
+        What does the viewer believe at the start, and what do they understand by the end? Where do they need to see evidence, a comparison, or a mechanism?
+    Presentation approach:
+        Why does this subject call for live action, illustration, diagrams, investigation, a continuous scene, or mixed media? When several structures are plausible, compare them and explain the choice; do not require a fixed number of options.
+    This film's visual language:
+        Define the subjects' forms, spatial relationships, lighting and color logic, typographic roles, materials, framing, and motion. Record which qualities need to remain consistent within the project and which can vary.
+    Reference qualities:
+        Choose images or work suited to the subject. When the user requests a close reconstruction of a particular reference, compare silhouette, proportions, placement, color, lighting, and motion point by point. Credit copied studies rather than claiming them as original. Maintain the implementation code in this project.
+    Shot intent:
+        For each shot with a distinct purpose, record “corresponding line → subject and shot size → visible action or information change → implementation source → reading or action completion condition.” Estimate timing first, then align it to the finished narration.
+    “Pressure” might appear as a growing load, shrinking space, or obstructed movement. “These are different” might be explained through a visible difference at a common scale. Do not turn every sentence into a title card or force every subject into the same character journey. The content determines the opening, subjects, composition, action, and ending. Once the approach is established, use example source files to learn how to implement it.
 
-[素材与光影]
-    每段先确定材料要承担的作用：事实证据、人物行为、空间环境、机制解释或情绪。用户提供的材料优先按实际用途审看，保留有价值的表情、手势与上下文。
-    搜索词同时描述对象、动作、景别和光线，例如“窗侧逆光、侧脸欲言又止、近景”，比只搜“情绪”更接近需要的镜头。查看可用区间，判断动作变化与剪入剪出位置；封面、标签或下载方便不能作为选中依据。候选记录与来源接口见 [素材文件](references/assets.md)。
-    光影检查主体与背景能否分离、亮暗面是否保留细节、前后景有没有空间、光源是否支持情绪。包装段落用虚化动态背景建立气氛，前景证据与人物保持清楚；素材本身平淡时继续选镜头，不能仅靠增加虚化或颗粒补足。不同镜头衔接时校对必要的景别、视线、方向与明暗关系，允许有意的视觉反差。
-    影视、实拍、档案、原创与生成素材可以组合，但真实证据须可追溯，插画和重建不冒充记录。素材形式不设占比。项目要求镜头不重复时，以原作品中的镜头身份检查；裁切、变速、换文件名或取同一镜头另一段不算新镜头。来源说明见 [许可与来源](references/sources.md)。
+[Footage and Lighting]
+    First decide what each piece of media must contribute: factual evidence, human behavior, a setting, a mechanism, or emotion. Review user-provided material for its intended use, preserving valuable expressions, gestures, and context.
+    Search terms should describe the subject, action, shot size, and light together. “Backlit by a window, a hesitant face in profile, close-up” is more useful than “emotion.” Review usable ranges, changes in action, and potential edit points. A thumbnail, tag, or convenient download is not a reason to choose a shot. See [Media Sources and Records](references/assets.md) for candidate notes and source fields.
+    Check whether lighting separates the subject from the background, preserves detail in highlights and shadows, creates depth, and supports the intended mood. For graphic sequences, blurred moving backgrounds establish atmosphere while foreground evidence and people remain sharp. If the footage is visually weak, keep looking; extra blur or grain cannot supply the missing quality. Where relevant, check shot size, eyelines, direction, and brightness across cuts. Deliberate visual contrast is allowed.
+    Film and TV clips, live-action footage, archival material, original work, and generated media may be combined. Real evidence must remain traceable; illustrations and reconstructions must not masquerade as records. Do not impose a fixed ratio of media types. When a project requires unique shots, check identity within the original work: cropping, retiming, renaming, or taking another range from the same shot does not make it a new shot. See [Licenses and Sources](references/sources.md).
 
-[画面设计]
-    默认视频包装沿用初版已经成立的影视构图：动态影视或实拍素材作为背景，经虚化与明暗处理后承托清晰的图片、关系图、纸面卡片和受光宋体。插画按已选定的编辑插画参照绘制。换题材时更换对象、素材、构图与内容，不擅自改掉已认可的视觉语言；用户另选风格时再有意识地发展。
-    按以下顺序设计代表性镜头，然后扩展同类镜头：
-    主体与空间：
-        先看剪影、重心、尺度、前后遮挡及动作空间。手与物体应接触，脚与承重点相连，投影对应光源；人物不是靠同一个小人姿势覆盖所有情境。
-    层级与阅读：
-        区分主体、解释、依据与字幕。标题先读还是证据先看要符合论证；连接线绕开文字，标注靠近指代对象。图像裁切保住表情、动作落点与证据细节。
-    色彩与材料：
-        先建立明暗，再分配强调与辅助色。阴影说明空间，线条说明结构，纹理说明材料；删除装饰后画面仍应有组织。
-    关键状态与运动：
-        明确动作前、变化中和结果态。先让这些状态读得懂，再连接过渡；构图需容纳运动后的主体和文字。
-    图解说明可从标题 54–76 px、解释 32–40 px、辅助信息 26–30 px 起步；影视短标题按所选参考保留其字号、长宽和字距，不把大字统一缩成说明文字。中文保持自然字距和完整词组，处理标点、断行与孤字；文字放不下时改构图或表达。字幕与图内文字分工，不能只靠缩小字号腾空间。默认字幕为单行，按意群与实际语音拆分；字段与现有字数边界见 [中文接口](references/language.md)。
-    实际制作时，用最终会进入视频的源码查看代表性画面和关键动作；如果轮廓、字级、光影或动作仍有明显问题，先修原因，再铺到整片。不要用一张额外绘制的漂亮预览替实际实现背书。仅修改源码时，这一步保持待验。
+[Visual Design]
+    The default video graphics retain the cinematic compositions established in the first version: moving film or live-action footage, softened with blur and tonal adjustments, supports sharp images, relationship diagrams, paper cards, and lit Song-style typography. Draw illustrations against the selected editorial illustration references. For a new subject, change the objects, footage, composition, and content while preserving the approved visual language. Develop a different style deliberately when the user selects one.
+    Design representative shots in this order, then extend the approach to related shots:
+    Form and space:
+        Start with silhouette, balance, scale, overlap, and room for action. Hands should touch the objects they hold; feet should meet their supports; shadows should match the light. Do not use the same stock figure and pose for every situation.
+    Hierarchy and reading:
+        Separate the subject, explanation, evidence, and captions. The order of headline and evidence should follow the argument. Route connectors around text and place labels near what they identify. Crop images without losing expressions, action endpoints, or important evidence.
+    Color and materials:
+        Establish value structure first, then assign accent and supporting colors. Shadows describe space, lines describe structure, and texture describes material. The image should still be organized when decorative effects are removed.
+    Key states and motion:
+        Define the state before an action, the transition, and the result. Make those states readable before connecting them. The composition must accommodate the final positions of subjects and text.
+    For explanatory graphics, start around 54–76 px for headings, 32–40 px for explanatory text, and 26–30 px for supporting information. For short cinematic titles, retain the scale, proportions, and spacing of the selected reference rather than shrinking all display type to body-text sizes. Use natural spacing and intact phrases in Chinese; handle punctuation, line breaks, and isolated final characters. If text does not fit, change the composition or wording. Captions and text within the graphic serve different roles; do not make room merely by shrinking the type. Captions default to one line, divided by phrase and aligned to the actual speech. See [Chinese Production](references/language.md) for fields and current length limits.
+    During production, inspect representative frames and key actions using the source that will actually appear in the film. If form, type hierarchy, lighting, or motion still has obvious problems, fix the cause before extending it across the film. A separately drawn attractive preview cannot validate a different implementation. When only editing source, leave this check pending.
 
-[组件调用]
-    选组件之前先明确当前要解释的关系。读取 [组件接口](references/packaging.md) 中对应类型的输入示例和实际渲染源码；不根据组件名称猜参数。
-    主体、问题与段落路线：
-        可复用的基础组件：hero、chapter
-    同尺度比较、数量关系：
-        可复用的基础组件：compare、quantity
-    证据、局部与全貌：
-        可复用的基础组件：evidence、context
-    对象关系、循环作用：
-        可复用的基础组件：relation、feedback
-    时间发展：
-        可复用的基础组件：timeline
-    地点、路径、时期变化：
-        可复用的基础组件：map-focus、map-route、map-period
-    这些是选择入口，不是每片必须凑齐的清单。实拍镜头可独立成立；复杂表达可把布局、SVG、素材和文字组合，或使用项目自己的渲染器。
-    调用顺序：
-        在项目的 film.json 声明 component 或 components → scripts/composition.py 解析图层 → 项目 kit 快照中的 editorial.py 调用基础布局、扩展组件或 artwork。通过 data 提供本片内容，通过 cues 和局部 start/duration 安排时间。多层 frame 只等比放置，不会自动重新排版；缩放后必须按最终尺寸重新判断字级、线宽与动作空间。
-    复用已有设计：
-        直接调用完整源码，保留有效的路径、字形、比例、遮挡和运动关系，再作有目的的改动。选中了原设计，就不能另写几块简陋图形却声称已经复用。
-    原创插画：
-        复制所选 SVG 源码到项目再改，或通过 artwork 加载项目自己的绘图代码。SVG 图层名与 motion 对应；JavaScript 根据局部时间 t 绘制，具体接口见 [绘图接口](references/illustration.md)。
-    新构图或新组件：
-        在 film.extensions 声明源码、设计原因与参照，再通过统一接口调用。可以超过既有设计的水平；评判解释效果、造型、材料与运动，不要求长得相似。不绕过注册机制替换共享渲染函数。
-    制作阶段 build 后查看 research/component-usage.json：具体实例应指向实际的库快照、drawing_source 或扩展 source，并含真实 reading_order 与 design_reference。这个记录证明调用来源，不能证明好看。design_reference 为组件 ID 时只标识比较对象；项目图片须说明准备比较的品质。自定义应在实际画面和动作上与该参照对照，组件数量、类名或相同配色都不能替代这一步。
-    已有项目保留 kit 快照；只有确需新能力时才有意识地更新。不要让本次修改悄悄改变旧片。
+[Using Components]
+    Identify the relationship the current passage needs to explain before choosing a component. Read the matching input example in [Component Inputs and Integration](references/packaging.md) and its actual renderer; do not guess parameters from the name.
+    Subjects, questions, and chapter structure:
+        Reusable base components: hero, chapter
+    Comparisons at a common scale and quantities:
+        Reusable base components: compare, quantity
+    Evidence, details, and context:
+        Reusable base components: evidence, context
+    Relationships and feedback:
+        Reusable base components: relation, feedback
+    Change over time:
+        Reusable base component: timeline
+    Locations, routes, and changes between periods:
+        Reusable base components: map-focus, map-route, map-period
+    These are starting points for selection, not a checklist every film must complete. A live-action shot can stand on its own. Complex explanations may combine layouts, SVG, footage, and text, or use a project-specific renderer.
+    Integration sequence:
+        Declare component or components in the project's film.json → scripts/composition.py resolves the layers → editorial.py in the project's kit snapshot calls the base layout, extension, or artwork renderer. Supply this film's content through data and arrange timing through cues and local start/duration. A layer's frame only scales and positions it proportionally; it does not reflow the layout. After scaling, reassess type size, line weight, and room for action at the final output size.
+    Reusing an existing design:
+        Call the complete source, preserving effective paths, letterforms, proportions, overlaps, and motion relationships, then make deliberate changes. Choosing an existing design does not justify replacing it with a few crude shapes and calling that reuse.
+    Original illustration:
+        Copy the selected SVG source into the project and adapt it, or load project-owned drawing code through artwork. Match SVG layer names to motion targets. JavaScript draws from local time t; see the [Drawing Interface](references/illustration.md).
+    New compositions or components:
+        Register the source, design rationale, and reference in film.extensions, then call it through the shared interface. New work can exceed the existing designs. Judge explanatory value, form, materials, and motion without requiring visual sameness. Do not bypass registration by replacing shared rendering functions in memory.
+    After build, inspect research/component-usage.json. Each instance should identify the actual library snapshot, drawing_source, or extension source and include real reading_order and design_reference values. This record proves where an implementation came from, not whether it looks good. A component ID in design_reference only identifies a comparison target; a project reference image needs an explanation of the qualities being compared. Compare custom work to that reference in actual frames and motion. Component counts, class names, or matching colors cannot replace this assessment.
+    Existing projects retain their kit snapshots. Upgrade deliberately only when a new capability is needed. Do not let the current change silently alter an older film.
 
-[插画制作]
-    插画默认对照已选定的 Notion 式编辑插画：有辨识度的人物轮廓、自然手势与姿态、黑白线稿配原色色块，以及经过安排的负空间。先按参考完成造型、构图和表演，再选用下列可复用的绘图方法；线描、叠色与淡彩工具本身不代表画面已经达到参照水平。
-    [结构线描](references/styles/etch.md)：
-        要成立的视觉品质：外轮廓、结构线、阴影排线有主次；线条顺形体与遮挡组织，亮面留白
-        本片可重新设计：人物、器物、剖面、机制、局部着色与观察角度
-    [平涂叠色](references/styles/print.md)：
-        要成立的视觉品质：色面剪影、负空间和投影清楚；交叠产生有意义的层次，阅读区干净
-        本片可重新设计：色板、尺度、空间、光源、交叠关系与动作
-    [淡彩自然](references/styles/wash.md)：
-        要成立的视觉品质：笔触粗细与方向响应结构；透明层染有前后，颜料边缘有收放
-        本片可重新设计：自然形体、流动机制、地形、抽象过程与镜头
-    人物先画主动作线、肩胯方向、支撑与手部关系，再画五官和衣褶；物件先画厚度、开口、支撑与接触，再画表面；自然形体先画分枝、流向和疏密，再做叶片与水纹。关键轮廓在最终尺寸仍须可读，局部放大不能暴露随意拼凑的接缝。
-    绘图工具提供构造能力，不自动提供导演和美术判断。hatch 不会自动理解曲面，person 不会自动生成新角色，foliage 不会自动建立枝叶关系。需要更复杂的体积、姿态或材料时，在项目代码中补足设计，或换用适合的绘画实现；不要把现有函数能力当成创作上限。
+[Illustration]
+    The default illustration direction follows the selected Notion-style editorial references: distinctive silhouettes, natural gestures and poses, black-and-white linework with primary-color shapes, and carefully composed negative space. Establish form, composition, and performance against the reference first, then choose from the reusable drawing methods below. Linework, overprinting, and wash tools do not by themselves establish reference-level quality.
+    [Structural Linework](references/styles/etch.md):
+        Required qualities: clear hierarchy among contours, structural lines, and hatching; strokes follow form and overlap, with open highlights.
+        Open to redesign: people, objects, cutaways, mechanisms, selective color, and viewpoint.
+    [Flat Color and Overprinting](references/styles/print.md):
+        Required qualities: readable color silhouettes, negative space, and shadows; meaningful layering at overlaps, with clean reading areas.
+        Open to redesign: palette, scale, space, light source, overlaps, and action.
+    [Natural Wash](references/styles/wash.md):
+        Required qualities: stroke width and direction respond to structure; transparent washes build depth, with controlled variation at pigment edges.
+        Open to redesign: organic forms, flow, terrain, abstract processes, and framing.
+    For a person, draw the line of action, shoulder and hip angles, support, and hand relationships before facial features and clothing folds. For an object, establish thickness, openings, support, and contact before its surface. For organic forms, establish branching, flow, and density before leaves or water marks. Important contours must remain readable at the final size; close-ups must not expose careless seams.
+    Drawing tools provide construction techniques, not automatic direction or artistic judgment. hatch does not understand surfaces, person does not invent a new character, and foliage does not establish branch connections. When the image requires more complex volume, poses, or materials, develop them in project code or choose a more suitable drawing implementation. Existing helper functions are not a ceiling on creativity.
 
-[剪辑与运动]
-    先有完整旁白或关键动作的时间，再定剪辑。镜头表中的估时不能覆盖实际停顿与句尾。用推进、停留、信息疏密和景别变化组织段落，不把每句平均分配时长。
-    每次运动明确起因、作用与结果：注意力先到主体，必要的对象出现后才建立连接，证据看清后再落结论；展示因果时让变化可见。人物有准备、动作和收势，接触物随手移动，遮挡关系随姿态变化。没有解释作用的持续漂移、统一滑入或反复缩放应重新设计。
-    阅读停留从关键信息可读时计算，给观众完成观看和理解的时间。快速段落减少同时出现的信息；复杂关系可分层出现或停住，不用强行切走制造速度。转场可来自对象形态、空间动作、论证转折或声音衔接，也可以直接剪切；不规定运镜次数和转场配额。
-    图像、音效或音乐需要共同落点时，使用 film.beats 的同一事件 ID；绘图读取局部 data.beats，声音读取 event/offset。绝对时间与局部时间的转换见 [时间接口](references/direction.md#one-event-clock)。口播段落由语意主导，音乐主导段落再围绕乐句设计，不能把整片一律锁到拍点。
+[Editing and Motion]
+    Establish the timing of complete narration or key actions before setting the edit. Estimated shot durations cannot override actual pauses and phrase endings. Shape passages through progression, holds, changes in information density, and shot size rather than assigning equal time to every sentence.
+    Give each movement a cause, a purpose, and an outcome. Direct attention to the subject first, introduce the relevant objects before connecting them, and let viewers read evidence before presenting the conclusion. Make causal changes visible. Characters need anticipation, action, and follow-through; held objects move with the hand, and overlaps change with the pose. Redesign continuous drifting, identical slide-ins, or repeated zooms that add no explanatory value.
+    Count reading time from the moment the essential information becomes legible. Allow time to see and understand it. In fast passages, reduce simultaneous information. Reveal complex relationships in stages or hold the frame instead of cutting away merely to create speed. Transitions may come from shapes, spatial action, turns in the argument, or sound, and a direct cut is often appropriate. Do not impose quotas for camera moves or transitions.
+    When visuals, sound effects, or music need the same cue, use a shared event ID in film.beats. Drawing code reads local data.beats; audio reads event/offset. See [Timing Interface](references/direction.md#one-event-clock) for conversions between absolute and local time. Meaning leads in narration-driven passages; musical phrases can lead when the music is intentionally driving the sequence. Do not lock the entire film to a beat grid.
 
-[旁白与声音]
-    默认使用已选定的「沉稳男声·紧凑重音版」。实际模型、Ryan 声线、参考样本与调用方法见 [旁白说明](references/voice.md) 和 [声线记录](assets/voice/profile.json)。保持已认可身份，按文稿重写各段 direction；次要词轻带过，重点短而有力，转折有留白，不能整段同速同重。新稿读得平或拖沓时修改原生表达后重新生成，不自动变速、降调或加共鸣处理。
-    声音按镜头需要安排：旁白传达论证，环境声建立空间，拟音说明接触与材质，音乐推动情绪与段落。可让下一镜声音先进入，或让上一镜声音跨过切点；留白有作用时就留白。不要给每个文字进场都加同一种 whoosh，也不为填满声音而持续铺满音乐。
-    混音后完整听审，检查辅音清晰度、重音、句尾、衔接、背景是否盖住人声、音效是否抢先或滞后。ASR 定位漏字与重复，不能认证重音、读音、情绪或真人感。按完整意群补录，保留上下文和首尾音节。音色参考已获认可，不代表每段新稿自动通过。
+[Narration and Sound]
+    Use the approved “Steady Male Voice — Tight Phrasing and Clear Emphasis” by default. See [Narration](references/voice.md) and the [Voice Profile](assets/voice/profile.json) for the actual model, Ryan preset, reference sample, and invocation. Preserve the approved voice identity while rewriting each segment's direction for its script. Move lightly through secondary words, emphasize key words briefly and decisively, and leave space at turns in the argument. Avoid uniform speed and emphasis throughout. If a new reading sounds flat or drawn out, revise the model's native delivery instructions and regenerate it. Do not automatically retime, lower the pitch, or reshape its resonance.
+    Assign sound by the shot's needs: narration carries the argument, ambience establishes the space, Foley describes contact and material, and music develops emotion and structure. The next shot's sound can enter before the cut, or the previous shot's sound can continue across it. Preserve purposeful silence. Do not attach the same whoosh to every text entrance or keep the soundtrack full merely to avoid quiet.
+    Listen through the complete mix. Check consonant clarity, emphasis, phrase endings, joins, background masking, and effects that arrive too early or late. Use ASR to locate missing or repeated words; it cannot certify emphasis, pronunciation, emotion, or a natural human delivery. Regenerate complete thought groups with context and intact beginning and ending syllables. Approval of a voice reference does not automatically approve each new passage.
 
-[质量验收]
-    下面的检查用于实际视频制作。只改 Skill 时不得自动执行或填写通过。
-    代表性设计检查：
-        发生在扩展整片之前：用实际源码查看能暴露本片主要难点的画面与动作，比较已选参照的具体品质。检查发现的结构问题应修到共同源码或相关镜头，避免复制缺陷。
-    导出检查：
-        发生在交付之前，分开记录三件事：
-    技术与来源：
-        实际检查：完整解码、时长和音轨；来源、组件调用与导出版本匹配；无缺失资源、截断或越界
-        不足时处理：修复后重新构建受影响结果，旧记录不能沿用
-    单镜头设计：
-        实际检查：最终尺寸看主体、字形、光影、材料与解释；观看动作全过程，放大检查接触、遮挡、连线和转场
-        不足时处理：改造型、构图、内容顺序或运动，不靠继续叠装饰掩盖
-    整片体验：
-        实际检查：带声音正常速度看完整片，判断论证推进、镜头重复、节奏变化、阅读余量、配音和混音
-        不足时处理：修正段落与声画关系，不能只把单个镜头截图判为通过
-    把抽象评价写成可核对的观察：例如“关系线比右侧节点先出现，观众没有对象可对应”，并记录位置和处理结果。自定义与已有组件使用相同质量维度；新风格可以采用不同材料，但须说清楚实际观察到的轮廓、空间、对比与动作完成度。不能只写“高级”“有质感”或“已用组件”。
-    内置工具的实际关系如下，命令见 [制作入口](references/workflow.md)：
-        build 生成场景、component-usage.json 和构建来源记录；检查实际调用与设计意图一致。
-        render 导出新版本，执行技术检查并绑定导出与源码，准备审查材料。review-visuals 可为同一导出重新准备材料。
-        阅读 review/visual-review.json 指向的实际帧、动作片段与整片，填写看过的项目、具体观察和结论。默认抽帧不足以覆盖复杂动作时，在关键状态补看；只看拼图不算看过运动。
-        accept-visuals 检查记录完整、证据及版本对应。它不自动判断审美，也不代表用户已经认可；未看、未听和未解决的问题保持 pending 或 fail。
-    技术通过、自审通过、用户确认和未执行事项分别说明。改动后只重做受影响的检查；剪辑、混音或段落变化时重新看完整相关段落及衔接。效果尚未试跑的源码只能标为源码完成。
+[Quality Review]
+    These checks apply to actual video production. Editing the Skill alone must not trigger them or mark them as passed.
+    Representative design review:
+        Before extending the approach across the film, use the actual source to inspect frames and actions that expose the project's main challenges. Compare specific qualities against the selected references. Fix structural issues in the shared source or affected shots before copying the problem further.
+    Export review:
+        Before delivery, record the following three areas separately:
+    Technical integrity and provenance:
+        Inspect: full decoding, duration, and audio tracks; source, component usage, and export version alignment; missing assets, truncation, and out-of-bounds content.
+        If something fails: fix it and rebuild the affected output. Previous records cannot be reused for changed results.
+    Individual shot design:
+        Inspect: subjects, letterforms, lighting, materials, and explanatory value at final size. Watch each action from beginning to end, and zoom in to check contact, overlap, connectors, and transitions.
+        If something fails: revise the forms, composition, information order, or motion rather than hiding the issue under more decoration.
+    The full viewing experience:
+        Inspect: watch the entire film with sound at normal speed. Assess the progression of the argument, repeated shots, changes in pace, reading time, narration, and mix.
+        If something fails: fix the structure and audiovisual relationships. A single-shot screenshot cannot establish that the sequence works.
+    Turn abstract judgments into checkable observations. For example: “The relationship line appears before the node on the right, so the viewer cannot identify what it connects.” Record the location and resolution. Apply the same quality dimensions to custom and existing components. New styles may use different materials, but the review must identify observable qualities of form, space, contrast, and completed motion. “Premium,” “textured,” or “uses components” is not sufficient evidence.
+    The built-in tools work as follows; see [Production Commands](references/workflow.md):
+        build generates scenes, component-usage.json, and a build provenance record. Check that actual usage matches the design intent.
+        render exports a new version, runs technical checks, binds the export to its source, and prepares review evidence. review-visuals can prepare evidence again for the same export.
+        Inspect the actual frames, motion clips, and full film referenced by review/visual-review.json. Record what you watched, concrete observations, and conclusions. If default frame sampling misses complex action, inspect additional key states. A contact sheet alone does not count as watching motion.
+        accept-visuals checks record completeness and correspondence among evidence and versions. It does not automatically judge aesthetics or establish user approval. Unseen, unheard, or unresolved items remain pending or fail.
+    Report technical results, self-review, user approval, and unperformed checks separately. After changes, repeat the affected checks. If editing, mixing, or passage structure changes, review the complete affected passages and their joins again. If the source has not been exercised, report only that the source changes are complete; leave the resulting quality unverified.
 
-[泛化、反馈与交付]
-    复用同一能力处理新主题时，重新判断对象、构图、材料、信息顺序与运动关系。颜色和文字变化本身不足以说明泛化。用户要求验证复用能力时，选确实不同的主题与表达难点，比较原有质量是否保住；不能为了证明泛化自动扩大当前任务。
-    审片反馈沿用 [Lazy Studio](references/studio.md) 的 M → 评论 → Enter。回到原对话后读取具体版本的文字和截图，保留反馈，新输出使用新文件名。普通返修保留其他已认可内容。
-    交付当前请求需要的文件、结果位置、实际检查和待验项。保留 FEICAI 启动标识、选定参考音色和用户指定品牌资产。只在用户要求时安装、打包或发布；Skill 目录内保持指令、必要素材和源码，不混入测试成片或运行依赖。
+[Adapting to New Subjects, Feedback, and Delivery]
+    When applying the same capabilities to a new subject, reconsider objects, composition, materials, information order, and motion relationships. Changing colors and text alone does not demonstrate adaptability. If the user asks to verify reuse, choose genuinely different subjects and explanatory challenges, then compare whether the original quality holds up. Do not expand the assignment automatically just to demonstrate adaptability.
+    Use the established [Lazy Studio](references/studio.md) review flow: M → comment → Enter. Back in the original conversation, read the text and screenshots for the specific version. Preserve feedback and use a new filename for each output. Ordinary revisions should retain other approved work.
+    Deliver the files and results needed for the current request, their locations, checks performed, and pending items. Preserve the FEICAI startup mark, the selected voice reference, and user-specified brand assets. Install, package, or publish only when requested. Keep the Skill directory limited to instructions, necessary assets, and source code, without test films or runtime dependencies.
 
-[初始化]
-    实际使用本 Skill 时，在对话中原样显示下面的 FEICAI 标识，每个对话一次。这是用户“废才”的个人品牌，保留其字形，不作为外部水印清理；修改文件时也须保留。它是启动标识，成片中的品牌露出按用户已有安排处理，不自动插入片头或片尾。
+[Initialization]
+    When actually using this Skill, display the FEICAI mark below verbatim in the conversation, once per conversation. It is the user's personal brand, “Feicai.” Preserve its letterforms and do not remove it as an external watermark; retain it when editing files as well. It is a conversation startup mark. Follow the user's existing arrangements for branding within the film, without automatically adding a branded intro or outro.
     ```text
     ███████╗███████╗██╗ ██████╗ █████╗ ██╗
     ██╔════╝██╔════╝██║██╔════╝██╔══██╗██║

@@ -1,11 +1,11 @@
-"""影视包装的动态背景；正式构建与预览共享参数和原生媒体处理。"""
+"""Moving backgrounds for cinematic graphics. Production builds and previews share settings and native media treatment."""
 import copy,html,json,math
 DEFAULTS={'adjust':{'exposure':-.55,'saturation':-.2,'contrast':.04},'effects':{'blur':.7}}
 
 def resolve(spec):
     result=copy.deepcopy(spec)
     treatment=result.get('treatment','cinematic')
-    if treatment not in ('cinematic','raw'):raise ValueError('背景 treatment 使用 cinematic 或 raw。')
+    if treatment not in ('cinematic','raw'):raise ValueError('Background treatment must be cinematic or raw.')
     if treatment=='cinematic':
         grading=copy.deepcopy(DEFAULTS)
         for key,value in result.get('grading',{}).items():
@@ -17,7 +17,7 @@ def resolve(spec):
 
 def render(prefix,duration,spec):
     spec=resolve(spec);start=float(spec.get('media_start',0));rate=float(spec.get('rate',1));shade=float(spec['shade'])
-    if not all(math.isfinite(v) for v in (start,rate,shade,duration)) or start<0 or rate<=0 or not 0<=shade<=1:raise ValueError('背景时间、速率或遮罩参数无效。')
+    if not all(math.isfinite(v) for v in (start,rate,shade,duration)) or start<0 or rate<=0 or not 0<=shade<=1:raise ValueError('Invalid background timing, playback rate, or shade settings.')
     E=lambda value:html.escape(str(value),quote=True)
     grade=E(json.dumps(spec['grading'],ensure_ascii=False,separators=(',',':')))
     focus=E(spec.get('focus','50% 50%'))

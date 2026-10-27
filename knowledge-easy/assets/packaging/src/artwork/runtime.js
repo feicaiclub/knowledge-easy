@@ -1,4 +1,4 @@
-/* Knowledge Easy 原创绘图工具。只使用 Canvas 2D，不包含外部绘画引擎。 */
+/* Original drawing tools for Knowledge Easy. Uses only Canvas 2D, with no external drawing engine. */
 function createArtwork(canvas, profile) {
   const W=1920,H=1080, mode=profile.engine;
   const work=canvas;

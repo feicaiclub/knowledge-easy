@@ -1,25 +1,25 @@
-# 结构线描：制作配方
+# Structural Linework: Production Method
 
-轮廓与线密度说明结构，留白说明光。这个起点可用于人物、器物、剖面与机制；主体、镜头、局部色彩和信息顺序由新内容决定。
+Contours and line density describe structure; open space describes light. This approach can support people, objects, cutaways, and mechanisms. Let the new content determine the subject, framing, selective color, and information order.
 
-## 从形体到材料
+## From form to material
 
-1. 先画大轮廓、受力轴线和遮挡，缩小观察主体能否辨认。外轮廓与内部结构线区分重量，交叠或承重点可以加重，亮面与次要部分留出断线和空白。
-2. 把形体按转折分区，分别决定线的方向和密度。圆柱沿体积转向，衣褶沿受力走，叶片沿主脉组织；不要给所有表面盖同一层斜线。
-3. 用一组疏线建立浅影，必要时在深处追加交叉线。以明暗分区控制密度，保持亮面干净；前景对象覆盖或截断后面的线，接触处再补局部暗部。
-4. 局部着色突出需要注意的部分，颜色不压过结构。纸纹与细点只说明表面，不承担主要体积。放大检查细节后，再回到实际观看尺寸判断是否糊成一块。
+1. Establish the main contour, weight-bearing axes, and overlaps first. Check whether the subject remains recognizable at a smaller size. Distinguish the weight of outer contours from internal structural lines. Strengthen overlaps or points of support where useful, and leave breaks and open space in highlights and secondary areas.
+2. Divide the form at changes in surface direction, then choose line direction and density for each region. Wrap strokes around a cylinder, follow tension through fabric folds, and organize a leaf around its main vein. Do not stamp the same diagonal hatch over every surface.
+3. Establish light shadows with sparse lines and add crosshatching in deeper areas when needed. Control density by value region and keep highlights clean. Foreground objects should cover or interrupt lines behind them; add local dark accents at points of contact.
+4. Use selective color to direct attention without overpowering the structure. Paper texture and fine dots describe the surface, not the main volume. After inspecting details close up, return to the final viewing size and check that the lines do not merge into a muddy mass.
 
-## 对应本项目工具
+## Using the project tools
 
-- path 绘制本片轮廓与分区；不同线重使用分开的路径或填色轮廓。etch 模式的 stroke 本身不自动改变线宽。
-- hatch 的 spacing、bend、width、opacity 分区设置；需要不同方向时，在局部坐标中旋转后绘制。它仅裁剪到给定 shape，不自动沿曲面排线。
-- 先画后方形体与排线，再画前景；透明对象需要另行设计遮挡或裁剪，不能直接依靠绘制顺序遮住背景。
-- SVG 可在结构层、细节层与标注层之间安排显现；完整描线只适合有解释作用的路径，不让每一笔都占用口播时间。
+- Use path for the film's contours and structural regions. Separate paths or filled outlines provide different line weights; stroke in etch mode does not vary width automatically.
+- Set hatch spacing, bend, width, and opacity by region. For different directions, rotate the local coordinate system before drawing. The tool only clips to the supplied shape; it does not wrap hatching around a surface automatically.
+- Draw rear forms and their hatching before the foreground. Transparent objects need deliberate occlusion or clipping; draw order alone will not hide the background.
+- In SVG, stage reveals across structural, detail, and annotation layers. Full-path draw-on animation should serve an explanation rather than consume narration time for every stroke.
 
-## 动作与可变空间
+## Motion and room for variation
 
-剖开、展开、拆分、局部放大、揭示遮挡，都可以表达新的理解。相机接近的是本段真正要看的结构；放大时保留必要的方位参照。人物主题可以用轮廓与动作变化，不必沿用自然研究图的对象或构图。
+Cutting open, unfolding, separating, magnifying, and revealing occluded areas can all express a change in understanding. Move the camera toward the structure that matters in the passage, retaining enough context to preserve orientation. A figure-based subject can use changes in silhouette and action without reusing the objects or composition of an organic-form study.
 
-检查重点：主次线重、曲面方向、遮挡、亮面留白、缩小时的线密度，以及新细节出现后是否留足阅读时间。线多但形体不成立时回到轮廓和分区重画。
+Review line-weight hierarchy, surface direction, overlaps, open highlights, line density at reduced size, and the time allowed to read newly revealed details. If the image has many lines but no convincing form, return to the contour and structural regions.
 
-源文件与参数见 [绘图接口](../illustration.md)。
+See the [Drawing Interface](../illustration.md) for source files and parameters.

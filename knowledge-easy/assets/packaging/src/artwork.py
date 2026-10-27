@@ -21,20 +21,20 @@ def selected_reference(data,profile):
 
 
 def vector_source(prefix,duration,source,data,cues):
-    """直接复用原创 SVG 图层，手册与视频使用同一份绘画源码。"""
+    """Reuse original SVG layers directly so the handbook and film share the same drawing source."""
     ET.register_namespace('','http://www.w3.org/2000/svg')
     root=ET.fromstring(source)
-    if root.tag.split('}')[-1]!='svg':raise ValueError('矢量源文件必须以 svg 为根元素。')
+    if root.tag.split('}')[-1]!='svg':raise ValueError('The vector source must have an svg root element.')
     ids={};elements=list(root.iter())
     for el in elements:
         if el.tag.split('}')[-1] in ('script','foreignObject','image','animate','animateTransform','set'):
-            raise ValueError('此入口接受静态矢量图层；运动由组件时间线控制。')
+            raise ValueError('This interface accepts static vector layers; the component timeline controls their motion.')
         for key,value in el.attrib.items():
             if key.lower().startswith('on') or re.search(r'https?:|javascript:|data:',value,re.I):
-                raise ValueError('SVG 不包含脚本或外部资源。')
+                raise ValueError('SVG files must not contain scripts or external resources.')
         if el.get('id'):
             key=el.get('id')
-            if key in ids or not re.fullmatch(r'[A-Za-z][\w-]*',key):raise ValueError('SVG 图层 ID 需要唯一。')
+            if key in ids or not re.fullmatch(r'[A-Za-z][\w-]*',key):raise ValueError('SVG layer IDs must be unique.')
             ids[key]=prefix+'-vector-'+key
     for el in elements:
         for key,value in list(el.attrib.items()):
@@ -45,23 +45,23 @@ def vector_source(prefix,duration,source,data,cues):
             el.set(key,value)
     root.set('width','1920');root.set('height','1080');root.set('preserveAspectRatio','xMidYMid meet')
     root.set('style','position:absolute;inset:0;width:1920px;height:1080px')
-    root.set('aria-label',data.get('description','原创矢量插画'))
+    root.set('aria-label',data.get('description','Original vector illustration'))
     root.set('id',root.get('id',prefix+'-vector-root'))
     scripts=[];order=[{'id':root.get('id'),'role':'illustration','enter_at':0,'settle_at':0,'depends_on':[]}];used=set()
     for motion in data.get('motion',[]):
         key=motion['target'];kind=motion.get('type','fade')
-        if key not in ids or key in used:raise ValueError('每个运动目标必须对应一个唯一的 SVG 图层 ID。')
+        if key not in ids or key in used:raise ValueError('Each motion target must identify a unique SVG layer ID.')
         used.add(key);target=ids[key]
         at=float(cues.get(key,motion.get('at',0)));seconds=float(motion.get('duration',.6))
-        if not all(math.isfinite(v) for v in (at,seconds)) or at<0 or seconds<=0 or at+seconds>duration:raise ValueError('SVG 运动超出片段。')
+        if not all(math.isfinite(v) for v in (at,seconds)) or at<0 or seconds<=0 or at+seconds>duration:raise ValueError('SVG motion extends beyond the clip.')
         if kind=='draw':
-            scripts.append(f"{{const p=document.getElementById('{target}');if(typeof p.getTotalLength!=='function')throw new Error('描线目标须为路径');const n=p.getTotalLength();p.style.strokeDasharray=n;tl.fromTo(p,{{strokeDashoffset:n}},{{strokeDashoffset:0,duration:{seconds},ease:'sine.inOut'}},{at});}}")
+            scripts.append(f"{{const p=document.getElementById('{target}');if(typeof p.getTotalLength!=='function')throw new Error('The draw-on target must be a path');const n=p.getTotalLength();p.style.strokeDasharray=n;tl.fromTo(p,{{strokeDashoffset:n}},{{strokeDashoffset:0,duration:{seconds},ease:'sine.inOut'}},{at});}}")
         else:
             before=motion.get('from',{'opacity':0});after=motion.get('to',{'opacity':1})
             allowed={'x','y','scale','rotation','opacity'}
             for state in (before,after):
-                if not isinstance(state,dict) or set(state)-allowed or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in state.values()):raise ValueError('SVG 运动使用有限的数值变换。')
-            if kind not in ('fade','move'):raise ValueError('SVG 运动可使用 fade、draw 或 move。')
+                if not isinstance(state,dict) or set(state)-allowed or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in state.values()):raise ValueError('SVG motion transforms must use finite numeric values.')
+            if kind not in ('fade','move'):raise ValueError('SVG motion supports fade, draw, or move.')
             scripts.append(f"tl.set('#{target}',{{transformOrigin:'50% 50%'}},0);tl.fromTo('#{target}',{json.dumps(before)},{json.dumps(dict(after,duration=seconds,ease='sine.inOut'))},{at});")
         order.append({'id':target,'role':'illustration-detail','enter_at':at,'settle_at':at+seconds,'depends_on':[]})
     return ET.tostring(root,encoding='unicode'),''.join(scripts),order
@@ -81,7 +81,7 @@ def render(prefix,duration,data,cues,locale):
     canvas=prefix+'-canvas';order=[]
     is_svg=str(data.get('source','')).lower().endswith('.svg')
     if is_svg:body,vector_js,order=vector_source(prefix,duration,source,data,cues)
-    else:body=f'<canvas id="{canvas}" width="1920" height="1080" style="position:absolute;inset:0;width:1920px;height:1080px" aria-label="{html.escape(data.get("description","原创插画"),quote=True)}"></canvas>'
+    else:body=f'<canvas id="{canvas}" width="1920" height="1080" style="position:absolute;inset:0;width:1920px;height:1080px" aria-label="{html.escape(data.get("description","Original illustration"),quote=True)}"></canvas>'
     scripts=[]
     for i,label in enumerate(data.get('labels',[])):
         key=label.get('id','label'+str(i));id=prefix+'-'+key

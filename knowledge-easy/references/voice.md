@@ -1,25 +1,25 @@
-# 旁白身份与每期表达
+# Narrator Identity and Delivery
 
-默认声线为用户选定的「沉稳男声·紧凑重音版」。[参考音频](../assets/voice/reference.wav) 是完整保留的 14.72 秒试听，音色、讲述节奏和重音作为听审基准；来源、转写、生成参数和确认状态见 [声线记录](../assets/voice/profile.json)。
+The default is the user-approved “Steady Male Voice — Tight Phrasing and Clear Emphasis.” The [reference audio](../assets/voice/reference.wav) preserves the complete 14.72-second audition. Use its voice character, narrative rhythm, and emphasis as a listening reference. See the [Voice Profile](../assets/voice/profile.json) for its source, transcript, generation settings, and approval status.
 
-实际合成沿用该试听的 Qwen3-TTS CustomVoice 1.7B 8bit、Ryan 预设和模型修订。reference.wav 用于试听对照，不送入 Base 模型再次克隆；仅替换 WAV 并不能改变 CustomVoice 的预设身份。用户另选声线时，参考文件、profile、模型锁定和实际调用方式必须保持一致。
+Synthesis uses the same Qwen3-TTS CustomVoice 1.7B 8bit model, Ryan preset, and model revision as the audition. reference.wav is a listening reference, not an input to the Base model for recloning. Replacing the WAV alone does not change CustomVoice's preset identity. If the user selects another voice, keep the reference file, profile, model lock, and actual invocation consistent.
 
-当前只制作中文，使用 zh-CN。保持成熟、宽厚、有支撑的男声和紧凑、自然的口语表达。保留模型原生音色，不自动叠加降调、共鸣重塑、低音增强或变速处理。
+Production remains Chinese, using zh-CN. Maintain a mature, full, resonant male voice with tight, natural conversational phrasing. Preserve the model's native voice character without automatically lowering the pitch, reshaping resonance, boosting bass, or retiming the audio.
 
-## 按稿意安排表达
+## Let the script shape the delivery
 
-固定的是声线，变化的是每段的表达。意群内部连贯推进，次要词轻带过，重点词短而有力；普通句间短停，转折和落点适当留白。沉稳不等于慢，强调不等于喊或拖长元音。不同内容按论证、情绪和人物处境调整，不让所有句子同速、同重、同一种口吻。
+The voice stays consistent; each passage's delivery changes. Keep thought groups connected, move lightly through secondary words, and give key words brief, decisive emphasis. Use short pauses between ordinary sentences and more space at turns and conclusions. A steady delivery need not be slow, and emphasis need not mean shouting or stretching vowels. Adjust to the argument, emotion, and human situation rather than giving every sentence the same speed, stress, and tone.
 
-segments[].direction 写本段的具体读法，脚本会将它放在 profile 的通用表达要求之间，作为 instruct 实际传给模型。例如“更重要的是”可以重读“更重要”，自然带过“的是”；具体重音应来自本段文意，不复用参考稿中的词。模型能接收指令不代表每次都能准确执行，仍需听审。
+segments[].direction specifies how this passage should be read. The script places it between the profile's general delivery instructions and passes the result to the model as instruct. For example, in “更重要的是” (“more importantly”), stress “更重要” and move naturally through “的是.” Emphasis must follow the current passage rather than recycle words from the reference script. The model's ability to accept instructions does not guarantee faithful execution; listen to the result.
 
-使用 [配音计划模板](../assets/voice/performance-template.json) 编写项目的 voice-plan.json，替换示例内容。text 保留正式稿，tts_text 仅在需要时修正读音，字幕保持正确写法。计划中的 seed 用于记录选条，gap_after 只表示该语意位置确实需要的额外留白。
+Use the [Performance Plan Template](../assets/voice/performance-template.json) to write the project's voice-plan.json, replacing its example content. Keep the final script in text. Use tts_text only for necessary pronunciation corrections, while captions retain the correct written form. Record the take's seed in the plan. gap_after represents only additional space genuinely needed at that point in the thought.
 
-## 合成与听审
+## Synthesis and listening review
 
-以完整意群或段落生成，保留连续的情绪与上下文；不要为了每个重音单独生成几个字再拼接。旁白读得平时先调整 direction、分句和重音；读得慢时在原生生成指令中调整，不用播放器加速或统一压缩停顿代替重读。参考音频的 14.72 秒只描述该样段，不规定其他稿件的时长。
+Generate complete thought groups or paragraphs to preserve emotional continuity and context. Do not generate a few words separately for every emphasis and splice them together. If the reading sounds flat, revise direction, phrasing, and emphasis first. If it drags, adjust the native generation instructions rather than speeding up playback or compressing every pause. The reference's 14.72 seconds describes that sample only; it does not set the duration of other scripts.
 
-补录保留上下文，检查音色衔接和首尾完整性。到达 token 上限的条目应重新生成，或在语意转折处分段，不能裁掉尾音来解决时长。检查漏字、重复、多音字、名字、拖音、机械顿句和音色漂移；ASR 只用于定位文字问题，不能认证自然度、重音或情绪。
+Keep context in pickups and check voice continuity and intact beginnings and endings. Regenerate a take that reaches the token limit, or split it at a natural turn in meaning. Do not trim away the ending to solve a duration problem. Check missing words, repetitions, ambiguous pronunciations, names, drawn-out sounds, mechanical pauses, and changes in voice character. ASR helps locate text problems; it cannot certify naturalness, emphasis, or emotion.
 
-generation.json 记录实际模型、speaker、参考校验值、每段 instruct、seed 和采样参数，便于定位表达变化。新稿须单独听审，不能因默认参考已认可就直接标记通过。
+generation.json records the actual model, speaker, reference checksum, each segment's instruct and seed, and sampling settings to help identify changes in delivery. Review every new script by listening; approval of the default reference does not automatically pass a new reading.
 
-需要执行时按 [运行环境](runtime.md) 准备。用户只要求修改 Skill 时更新文件与调用配置，不顺带生成配音、安装环境或替用户试跑。
+When execution is needed, follow [Runtime Setup](runtime.md). If the user only requests Skill changes, update files and invocation settings without also generating narration, installing environments, or running a trial for them.

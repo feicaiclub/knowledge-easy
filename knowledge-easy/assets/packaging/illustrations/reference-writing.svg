@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
-  <title>让想法落在纸上 · 编辑插画临摹研究</title>
-  <desc>参考 BUCK / Notion Think it. Make it. 作品中的黑白人物、纸张、笔与原色图形。可编辑重绘，来源见 references/sources.md。</desc>
+  <title>Put Ideas on Paper · Editorial Illustration Study</title>
+  <desc>Based on the black-and-white figures, paper, pen, and primary-color shapes in BUCK / Notion Think it. Make it. An editable redrawing; see references/sources.md.</desc>
   <defs><pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#1f2323" opacity=".25"/></pattern></defs>
   <rect width="1920" height="1080" fill="#f6f3e9"/>
   <g id="paper" stroke="#202422" stroke-width="4" stroke-linejoin="round">

@@ -1,25 +1,25 @@
-# 平涂叠色：制作配方
+# Flat Color and Overprinting: Production Method
 
-以色面剪影、正负形、光与交叠组织空间。可以平静也可以浓烈；色板与对象没有固定答案，重要的是每一层承担可见作用。
+Organize space through color silhouettes, positive and negative shapes, light, and overlap. The result can be quiet or bold. There is no fixed palette or subject; each layer needs a visible purpose.
 
-## 从色块到空间
+## From color shapes to space
 
-1. 先用明暗色块确定主体、背景和留白，不加纹理。观察主体轮廓是否有辨识度，人物、建筑和树木的尺度是否支持镜头。
-2. 给关键对象画出转折、开口和接触。建筑靠开口与投影形成厚度，人物靠承重与肩胯关系形成姿态，树冠用疏密与空隙形成体积；不能只把图标放大。
-3. 选择有职责的颜色：主体、辅助对象、强调与地面。先检查两层交叠后的颜色是否仍可分辨，再增加其他层；颜色混成脏块时减少覆盖或改变明度。
-4. 光线与投影共享方向。长投影可以组织构图，但需保持接触点；前后景用面积、对比、遮挡和细节区分，不让所有边缘同样抢眼。
+1. Establish subject, background, and negative space with light and dark shapes before adding texture. Check whether the subject's silhouette is distinctive and whether the relative scale of people, buildings, and trees supports the shot.
+2. Give key objects changes of plane, openings, and contact points. Openings and shadows give architecture thickness; weight and the relationship between shoulders and hips give a figure its pose; density and gaps give a canopy volume. Enlarging an icon is not enough.
+3. Give colors distinct roles: subject, supporting objects, emphasis, and ground. Check whether two overlapping colors remain distinguishable before adding more layers. If an overlap becomes muddy, reduce coverage or adjust value.
+4. Keep light and cast-shadow directions consistent. Long shadows can organize a composition but must remain connected at their contact points. Separate depth planes through area, contrast, overlap, and detail rather than making every edge equally prominent.
 
-## 对应本项目工具
+## Using the project tools
 
-- path / ellipse 可以组成新的色面，轮廓需要按对象重新设计。简单几何可以成立，但比例、负空间与关系须准确。
-- over 使用 multiply 合成；plate 增加局部位移与透明度。交叠要改变观众理解的关系，不能为了显得“印刷”而把全画面错位。
-- 文字、面部和关键细节保持清晰；若使用印刷边缘，只在有必要的层与边缘表现。当前实现没有外部网点引擎，也不要求整屏网点。
-- 阴影作为自己的形状或图层，按同一光源设计。移动光源时，不能只平移一块与物体无关的阴影。
+- Combine path / ellipse into new color shapes, redesigning contours for each subject. Simple geometry can work when proportions, negative space, and relationships are precise.
+- over uses multiply blending; plate adds local offset and opacity. Overlap should change the relationship the viewer understands. Do not misregister the entire image merely to suggest printing.
+- Keep text, faces, and important details sharp. Use printed-edge effects only on layers and edges that benefit from them. The implementation has no external halftone engine and does not require full-screen halftones.
+- Give shadows their own shapes or layers, designed for the same light source. Moving the light requires more than sliding an unrelated shadow across the frame.
 
-## 动作与可变空间
+## Motion and room for variation
 
-遮挡被移开、两个对象交叠产生新关系、投影让空间显现、局部色彩进入，都可以成为变化。硬切、形状衔接、局部移动和静止均可；不固定某种人物或镜头路线。
+Removing an occluder, overlapping two objects to create a new relationship, revealing space through a shadow, or introducing local color can all provide meaningful change. Direct cuts, shape-based transitions, local movement, and stillness are all available; no particular character or camera path is required.
 
-检查重点：剪影、色面边界、负空间、接触阴影、交叠后的层级，以及运动前后是否保持颜色含义。关闭纹理后仍读不懂时改色块和构图。
+Review silhouettes, color boundaries, negative space, contact shadows, hierarchy after overlap, and whether colors retain their meaning throughout the action. If the image remains unclear with texture turned off, revise the color shapes and composition.
 
-源文件与参数见 [绘图接口](../illustration.md)。
+See the [Drawing Interface](../illustration.md) for source files and parameters.

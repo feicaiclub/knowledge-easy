@@ -51,7 +51,7 @@ def css(asset_prefix='../assets/fonts/', locale='zh-CN'):
     base = re.sub(r'html,body\{[^}]*\}|(?<![-\w])body\{[^}]*\}', '', base)
     base = base.replace('../fonts/', asset_prefix)
     styles=base + '\n' + (ROOT/'editorial.css').read_text() + '\n' + (ROOT/'type.css').read_text()
-    if locale!='zh-CN':raise ValueError('当前版本只提供中文设计。')
+    if locale!='zh-CN':raise ValueError('This version provides Chinese-language designs only.')
     return styles
 
 def geography(prefix, view, w=1680, h=678):
@@ -95,7 +95,7 @@ class Component:
         self.order.append({'id':self.id(key),'role':'relationship','enter_at':round(at,4),'settle_at':round(at+duration,4),'depends_on':[self.id(x) for x in deps]})
 
     def text(self,key,text,x,y,w,size=64,color=None,role='ev-title',align='left'):
-        assert isinstance(text,str) and len(text)<=65,(key,'请缩短屏幕文字。')
+        assert isinstance(text,str) and len(text)<=65,(key,'Shorten the on-screen text.')
         lines=text.split('\n')
         for line in lines:
             advance=sum(1 if ord(c)>255 else .56 for c in line)*size+max(0,len(line)-1)*2
@@ -401,7 +401,7 @@ class Component:
                 self.js += [f"tl.to('#{self.id(key)}',{{opacity:0,x:-20,duration:.18,ease:'power2.in'}},{max(at+.45,end-.19):.4f});"]
 
 def render(kind,prefix,duration,data,cues=None,locale='zh-CN'):
-    if locale!='zh-CN':raise ValueError('当前组件只提供中文设计。')
+    if locale!='zh-CN':raise ValueError('These components currently support Chinese-language designs only.')
     if kind in TYPE_DESIGNS.IDS:
         result=dict(TYPE_DESIGNS.render(kind,prefix,duration,data,cues or {},locale),version=VERSION,locale=locale)
         if kind=='medallion-labels':
@@ -419,10 +419,10 @@ def render(kind,prefix,duration,data,cues=None,locale='zh-CN'):
         result=dict(result,design_reference=FAMILIES[kind] if FAMILIES[kind] in BASE_IDS else 'hero',implementation='library-variant')
     roles={'foreground':'paper','accent':'gold','secondary':'jade','muted':'quiet'}
     appearance=data.get('appearance',{})
-    if not isinstance(appearance,dict) or set(appearance)-set(roles):raise ValueError('appearance 仅接受 foreground、accent、secondary、muted。')
+    if not isinstance(appearance,dict) or set(appearance)-set(roles):raise ValueError('appearance accepts only foreground, accent, secondary, and muted.')
     variables=[]
     for role,value in appearance.items():
-        if not isinstance(value,str) or not re.fullmatch(r'#[0-9a-fA-F]{6}',value):raise ValueError('组件颜色使用六位十六进制值。')
+        if not isinstance(value,str) or not re.fullmatch(r'#[0-9a-fA-F]{6}',value):raise ValueError('Component colors must use six-digit hexadecimal values.')
         variables.append('--'+roles[role]+':'+value)
     for old,new in [('#d8b676','var(--gold)'),('#8db7b2','var(--jade)')]:
         result['html']=re.sub(re.escape(old)+r'(?![0-9a-fA-F])',new,result['html'])

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""已选 Ryan 声线、按稿意传入表达指令，保留原生合成输出。"""
+"""Use the selected Ryan voice with script-specific delivery instructions and preserve the native synthesis output."""
 import sys
 sys.dont_write_bytecode=True
 import argparse,hashlib,json
@@ -25,9 +25,9 @@ def instruction_for(segment):
 def validate_profile():
     expected={'repo':PROFILE['synthesis_model'],'revision':PROFILE['model_revision']}
     if LOCK['models']['mlx']!=expected:
-        raise ValueError('声线记录与模型锁定不一致，请一起更新后再生成。')
+        raise ValueError('The voice profile and model lock do not match. Update both before generating.')
     if PROFILE['generation_mode']!='custom_voice' or not PROFILE['speaker']:
-        raise ValueError('当前默认旁白需要已选定的 CustomVoice 预设声线。')
+        raise ValueError('The default narrator requires the selected CustomVoice preset.')
 
 
 def complete_decode(model,record):
@@ -80,7 +80,7 @@ def main():
     report.update(language=language,backend=args.backend,reference_sha256=sha(ref),reference_role='listening_baseline',
                   model=args.model,model_repo=PROFILE['synthesis_model'],model_revision=PROFILE['model_revision'],
                   generation_mode=PROFILE['generation_mode'],speaker=PROFILE['speaker'],
-                  segments=records,decode=decodes,review='待听审新稿的自然度、语意重音、停顿与首尾完整性；默认参考的认可不代表新稿自动通过。',
+                  segments=records,decode=decodes,review='Pending listening review of naturalness, meaningful emphasis, pauses, and intact beginnings and endings. Approval of the default reference does not automatically pass a new script.',
                   output='audio/narration/narration.wav',output_sha256=sha(output))
     (dest/'generation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(str(output))

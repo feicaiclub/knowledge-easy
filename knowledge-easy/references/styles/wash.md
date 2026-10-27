@@ -1,25 +1,25 @@
-# 淡彩自然：制作配方
+# Natural Wash: Production Method
 
-用路径方向、压力轮廓与透明层染表现结构和变化。可用于自然形体，也可表现流动、汇合、受力和抽象过程；不把所有主题都画成植物。
+Use path direction, pressure-shaped strokes, and transparent washes to describe structure and change. The approach can portray organic forms, flow, convergence, forces, and abstract processes. It does not require every subject to become a plant.
 
-## 从结构到笔触
+## From structure to mark-making
 
-1. 先设计骨架和流向：枝条从承重点分出，水沿地形汇合，布面沿受力弯曲。枝叶、支流或局部形体附着在结构上，不能只随机散布。
-2. 让笔触宽度响应对象：承重部分厚，末端有收束，叶片中段展开。轮廓允许轻微变化，但主要方向与体积需稳定。
-3. 先铺较淡的大形，再加局部重叠与重点。深处来自有意义的叠染；空白作为高光或空间，不把所有区域刷成同一密度。
-4. 边缘有清晰、湿润和留白的区别；关键轮廓保持辨识，内部色差保持克制。纹理或颜料颗粒不能替代地形、接触和前后关系。
+1. Design the underlying structure and direction of flow first. Branches grow from points of support, water converges along terrain, and fabric bends under force. Attach leaves, tributaries, and local forms to that structure rather than scattering them randomly.
+2. Make stroke width respond to the object: thicker at a support, tapering at a tip, and widening through the body of a leaf. Allow slight contour variation while keeping the main direction and volume stable.
+3. Begin with large, pale shapes, then add local overlaps and emphasis. Depth should come from meaningful layers of wash. Use open paper as highlights or space rather than painting every area at the same density.
+4. Distinguish crisp, wet, and open edges. Keep important contours recognizable and internal color variation restrained. Texture or pigment granulation cannot replace terrain, contact, or depth relationships.
 
-## 对应本项目工具
+## Using the project tools
 
-- quadratic 定义流向，wash 模式的 stroke 根据路径法线形成有压力变化的轮廓；profile 选择 trunk、tip、leaf、even 等起点。
-- 层染通过绘制顺序、opacity 和局部色面实现。当前工具不是水流或颜料物理模拟，复杂积色、回流与遮挡需在项目中单独绘制。
-- foliage 适合生成叶簇研究，最终仍需调整位置与分枝关系；不要把随机分布直接当成完成的植物。
-- 固定 seed，让细微变化在时间上连续。progress 控制展开范围，镜头里还需设计受力、汇合、接触或结果态。
+- quadratic defines flow. In wash mode, stroke builds a pressure-shaped outline along path normals, with profiles such as trunk, tip, leaf, and even as starting points.
+- Build washes through draw order, opacity, and local color shapes. These tools do not physically simulate water or pigment. Draw complex pooling, backruns, and occlusion explicitly in the project.
+- foliage helps generate leaf-cluster studies, but final positions and branch relationships still need adjustment. A random distribution is not a finished plant.
+- Fix the seed so small variations remain coherent over time. progress controls how far a stroke is revealed; the shot still needs designed forces, convergence, contact, or a result state.
 
-## 动作与可变空间
+## Motion and room for variation
 
-生长需要起点与方向，汇合需要上游和结果，扩散需要可见的范围变化。动画可表现整段过程，也可用静止画面与局部动作解释；淡彩不等于缓慢漂移，镜头速度由内容决定。
+Growth needs an origin and direction. Convergence needs upstream paths and an outcome. Diffusion needs a visible change in extent. Animation can show the full process or explain it through a still image with localized action. A wash treatment does not imply slow drifting; the subject determines the pace.
 
-检查重点：主路径、笔触粗细、分枝连接、透明层次、前后遮挡、边缘稳定性，以及画面变化是否可被观众理解。只剩“笔触被画出来”却没有解释时，重新设计动作。
+Review the main paths, stroke widths, branch connections, transparent layering, depth and occlusion, edge stability, and whether the viewer can understand the change. If the only event is a brushstroke being drawn, redesign the action to explain something.
 
-源文件与参数见 [绘图接口](../illustration.md)。
+See the [Drawing Interface](../illustration.md) for source files and parameters.

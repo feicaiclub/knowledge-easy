@@ -1,4 +1,4 @@
-/* 中文组件：材料、字级、线条各有分工。场景负责背景，组件不强加皮肤。 */
+/* Chinese components: materials, type hierarchy, and lines serve distinct roles. The scene owns the background; components do not impose a global theme. */
 .ev-component{position:absolute;inset:0;color:var(--paper);pointer-events:none;isolation:isolate}
 .ev-component .ev-photo,.ev-diagram-node,.ev-context-window,.ev-atlas{z-index:20}
 .ev-component .ev-svg{z-index:30;pointer-events:none}

@@ -1,75 +1,75 @@
-# 绘图与图稿接口
+# Drawing and Artwork Interfaces
 
-造型、材料、创作自由与效果判断统一见 [SKILL.md](../SKILL.md)。本页列出可调用源码及其真实能力。
+See [SKILL.md](../SKILL.md) for form, materials, creative freedom, and visual assessment. This page documents callable source files and their actual capabilities.
 
-## 默认插画预设
+## Default illustration presets
 
-用户本轮指定参考后的可编辑图稿：
+Editable artwork based on the references selected by the user:
 
-| 图稿 | 可编辑图层 | 来源状态 |
+| Artwork | Editable layers | Source status |
 | --- | --- | --- |
-| [reference-portrait.svg](../assets/packaging/illustrations/reference-portrait.svg) | person、thought、connection | 侧面思考人物与原色图形临摹 |
-| [reference-balance.svg](../assets/packaging/illustrations/reference-balance.svg) | person、question、answer、balance | 跷板人物与问答构图临摹 |
-| [reference-writing.svg](../assets/packaging/illustrations/reference-writing.svg) | paper、idea、hand、window | 书写动作与纸面构图临摹 |
+| [reference-portrait.svg](../assets/packaging/illustrations/reference-portrait.svg) | person, thought, connection | A copied study of a thinking figure in profile and primary-color shapes |
+| [reference-balance.svg](../assets/packaging/illustrations/reference-balance.svg) | person, question, answer, balance | A copied study of a seesaw figure and a question-and-answer composition |
+| [reference-writing.svg](../assets/packaging/illustrations/reference-writing.svg) | paper, idea, hand, window | A copied study of a writing gesture and a paper-based composition |
 
-它们已接入当前示例，验收参照分别登记为 art-reference-portrait、art-reference-balance、art-reference-writing。直接复用这些图稿时，源码会按图稿文件选择对应参照；新绘图应明确提供 design_reference。原有三份原创 SVG 仍保留；临摹图稿不宣称原创，来源见 [sources.md](sources.md)。
+These are integrated into the current examples, with review references registered as art-reference-portrait, art-reference-balance, and art-reference-writing. When these files are reused directly, the source selects the matching reference by artwork filename. New drawings should provide an explicit design_reference. The three earlier original SVGs are also retained. Copied studies are not claimed as original work; see [sources.md](sources.md).
 
-## 保留的材料与结构研究
+## Retained material and structure studies
 
-| 语言 | 配方 | SVG 源码及可用图层 |
+| Visual approach | Method | SVG source and available layers |
 | --- | --- | --- |
-| 结构线描 | [etch.md](styles/etch.md) | [etch.svg](../assets/packaging/illustrations/etch.svg)：seed、pod、stem、interior；h 是填充图案定义 |
-| 平涂叠色 | [print.md](styles/print.md) | [print.svg](../assets/packaging/illustrations/print.svg)：canopy、shade |
-| 淡彩自然 | [wash.md](styles/wash.md) | [wash.svg](../assets/packaging/illustrations/wash.svg)：land、water、river、tributary、bridge |
+| Structural Linework | [etch.md](styles/etch.md) | [etch.svg](../assets/packaging/illustrations/etch.svg): seed, pod, stem, interior; h defines a fill pattern |
+| Flat Color and Overprinting | [print.md](styles/print.md) | [print.svg](../assets/packaging/illustrations/print.svg): canopy, shade |
+| Natural Wash | [wash.md](styles/wash.md) | [wash.svg](../assets/packaging/illustrations/wash.svg): land, water, river, tributary, bridge |
 
-这些 SVG 是绘画源码，可复制到项目后保留路径和图层继续改造。它们不是已验收的动画，也不指定新片必须出现果荚、门廊或河流。示例配置见 [examples.json](../assets/packaging/src/artwork/examples.json)，先有本片方案再读取相关示例。
+These SVGs are drawing source files. Copy them into a project and retain their paths and layers while adapting them. They are not approved animations and do not require a new film to include a seedpod, porch, or river. See [examples.json](../assets/packaging/src/artwork/examples.json) for configurations; establish the film's approach before reading the relevant examples.
 
-这些原有图稿及 examples/ 中的 JavaScript 用于研究构造、笔触和时间控制；默认人物风格使用上面的已选参照，不以技术示例代替最终画面。
+These earlier drawings and the JavaScript files in examples/ are studies in construction, mark-making, and timing. The default figure style uses the selected references above. Technical examples are not substitutes for finished visual design.
 
-## SVG 接入
+## SVG integration
 
-场景使用 component: "artwork"；data.source 为项目内 .svg 路径。调用器会给图层 ID 加实例前缀，并更新路径、渐变和填充引用。
+Set the scene's component to "artwork" and data.source to an .svg path within the project. The caller prefixes layer IDs per instance and updates path, gradient, and fill references.
 
 ```json
 {
   "id":"inside","start":0,"duration":8,
-  "purpose":"完整对象先建立，再看内部结构。",
+  "purpose":"Establish the complete object before revealing its internal structure.",
   "component":"artwork",
   "data":{
     "style":"etch","source":"assets/artwork/subject.svg",
-    "description":"本片重新设计的主体与内部关系",
+    "description":"A subject and internal relationships designed for this film",
     "motion":[{"target":"interior","type":"fade","at":2.4,"duration":0.7}]
   }
 }
 ```
 
-source 中需真实存在 interior 图层。motion 的 type 为 fade、draw 或 move；move 的 from/to 支持 x、y、scale、rotation、opacity。draw 仅适用于已有描边且能计算长度的路径，不可拿填色图层直接描线。cues 中同名目标可覆盖 at；一个图层只声明一条 motion，复杂多阶段运动用项目绘图或扩展渲染。
+The source must contain an actual interior layer. motion.type may be fade, draw, or move. move.from/to support x, y, scale, rotation, and opacity. draw requires an existing stroked path whose length can be measured; it cannot simply trace a filled layer. A matching target name in cues overrides at. Declare only one motion entry per layer; use project drawing code or an extension for complex actions with multiple stages.
 
-当前 SVG 接入保留静态矢量结构，拒绝 script、外部 image、foreignObject 和 SVG 自带的时间动画。剪切、渐变与结构图层保留；运动由项目时间线控制。源 viewBox 与图层实际位置需自行检查。
+SVG integration preserves the static vector structure and rejects script, external image, foreignObject, and native SVG timing animations. Clipping, gradients, and structural layers are retained, while the project timeline controls motion. Inspect the source viewBox and actual layer positions.
 
-## JavaScript 接入
+## JavaScript integration
 
-data.source 也可指向项目的 assets/artwork/scene.js。该文件是绘图函数体，收到 ctx、t、data、art；t 是组件局部秒数，data 来自 configuration，另注入 duration 和局部 beats。
+data.source can also point to assets/artwork/scene.js in the project. The file is a drawing-function body receiving ctx, t, data, and art. t is local component time in seconds. data comes from configuration, with duration and local beats injected.
 
-绘图每帧重置，使用 t 推导姿态，不累积上一帧位置。随机变化使用固定种子的 art.rng，不使用墙上时钟或网络请求。接口当前使用完整 1920×1080 画布与不透明底面，多层组合时注意遮挡。
+Drawing resets every frame. Derive poses from t rather than accumulating the previous frame's position. Use seeded art.rng for randomness, not wall-clock time or network requests. The current interface uses a full 1920×1080 canvas with an opaque base, so account for occlusion when composing layers.
 
-| 方法 | 参数与作用 | 能力边界 |
+| Method | Parameters and purpose | Limits |
 | --- | --- | --- |
-| path | path(svgPath, fill, stroke, width) | 调用者绘制轮廓，不自动生成造型 |
-| line / quadratic | line(points, width, ink, progress)；quadratic(a,control,b,steps) | progress 按采样点展开；匀速需要合理采样 |
-| stroke | stroke(points,width,ink,{progress,opacity,profile,seed}) | wash 模式按路径法线形成压力轮廓；其他模式使用等宽线 |
-| hatch | hatch(shape,[x,y,w,h],{spacing,bend,width,opacity,ink}) | 在给定形状中裁剪规则曲线；不会自动识别曲面、遮挡或光线 |
-| over / plate | over(fn)；plate({x,y,opacity},fn) | multiply 合成；错位由调用者控制，没有自动印刷模拟 |
-| camera / pose | camera({x,y,zoom,angle},fn)；pose(keys,t) | 相机和姿态插值；angle 使用弧度，keys 需按 t 排序且结构一致 |
-| person / hand / eye | 可调比例、方向、姿态的构造起点 | 不是通用角色或自动表演系统 |
-| leaf / foliage / branch | 叶形、叶簇和分枝起点 | foliage 的种子分布不自动匹配枝条，需自行设计支撑关系 |
+| path | path(svgPath, fill, stroke, width) | The caller draws the contours; the tool does not invent forms |
+| line / quadratic | line(points, width, ink, progress); quadratic(a,control,b,steps) | progress advances through sampled points; even speed requires appropriate sampling |
+| stroke | stroke(points,width,ink,{progress,opacity,profile,seed}) | wash builds a pressure-shaped outline along path normals; other modes use constant-width strokes |
+| hatch | hatch(shape,[x,y,w,h],{spacing,bend,width,opacity,ink}) | Clips regular curves to the supplied shape; it does not infer surfaces, occlusion, or light |
+| over / plate | over(fn); plate({x,y,opacity},fn) | Multiply blending with caller-controlled offset; no automatic print simulation |
+| camera / pose | camera({x,y,zoom,angle},fn); pose(keys,t) | Camera and pose interpolation; angle uses radians, and keys must be ordered by t with consistent structure |
+| person / hand / eye | Construction helpers with adjustable proportions, orientation, and pose | Not a general-purpose character or automatic performance system |
+| leaf / foliage / branch | Starting points for leaves, clusters, and branches | Seeded foliage placement does not automatically align with branches; design the support relationships |
 
-全部实现位于 [runtime.js](../assets/packaging/src/artwork/runtime.js)。可以直接使用 Canvas 2D 绘制新对象，不受这些辅助方法限制。stroke 在 wash 模式可选 even、trunk、tip、leaf 等轮廓；透明层次与路径几何仍由画面设计决定。
+All implementations are in [runtime.js](../assets/packaging/src/artwork/runtime.js). Draw new objects directly with Canvas 2D whenever needed; these helpers do not limit the work. In wash mode, stroke supports profiles such as even, trunk, tip, and leaf. The design still determines transparency and path geometry.
 
-## 色板、文字和来源
+## Palettes, text, and provenance
 
-data.style 使用 etch / print / wash，或含 engine 与 palette 的对象。palette 支持 paper、ink、accent、secondary，print 可另给 inks。当前引擎使用 Canvas 2D，没有外部笔刷或套色依赖。
+data.style accepts etch / print / wash, or an object containing engine and palette. palette supports paper, ink, accent, and secondary; print can also specify inks. The current engine uses Canvas 2D without external brush or color-separation dependencies.
 
-文字可留在 data.labels 中：id、text、x、y、width、size、at，可选 end、font、weight、align、color。x/y 等按工作坐标填写；标签与字幕分开，具体边界见 [artwork.py](../assets/packaging/src/artwork.py)。labels 的默认淡入仅是接口起点，需要不同文字动作时使用扩展实现。
+Text can live in data.labels: id, text, x, y, width, size, at, and optional end, font, weight, align, and color. Position values such as x/y use the working canvas coordinates. Labels are separate from captions; see [artwork.py](../assets/packaging/src/artwork.py) for bounds. The default label fade is only an interface starting point; use an extension when the text needs different motion.
 
-composition.py 读取真实源码，记录 drawing_source 和校验值。技术接入成功后，仍按 SKILL.md 检查实际形体、材料、动作和整片表现。
+composition.py reads the actual source and records drawing_source and its checksum. Successful integration still requires reviewing the actual forms, materials, actions, and full-film performance as described in SKILL.md.

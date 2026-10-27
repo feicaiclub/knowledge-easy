@@ -1,4 +1,4 @@
-"""中文制作入口与字幕边界。"""
+"""Chinese production language and caption limits."""
 import json
 from pathlib import Path
 
@@ -7,7 +7,7 @@ CONFIG={'zh-CN':{'tts':'Chinese','asr':'zh','caption_font':'notosanssc-NotoSansS
 
 def normalize(value):
     language=ALIASES.get(str(value).strip().lower())
-    if not language:raise ValueError('当前版本只制作中文，请使用 zh-CN。')
+    if not language:raise ValueError('This version produces Chinese-language videos only. Use zh-CN.')
     return language
 
 def resolve(project,document=None):
@@ -23,5 +23,5 @@ def caption_lines(text,language):
     language=normalize(language)
     line=text.strip()
     if len(line.splitlines())>1 or len(line)>26:
-        raise ValueError('中文字幕保持单行；请在自然语意处拆分并对齐口播，不缩字、不截字。')
+        raise ValueError('Keep Chinese captions on one line. Split at natural phrase boundaries and align to the speech; do not shrink or truncate the text.')
     return line

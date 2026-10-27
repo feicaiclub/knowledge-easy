@@ -126,7 +126,7 @@ def build(project,manifest=None):
     lock=load(project/'kit/editorial-lock.json');path=project/lock['local_snapshot']
     kit=module(path/'editorial.py','editorial')
     locale_options={'locale':language} if 'locale' in inspect.signature(kit.render).parameters else {}
-    if not locale_options and language!='zh-CN':raise ValueError('当前版本只制作中文。')
+    if not locale_options and language!='zh-CN':raise ValueError('This version produces Chinese-language videos only.')
     for name,h in lock['files_sha256'].items():
         if sha(path/name)!=h:raise ValueError('The component snapshot changed. Update it explicitly before building: '+name)
     registry=composition.extension_registry(project,film,kit,local) if hasattr(kit,'BASE_IDS') else {}
@@ -202,7 +202,7 @@ def catalog(project,base=False,language="zh-CN",media_dir=None):
         conf=json.loads(json.dumps(row['configuration']).replace('assets/pack-media/','assets/media/'))
         scenes.append({'id':'demo-'+row['id'],'start':i*8,'duration':8,'component':row['id'],**conf,
                        'purpose':row['purpose']})
-    save(project/'film.json',{'title':'中文组件示例','language':language,'fps':30,'duration':len(scenes)*8,'scenes':scenes,'subtitles':[],'catalog_only':True})
+    save(project/'film.json',{'title':'Chinese Component Examples','language':language,'fps':30,'duration':len(scenes)*8,'scenes':scenes,'subtitles':[],'catalog_only':True})
     build(project)
 
 
@@ -219,7 +219,7 @@ def art_catalog(project,language='zh-CN'):
         if row.get('design_reference'):data['design_reference']=row['design_reference']
         scenes.append({'id':row['id'],'start':i*12,'duration':12,'purpose':row['purpose'],
                        'component':'artwork','data':data})
-    save(project/'film.json',{'title':'插画预设示例','language':language,'fps':30,'duration':len(scenes)*12,
+    save(project/'film.json',{'title':'Illustration Preset Examples','language':language,'fps':30,'duration':len(scenes)*12,
                               'catalog_only':True,'scenes':scenes,'subtitles':[]})
     build(project)
 

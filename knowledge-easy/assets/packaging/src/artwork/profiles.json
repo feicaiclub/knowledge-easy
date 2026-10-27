@@ -1,6 +1,6 @@
 {
   "etch": {
-    "name": "结构线描",
+    "name": "Structural Linework",
     "engine": "etch",
     "palette": {
       "paper": "#f4f1e9",
@@ -13,7 +13,7 @@
     "textureStrength": 0.18
   },
   "print": {
-    "name": "平涂叠色",
+    "name": "Flat Color and Overprinting",
     "engine": "print",
     "palette": {
       "paper": "#f2eee3",
@@ -30,7 +30,7 @@
     "textureStrength": 0.18
   },
   "wash": {
-    "name": "淡彩自然",
+    "name": "Natural Wash",
     "engine": "wash",
     "palette": {
       "paper": "#f1eee6",

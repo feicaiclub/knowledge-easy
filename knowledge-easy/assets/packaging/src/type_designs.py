@@ -1,24 +1,24 @@
-"""可编辑的影视标题、圆章关系与人物编辑版式。"""
+"""Editable cinematic titles, medallion relationship graphics, and editorial portrait layouts."""
 import html,json,math
 E=html.escape
 IDS={'lit-title':'hero','medallion-labels':'relation','editorial-portrait':'hero'}
 
 def render(kind,prefix,duration,data,cues,locale):
-    if locale!='zh-CN':raise ValueError('当前版式使用中文。')
+    if locale!='zh-CN':raise ValueError('These layouts currently support Chinese only.')
     out=[];moves=[];order=[];settles={}
     def identity(key):return prefix+'-'+key
     def enter(key,at,role='label',deps=(),dy=12,span=.65):
         proposed=float(cues.get(key,at));earliest=max([0]+[settles[d]+.04 for d in deps])
-        if key in cues and proposed<earliest:raise ValueError(key+' 的进入时间早于前置对象完成。')
+        if key in cues and proposed<earliest:raise ValueError(key+' enters before its prerequisite has settled.')
         at=max(proposed,earliest);span=min(span,duration-at-.12)
-        if span<=0:raise ValueError('请给标题与阅读留出时间。')
+        if span<=0:raise ValueError('Allow enough time for the title to appear and be read.')
         moves.append(f"tl.fromTo('#{identity(key)}',{{opacity:0,y:{dy}}},{{opacity:1,y:0,duration:{span},ease:'power3.out'}},{at});")
         settles[key]=at+span
         order.append({'id':identity(key),'role':role,'enter_at':at,'settle_at':at+span,'depends_on':[identity(k) for k in deps]})
     def image(key,info,x=0,y=0,w=1920,h=1080):
         if isinstance(info,str):info={'src':info}
         fit=info.get('fit','cover')
-        if fit not in ('cover','contain'):raise ValueError('图像 fit 使用 cover 或 contain。')
+        if fit not in ('cover','contain'):raise ValueError('Image fit must be cover or contain.')
         grade=E(json.dumps(info.get('grading',{}),ensure_ascii=False,separators=(',',':')),quote=True)
         src=E(info['src'],quote=True)
         style=f'position:absolute;inset:0;width:100%;height:100%;object-fit:{fit};object-position:{E(info.get("focus","50% 50%"),quote=True)}'
@@ -29,10 +29,10 @@ def render(kind,prefix,duration,data,cues,locale):
     def glyphs(text):
         return ''.join('<span class="ke-metal-word">'+''.join('<i class="ke-glyph" data-copy="'+E(ch,quote=True)+'"><b>'+E(ch)+'</b></i>' for ch in line)+'</span>' for line in text.split('\n'))
     def metal(key,text,x,y,w,size,align='center'):
-        if not isinstance(text,str) or not text.strip():raise ValueError('标题不能为空。')
+        if not isinstance(text,str) or not text.strip():raise ValueError('The title cannot be empty.')
         count=max(sum(1 if ord(c)>255 else .55 for c in line) for line in text.split('\n'))
         size=min(float(size),w/max(1,count*1.14))
-        if size<40:raise ValueError('文字过长，请调整标题或版式。')
+        if size<40:raise ValueError('The text is too long. Revise the title or layout.')
         return f'<div id="{identity(key)}" class="ke-metal" data-copy="{E(text,quote=True)}" style="left:{x}px;top:{y}px;width:{w}px;font-size:{size}px;text-align:{align}">{glyphs(text)}</div>'
     def label(key,text,x,y,w,size=34,color='#eee7d5',align='center',serif=False,weight=None):
         tracking='.05em' if serif else '.015em'
@@ -46,8 +46,8 @@ def render(kind,prefix,duration,data,cues,locale):
         moves.append(f"tl.fromTo('#{identity('image')}',{{scale:1.025}},{{scale:1,duration:{duration},ease:'sine.inOut'}},0);")
     elif kind=='medallion-labels':
         labels=data['labels']
-        if not 2<=len(labels)<=4:raise ValueError('圆章关系适合 2–4 个清晰对象。')
-        # 背景由共享 backdrop 渲染，保持在前景动效容器之外。
+        if not 2<=len(labels)<=4:raise ValueError('Medallion relationships require 2–4 clearly defined subjects.')
+        # Render the background with the shared backdrop, outside the foreground animation container.
         if data.get('title'):out.append(label('title',data['title'],160,110,1600,58,serif=True));enter('title',.12,'subject')
         gap=1480/(len(labels)-1);centers=[]
         for i,item in enumerate(labels):

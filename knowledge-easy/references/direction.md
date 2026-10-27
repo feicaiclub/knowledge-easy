@@ -1,36 +1,36 @@
-# 项目设计记录与时间接口
+# Design Notes and Timing Interface
 
-完整导演方法、设计标准与验收顺序在 [SKILL.md](../SKILL.md)。这里说明项目决定如何进入实际输入文件，不维护另一套流程。
+[SKILL.md](../SKILL.md) contains the complete directing method, design standards, and review sequence. This page explains how project decisions map to production inputs; it does not define a separate workflow.
 
-## 设计记录
+## Design notes
 
-沿用项目已有笔记；没有时可写 research/design.md。记录观众的核心疑问与理解变化、本片呈现方式及取舍、参考品质、视觉语言和镜头意图。记录是制作依据，不是新的固定片型。
+Use the project's existing notes, or research/design.md if there are none. Record the viewer's central question and change in understanding, the presentation approach and its tradeoffs, reference qualities, visual language, and shot intent. These notes guide production without imposing a new fixed film format.
 
-镜头表可以使用以下列：
+A shot table can use these columns:
 
-| 语句或论证位置 | 主体与景别 | 动作前 → 变化 → 结果 | 实现与材料 | 时间依据 |
+| Line or point in the argument | Subject and shot size | Before → change → result | Implementation and media | Timing basis |
 | --- | --- | --- | --- | --- |
-| 当前要解释的因果 | 观众先看哪里、需要多近 | 可见变化与结论怎样成立 | 来源区间、组件或原创文件 | 实际口播、动作完成和阅读需要 |
+| The causal relationship being explained | Where the viewer looks first and how close they need to be | How the visible change supports the conclusion | Source range, component, or original file | Actual speech, completion of the action, and reading time |
 
-画面参照写清比较的品质。进入 film.json 的 design_reference 应使用已登记组件 ID、art-etch / art-print / art-wash，或包含 src 与 reason 的项目图片对象；不要把 Markdown 笔记路径放进图片字段。项目记下的风险在实际制作时进入相应镜头的审查观察。
+State the qualities to compare in each visual reference. A design_reference in film.json should be a registered component ID, art-etch / art-print / art-wash, or a project image object with src and reason. Do not put the path to a Markdown note in an image field. During production, carry identified risks into the review observations for the affected shots.
 
 <a id="one-event-clock"></a>
-## 同一个语意事件
+## One shared narrative event
 
-film.json 的 beats 是全片绝对秒数，ID 唯一：
+In film.json, beats use absolute seconds for the entire film, with unique IDs:
 
 ```json
-{"beats":[{"id":"finding","time":6.2,"purpose":"两个对象形成可见联系"}]}
+{"beats":[{"id":"finding","time":6.2,"purpose":"A visible connection forms between two objects."}]}
 ```
 
-scene.start 是全片时间；components[].start 相对场景；cues 和绘图 t 相对组件。脚本把组件覆盖区间中的事件转换为 data.beats：事件局部时间 = beats.time − scene.start − component.start。
+scene.start uses film time; components[].start is relative to the scene; cues and drawing time t are relative to the component. The scripts convert events within a component's active range into data.beats: local event time = beats.time − scene.start − component.start.
 
-例如场景从 4 秒开始，组件晚 0.5 秒进入，则 finding 在绘图中的时间为 1.7 秒。图形围绕该值设计动作；音效在 music-plan.json 中用 event: "finding"、offset: 0 对齐。
+For example, if the scene begins at 4 seconds and the component enters 0.5 seconds later, finding occurs at 1.7 seconds in the drawing. Design the graphic action around that time. In music-plan.json, align the sound effect with event: "finding" and offset: 0.
 
 ```json
 {"src":"assets/audio/contact.wav","role":"sfx","event":"finding","offset":0,"duration":0.35,"gain_db":-14,"fade_in":0.01,"fade_out":0.08}
 ```
 
-同一声音条目使用 event 或 start 其中一个；offset 可表达提前进入或延后，但最终时间不能早于全片起点。调整事件后重新 build 与 mix，不能只改画面。事件只负责共同落点，不强制镜头服从音乐节拍。
+Each audio cue uses either event or start. offset allows an early or delayed entrance, but the resulting time cannot precede the start of the film. After changing an event, rebuild and remix rather than updating only the picture. Events provide shared timing cues; they do not force shots onto a musical beat grid.
 
-实际解析位于 [event_clock.py](../scripts/event_clock.py)、[composition.py](../scripts/composition.py) 和 [mix.py](../scripts/mix.py)。
+See the actual parsers in [event_clock.py](../scripts/event_clock.py), [composition.py](../scripts/composition.py), and [mix.py](../scripts/mix.py).

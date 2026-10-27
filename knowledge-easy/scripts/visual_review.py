@@ -1,18 +1,18 @@
-"""实际导出审查。项目参照可选，旧版截图不再是固定依赖。"""
+"""Review actual exports. Project references are optional; old screenshots are no longer required dependencies."""
 import hashlib, html, json, re, shutil, subprocess, os
 from pathlib import Path
 
 FILM_CRITERIA={
-    'direction':'说明本题的理解变化如何由主体、材料与镜头实现；指出实际画面，检查是否只替换了示例文字或对象。',
-    'rhythm':'完整观看后记录推进、停留、景别与信息疏密的具体位置；检查阅读是否完成、段落是否拖沓或被截断。',
-    'sound':'有声音时完整听审：声线与逐段表达、句尾衔接、人声清晰度、材质音效和音乐转折；无声音时注明该设计选择。'}
+    'direction':'Explain how the subjects, media, and shots create the intended change in understanding. Cite actual frames and check whether the work merely replaces example text or objects.',
+    'rhythm':'After watching the full film, identify specific moments of progression, holds, shot-size changes, and shifts in information density. Check reading time and passages that drag or end abruptly.',
+    'sound':'If audio is present, listen to the full film and review voice identity, delivery by passage, phrase endings and joins, speech clarity, material-specific effects, and musical transitions. If silent, record that design choice.'}
 
 CRITERIA={
-    'hierarchy':'按最终尺寸指出第一、第二阅读对象，检查字形、对比与出现顺序；缩小组合后仍可读，有参照时比较相应层级。',
-    'composition':'检查剪影、尺度、重心、负空间、裁切与字幕避让；关键动作前后都能看清主体、接触和关系。',
-    'material':'说明所用素材或图形如何支持本题；检查实际光影、体积、边缘、遮挡与线条/色面质量，不以纹理数量判断。',
-    'motion':'观看整个片段，记录关键变化的位置；检查对象与连接先后、准备与收势、接触和遮挡、阅读停留及剪入剪出。',
-    'explanation':'指出画面新增的证据、对照、机制或情绪作用；自定义对照所选参照的解释效果与制作完成度。'}
+    'hierarchy':'At final size, identify the first and second reading targets. Check letterforms, contrast, and reveal order. Confirm readability after scaling and compare hierarchy with the reference when available.',
+    'composition':'Check silhouettes, scale, balance, negative space, cropping, and caption clearance. Subjects, contact points, and relationships must remain clear before and after key actions.',
+    'material':'Explain how the chosen media or graphics support the subject. Inspect actual lighting, volume, edges, overlaps, and line or color-shape quality rather than counting textures.',
+    'motion':'Watch the complete clip and locate its key changes. Check subjects before connections, anticipation and follow-through, contact and overlap, reading holds, and edit points.',
+    'explanation':'Identify the evidence, comparison, mechanism, or emotional contribution added by the image. Compare custom work with the selected reference for explanatory value and finish.'}
 
 
 def sha(path):
@@ -88,9 +88,9 @@ def prepare(project,file,skill,env=None):
     rows=[];sections=[];evidence={};export=local(project,file)
     for item in usage:
         id=item['id'];reference=item.get('design_reference');poster=None
-        if isinstance(reference,dict):poster=local(project,reference['src']);name=reference.get('name','本片设计参照')
+        if isinstance(reference,dict):poster=local(project,reference['src']);name=reference.get('name','Design Reference for This Film')
         elif isinstance(reference,str) and reference.startswith('art-'):poster=skill/'assets/packaging/illustrations'/(reference[4:]+'.svg');name=reference
-        else:name=str(reference or '当前设计')
+        else:name=str(reference or 'Current Design')
         ref=None
         if poster is not None:
             if not poster.is_file():raise ValueError('Missing design reference: '+str(reference))
@@ -113,8 +113,8 @@ def prepare(project,file,skill,env=None):
              'criteria':{k:{'verdict':'pending','observation':''} for k in CRITERIA},'motion_watched':False,'verdict':'pending'}
         rows.append(row)
         pics=''.join('<figure><img src="'+html.escape(Path(x['file']).name)+'"><figcaption>'+str(x['time'])+'s</figcaption></figure>' for x in frames)
-        reference_panel=('<figure><img src="'+ref.name+'"><figcaption>选定参照：比较形体、材料与清晰度</figcaption></figure>') if ref is not None else '<div><h3>按当前设计要求审查</h3><p>本段没有指定参照图。直接检查构图、字形、材料、动作和解释效果，不读取旧版截图，也不自动认定通过。</p></div>'
-        sections.append('<section><h2>'+html.escape(id)+' · '+html.escape(name)+'</h2><p>'+html.escape(item['purpose'])+'</p><div class="pair">'+reference_panel+'<figure><video controls preload="metadata" src="'+clip.name+'"></video><figcaption>实际导出：完整观看本段</figcaption></figure></div><div class="phases">'+pics+'</div></section>')
+        reference_panel=('<figure><img src="'+ref.name+'"><figcaption>Selected reference: compare form, materials, and clarity</figcaption></figure>') if ref is not None else '<div><h3>Review Against the Current Design Requirements</h3><p>This passage has no specified reference image. Inspect composition, letterforms, materials, motion, and explanatory value directly. Do not substitute an old screenshot or assume a pass.</p></div>'
+        sections.append('<section><h2>'+html.escape(id)+' · '+html.escape(name)+'</h2><p>'+html.escape(item['purpose'])+'</p><div class="pair">'+reference_panel+'<figure><video controls preload="metadata" src="'+clip.name+'"></video><figcaption>Actual export: watch the complete passage</figcaption></figure></div><div class="phases">'+pics+'</div></section>')
     sequence=[]
     for scene in film['scenes']:
         at=float(scene['start'])+float(scene['duration'])*.5
@@ -124,7 +124,7 @@ def prepare(project,file,skill,env=None):
         sequence.append({'id':scene['id'],'start':scene['start'],'duration':scene['duration'],'frame':relative,'time':at})
     review={'schema':2,'export':file,'export_sha256':receipt['sha256'],'source_sha256':receipt['source']['sha256'],
             'status':'pending','reviewer':'','sequence':sequence,'whole_film':{'watched':False,'listened':False,'audio_present':load(project/'review/technical-check.json').get('audio_present',False),'criteria':{k:{'verdict':'pending','observation':''} for k in FILM_CRITERIA}},'criteria':CRITERIA,'scenes':rows,'evidence_sha256':evidence,
-            'limits':'需实际观察导出后记录判断；数量、截图和填完字段不能认证审美。自审记录与用户确认分别保留。'}
+            'limits':'Inspect the actual export before recording a judgment. Counts, screenshots, and completed fields do not certify visual quality. Keep self-review and user approval separate.'}
     evidence_index={'export_sha256':receipt['sha256'],'source_sha256':receipt['source']['sha256'],'evidence_sha256':evidence,
                     'scenes':[{k:r[k] for k in ('id','design_reference','implementation','frames','motion_file','reference_file')} for r in rows]}
     evidence_index['sequence']=sequence
@@ -136,9 +136,9 @@ def prepare(project,file,skill,env=None):
         if all(old.get(k)==review[k] for k in ('export_sha256','source_sha256','evidence_sha256')):
             review=old
     save(dest,review)
-    film_view='<section><h2>整片表达、节奏与声音</h2><video controls preload="metadata" src="'+html.escape(os.path.relpath(export,folder),quote=True)+'"></video><div class="phases">'+''.join('<figure><img loading="lazy" src="'+Path(x['frame']).name+'"><figcaption>'+html.escape(x['id'])+'</figcaption></figure>' for x in sequence)+'</div></section>'
+    film_view='<section><h2>Whole-Film Direction, Rhythm, and Sound</h2><video controls preload="metadata" src="'+html.escape(os.path.relpath(export,folder),quote=True)+'"></video><div class="phases">'+''.join('<figure><img loading="lazy" src="'+Path(x['frame']).name+'"><figcaption>'+html.escape(x['id'])+'</figcaption></figure>' for x in sequence)+'</div></section>'
     css='body{margin:32px;background:#151c1c;color:#efe4ce;font:18px/1.6 system-ui}h1{font-size:30px}section{margin:45px 0}img,video{width:100%}.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}figure{margin:0}figcaption{color:#bccbc7;font-size:14px}p{max-width:1100px}'
-    (folder/'index.html').write_text('<!doctype html><html><meta charset="utf-8"><title>视觉审查</title><style>'+css+'</style><body><h1>视觉审查 · '+receipt['sha256'][:12]+'</h1><p>先完整观看并听审整片，再检查具体镜头的层级、构图、材料、动作和解释。将位置、观察及处理结果写入 review/visual-review.json；未检查项保持待审。accept-visuals 只检查记录完整与版本对应。</p>'+film_view+''.join(sections)+'</body></html>',encoding='utf-8')
+    (folder/'index.html').write_text('<!doctype html><html lang="en-US"><meta charset="utf-8"><title>Visual Review</title><style>'+css+'</style><body><h1>Visual Review · '+receipt['sha256'][:12]+'</h1><p>Watch and listen to the full film first, then inspect individual shots for hierarchy, composition, materials, motion, and explanation. Record locations, observations, and resolutions in review/visual-review.json. Leave unreviewed items pending. accept-visuals checks only record completeness and version correspondence.</p>'+film_view+''.join(sections)+'</body></html>',encoding='utf-8')
     return {'status':review['status'],'scenes':len(rows),'comparison':str((folder/'index.html').relative_to(project)),'record':'review/visual-review.json'}
 
 
@@ -172,4 +172,4 @@ def accept(project):
             judgment=whole.get('criteria',{}).get(key,{})
             if judgment.get('verdict')!='pass' or not judgment.get('observation','').strip():raise ValueError('Record a supported whole-film judgment for '+key)
     review['status']='passed';save(project/'review/visual-review.json',review)
-    return {'status':'passed','export':review['export'],'sha256':receipt['sha256'],'scope':'已记录的镜头与整片自审通过；用户确认另行记录。'}
+    return {'status':'passed','export':review['export'],'sha256':receipt['sha256'],'scope':'The recorded shot and whole-film self-review has passed. User approval is recorded separately.'}

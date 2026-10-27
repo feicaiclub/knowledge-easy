@@ -1,7 +1,7 @@
 [
   {
     "id": "hero",
-    "purpose": "让一个抽象问题具有可感受的主体。",
+    "purpose": "Give an abstract question a tangible subject.",
     "configuration": {
       "data": {
         "text": {
@@ -31,7 +31,7 @@
   },
   {
     "id": "compare",
-    "purpose": "把容易混淆的两个概念放进共同尺度。",
+    "purpose": "Compare two easily confused concepts at a common scale.",
     "configuration": {
       "data": {
         "text": {
@@ -62,7 +62,7 @@
   },
   {
     "id": "chapter",
-    "purpose": "给较长的一段讲述建立路线。",
+    "purpose": "Give a longer passage a clear route through the ideas.",
     "configuration": {
       "data": {
         "text": {
@@ -120,7 +120,7 @@
   },
   {
     "id": "evidence",
-    "purpose": "把判断放回可观察的证据与上下文。",
+    "purpose": "Ground a judgment in observable evidence and context.",
     "configuration": {
       "data": {
         "text": {
@@ -154,7 +154,7 @@
   },
   {
     "id": "relation",
-    "purpose": "显示谁在影响谁，以及通过什么关系。",
+    "purpose": "Show who influences whom and how they are connected.",
     "configuration": {
       "data": {
         "text": {
@@ -189,7 +189,7 @@
   },
   {
     "id": "feedback",
-    "purpose": "解释一个行为怎样强化自身。",
+    "purpose": "Explain how a behavior reinforces itself.",
     "configuration": {
       "data": {
         "text": {
@@ -223,7 +223,7 @@
   },
   {
     "id": "quantity",
-    "purpose": "把一个显眼结果放回完整样本。",
+    "purpose": "Put a conspicuous result back in the context of the full sample.",
     "configuration": {
       "data": {
         "text": {
@@ -250,7 +250,7 @@
   },
   {
     "id": "timeline",
-    "purpose": "让同一对象在时间里发生变化。",
+    "purpose": "Show the same subject changing over time.",
     "configuration": {
       "data": {
         "text": {
@@ -294,7 +294,7 @@
   },
   {
     "id": "map-focus",
-    "purpose": "先回答故事发生在哪里。",
+    "purpose": "First establish where the story takes place.",
     "configuration": {
       "data": {
         "text": {
@@ -323,7 +323,7 @@
   },
   {
     "id": "map-route",
-    "purpose": "显示行进方向、节点和先后。",
+    "purpose": "Show direction of travel, stops, and sequence.",
     "configuration": {
       "data": {
         "text": {
@@ -364,7 +364,7 @@
   },
   {
     "id": "map-period",
-    "purpose": "比较同一底图上两个阶段的空间变化。",
+    "purpose": "Compare spatial changes between two periods on the same base map.",
     "configuration": {
       "data": {
         "text": {
@@ -466,7 +466,7 @@
   },
   {
     "id": "context",
-    "purpose": "让被忽略的条件进入解释。",
+    "purpose": "Bring overlooked conditions into the explanation.",
     "configuration": {
       "data": {
         "text": {

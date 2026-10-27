@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
-  <title>让思考被看见 · 人物编辑插画临摹研究</title>
-  <desc>参考 BUCK / Notion Think it. Make it. 的侧面近景、黑白人物和原色图形；重新描绘为可编辑路径。来源见 references/sources.md。</desc>
+  <title>Make Thought Visible · Editorial Portrait Study</title>
+  <desc>Based on the close-up profile, black-and-white figure, and primary-color shapes in BUCK / Notion Think it. Make it. Redrawn as editable paths. See references/sources.md.</desc>
   <defs><pattern id="shirt-mark" width="84" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(-9)"><path d="M20 22 l12 9 9 -14 M62 62 l10 8 8 -10" fill="none" stroke="#202321" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></pattern></defs>
   <rect width="1920" height="1080" fill="#f7f5ec"/>
   <g id="thought">

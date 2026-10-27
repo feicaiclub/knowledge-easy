@@ -1,11 +1,11 @@
-# 中文制作
+# Chinese Production
 
-当前版本只维护简体中文，项目语言为 zh-CN。文稿、旁白、字幕、图内文字和手册使用中文；专业名称、代码标识与必要的外文专名可以保留原文，不构成第二套制作语言。
+The Skill's instructions and interface text are written in American English. The production language remains Simplified Chinese, with project language zh-CN. Scripts, narration, captions, and text within graphics use Chinese. Technical terms, code identifiers, and necessary foreign proper names may retain their original form; this does not introduce a second production language.
 
-project.json、film.json、voice-plan.json 的语言保持一致。旧项目没有语言字段时按中文处理；其他制作语言会明确报错，不悄悄切换。
+Keep the language consistent across project.json, film.json, and voice-plan.json. Treat older projects without a language field as Chinese. Other production languages produce an explicit error rather than a silent switch.
 
-中文标题按词组和语意组织，避免过度字距、行首标点和孤立尾字。图内标注靠近所指对象，长解释留给口播或重写成清晰短句。宋体、黑体与数字字体承担不同角色，具体选择服从项目的视觉方向。
+Organize Chinese headings around phrases and meaning. Avoid excessive character spacing, punctuation at the beginning of a line, and isolated final characters. Place labels near their subjects. Leave lengthy explanations to the narration or rewrite them as clear, short phrases. Song-style serif type, sans serif type, and numeral fonts serve distinct roles, chosen to support the project's visual direction.
 
-中文字幕保持单行，按真实口播在自然语意处拆分。默认 42 像素字幕用每条不超过 26 字作为保守边界，仍要看实际宽度；不缩字、不截字、不均分时间硬凑。专有名词、多音字、首尾音节和语句连接需要实际听审。
+Keep Chinese captions on one line and split them at natural phrase boundaries in the actual speech. For the default 42 px captions, use no more than 26 characters per cue as a conservative limit, then inspect the actual width. Do not shrink the font, truncate the text, or divide time evenly just to force a fit. Proper names, characters with multiple pronunciations, beginning and ending syllables, and joins between phrases require listening.
 
-中文默认字体为 Noto Serif SC、Noto Sans SC；数字可用 Barlow Condensed。原有项目自己的字体与旁白选择优先，不为了套示例而替换。
+The default Chinese fonts are Noto Serif SC and Noto Sans SC; numerals may use Barlow Condensed. Honor an existing project's font and narrator choices rather than replacing them merely to match an example.

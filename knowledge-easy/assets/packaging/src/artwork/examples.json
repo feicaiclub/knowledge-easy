@@ -2,8 +2,8 @@
   {
     "id": "portrait-study",
     "style": "etch",
-    "title": "让思考被看见",
-    "purpose": "依照选定参考临摹侧面人物、表情、衣褶和原色思维图形。",
+    "title": "Make Thought Visible",
+    "purpose": "Copy the selected reference's figure in profile, expression, clothing folds, and primary-color thought shapes.",
     "source": "../illustrations/reference-portrait.svg",
     "duration": 12,
     "labels": [
@@ -90,8 +90,8 @@
   {
     "id": "balance-study",
     "style": "print",
-    "title": "在问题和答案之间",
-    "purpose": "临摹参考海报中的人物、跷板、提问与回答之间的构图关系。",
+    "title": "Between Questions and Answers",
+    "purpose": "Copy the compositional relationships among the figure, seesaw, question, and answer in the reference poster.",
     "source": "../illustrations/reference-balance.svg",
     "duration": 12,
     "labels": [
@@ -148,8 +148,8 @@
   {
     "id": "writing-study",
     "style": "print",
-    "title": "让想法落在纸上",
-    "purpose": "临摹纸张、书写手势与原色图形，保留可编辑的独立图层。",
+    "title": "Put Ideas on Paper",
+    "purpose": "Copy the paper, writing gesture, and primary-color shapes while retaining separate editable layers.",
     "source": "../illustrations/reference-writing.svg",
     "duration": 12,
     "labels": [

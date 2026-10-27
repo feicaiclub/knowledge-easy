@@ -1,9 +1,9 @@
 [
   {
     "id": "lit-title",
-    "name": "受光宋体 · 影视对照",
+    "name": "Lit Song-style Type · Cinematic Contrast",
     "parent_component": "hero",
-    "purpose": "按参考中的窄长宋体、亮边、暗边和金属字面重建可编辑影视标题。",
+    "purpose": "Build editable cinematic titles from the reference's tall, narrow Song-style letterforms, bright and dark edges, and metallic faces.",
     "duration": 8,
     "configuration": {
       "data": {
@@ -23,9 +23,9 @@
   },
   {
     "id": "medallion-labels",
-    "name": "光影圆章 · 关系标签",
+    "name": "Lit Medallions · Relationship Labels",
     "parent_component": "relation",
-    "purpose": "半透明深色圆章、细金属边与有体积的文字，直接叠在影视镜头上。",
+    "purpose": "Overlay translucent dark medallions, thin metallic rims, and dimensional typography directly on footage.",
     "duration": 8,
     "configuration": {
       "data": {
@@ -48,9 +48,9 @@
   },
   {
     "id": "editorial-portrait",
-    "name": "人物编辑 · 纸面近景",
+    "name": "Editorial Portrait · Paper Close-up",
     "parent_component": "hero",
-    "purpose": "参考人物海报的近景、黑白轮廓和原色图形，保留大字与人物的各自空间。",
+    "purpose": "Use the reference poster's close-up framing, black-and-white contours, and primary-color shapes while giving large type and the figure separate space.",
     "duration": 8,
     "version": "2.1.1",
     "source": "assets/packaging/src/type_designs.py",
@@ -72,10 +72,10 @@
   },
   {
     "id": "map-decision",
-    "name": "地图 · 拟议方向",
+    "name": "Map · Proposed Direction",
     "parent_component": "map-route",
     "version": "2.1.1",
-    "purpose": "先建立位置，再出现方案；虚线和提示明确它是待讨论的方向。",
+    "purpose": "Establish locations before introducing a proposal. Dashed lines and labels make clear that the direction is under consideration.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -193,10 +193,10 @@
   },
   {
     "id": "map-focus-chain",
-    "name": "地图 · 空间中的先后",
+    "name": "Map · Spatial Sequence",
     "parent_component": "map-focus",
     "version": "2.1.1",
-    "purpose": "镜头、地名和重点共用投影；用重点切换表达处理次序。",
+    "purpose": "Keep the camera, place names, and highlights in one projection. Shift emphasis to communicate the order of attention.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -312,10 +312,10 @@
   },
   {
     "id": "credential",
-    "name": "资料卡 · 身份与职责",
+    "name": "Evidence Card · Identity and Role",
     "parent_component": "evidence",
     "version": "2.1.1",
-    "purpose": "影像先建立主体，身份和职责依照解释顺序展开。",
+    "purpose": "Establish the subject through the image, then reveal identity and responsibilities in the order of the explanation.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -392,10 +392,10 @@
   },
   {
     "id": "evidence-sheet",
-    "name": "资料卡 · 材料与解读",
+    "name": "Evidence Card · Source and Interpretation",
     "parent_component": "evidence",
     "version": "2.1.1",
-    "purpose": "材料和解释有各自的阅读空间；不把一大段文字一次端出来。",
+    "purpose": "Give the source material and interpretation their own reading space instead of revealing a long passage all at once.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -470,10 +470,10 @@
   },
   {
     "id": "relation-bridge",
-    "name": "关系卡 · 两端与联系",
+    "name": "Relationship Card · Subjects and Connection",
     "parent_component": "relation",
     "version": "2.1.1",
-    "purpose": "先出现双方，再出现关系；下方分支可以表达亲属、职责或归属。",
+    "purpose": "Introduce both subjects before their connection. Lower branches can show kinship, responsibility, or affiliation.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -574,10 +574,10 @@
   },
   {
     "id": "name-roster",
-    "name": "名录 · 主体与条目",
+    "name": "Roster · Subject and Entries",
     "parent_component": "relation",
     "version": "2.1.1",
-    "purpose": "同一名录可用于人物推荐、证据清单和前后结果；条目有共同基线。",
+    "purpose": "Use the same roster structure for recommended people, evidence lists, or before-and-after results, keeping entries on a shared baseline.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -645,10 +645,10 @@
   },
   {
     "id": "quote-reveal",
-    "name": "引文 · 递进强调",
+    "name": "Quotation · Progressive Emphasis",
     "parent_component": "evidence",
     "version": "2.1.1",
-    "purpose": "先读完整前提，重句在旁白抵达时出现，留出安静的阅读时间。",
+    "purpose": "Let viewers read the complete premise first. Reveal the emphasized line as the narration reaches it, then allow a quiet reading hold.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -700,10 +700,10 @@
   },
   {
     "id": "milestone-pair",
-    "name": "时间 · 两次判断",
+    "name": "Timeline · Two Judgments",
     "parent_component": "timeline",
     "version": "2.1.1",
-    "purpose": "相同尺度和基线上的前后对照，变化来自内容，不靠任意错位。",
+    "purpose": "Compare before and after at the same scale and baseline. Let the content create the change rather than arbitrary offsets.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -762,10 +762,10 @@
   },
   {
     "id": "foundation",
-    "name": "节点 · 共同支点",
+    "name": "Nodes · Shared Support",
     "parent_component": "relation",
     "version": "2.1.1",
-    "purpose": "二至四个城市节点可替换；关系与共同结果由节点支撑。",
+    "purpose": "Replace the two to four city nodes as needed. They establish the relationships and support a shared outcome.",
     "source": "../../editorial.py",
     "stylesheet": "../../editorial.css",
     "configuration": {
@@ -850,9 +850,9 @@
   },
   {
     "id": "feedback-loop",
-    "name": "反馈循环",
+    "name": "Feedback Loop",
     "parent_component": "feedback",
-    "purpose": "让动作、反馈与下一次尝试逐步闭合，解释循环如何加强。",
+    "purpose": "Connect action, feedback, and the next attempt in stages to explain how the loop strengthens.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
     "configuration": {
@@ -900,7 +900,7 @@
     },
     "duration": 8,
     "inputs": "title, three nodes with image and short label, optional conclusion; node0..2/link0..2/conclusion cues",
-    "motion": "节点先出现，连线随后建立，循环闭合后给出结论。",
+    "motion": "Introduce nodes before their connections, then present the conclusion once the loop closes.",
     "version": "2.1.1",
     "start": 72,
     "reading_order": [
@@ -996,9 +996,9 @@
   },
   {
     "id": "evidence-collage",
-    "name": "资料拼贴",
+    "name": "Evidence Collage",
     "parent_component": "evidence",
-    "purpose": "把材料和记录材料时的处境放在一起，补足理解所需的信息。",
+    "purpose": "Place source material alongside the circumstances in which it was recorded to supply the context needed to understand it.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
     "configuration": {
@@ -1037,7 +1037,7 @@
     },
     "duration": 8,
     "inputs": "title, two source images with label and optional note, optional relation; item0/item1/relation cues",
-    "motion": "先呈现第一份材料，再补充第二份材料，最后建立解释关系。",
+    "motion": "Present the first source, add the second, then establish the interpretive relationship.",
     "version": "2.1.1",
     "start": 80,
     "reading_order": [
@@ -1114,9 +1114,9 @@
   },
   {
     "id": "context-reveal",
-    "name": "局部与全景",
+    "name": "Detail and Context",
     "parent_component": "context",
-    "purpose": "在同一个连续画面里拉开视野，让被忽略的条件自然出现。",
+    "purpose": "Widen a single continuous view so overlooked conditions emerge naturally.",
     "source": "editorial.py",
     "stylesheet": "editorial.css",
     "configuration": {
@@ -1143,7 +1143,7 @@
     },
     "duration": 8,
     "inputs": "image, detail, context, focus, detail_scale, reveal_duration; widen/context cues",
-    "motion": "先看局部，连续拉开同一画面，再揭示理解怎样改变。",
+    "motion": "Start with a detail, widen the same image continuously, then reveal how the added context changes the interpretation.",
     "version": "2.1.1",
     "start": 88,
     "reading_order": [

@@ -131,10 +131,10 @@ def review_plan(usage):
     notes=[]
     for row in usage:
         counts=row['visual_inventory'];reasons=[]
-        if row['implementation']=='project-extension':reasons.append('自定义实现：对照所选参照检查造型、材料、解释与完整动作；记录具体差距，不能仅凭新配色或布局名称通过。')
+        if row['implementation']=='project-extension':reasons.append('Custom implementation: compare form, materials, explanatory value, and complete actions against the selected reference. Record specific gaps; new colors or a layout name do not establish a pass.')
         if not counts['images'] and not counts['videos'] and row['implementation']!='authored-artwork':
-            reasons.append('当前前景没有图片或视频：检查排版和几何是否提供了有用的解释，而不是仅重复旁白；不因此强制添加素材。')
-        if row['implementation']=='authored-artwork':reasons.append('原创插画：检查关键状态的剪影、承重与接触、遮挡、材料和镜头；绘图函数可运行不代表画面设计通过。')
-        if row['scale']<.8:reasons.append('组件经过缩放：按实际导出尺寸检查文字、线宽、留白和字幕空间；必要时重新布局，不能继续整体缩小。')
+            reasons.append('The foreground has no images or video. Check whether typography and geometry add useful explanation rather than merely repeat the narration. This does not require adding footage.')
+        if row['implementation']=='authored-artwork':reasons.append('Original illustration: inspect silhouettes, weight and contact, overlap, materials, and framing in key states. A working drawing function does not establish visual quality.')
+        if row['scale']<.8:reasons.append('The component has been scaled. Check type, line weights, negative space, and caption clearance at the actual export size. Reflow the layout if needed rather than shrinking it further.')
         if reasons:notes.append({'instance':row['id'],'design_reference':row['design_reference'],'reasons':reasons})
     return notes
