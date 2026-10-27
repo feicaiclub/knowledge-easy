@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <title>让思考被看见 · 人物编辑插画临摹研究</title>
+  <desc>参考 BUCK / Notion Think it. Make it. 的侧面近景、黑白人物和原色图形；重新描绘为可编辑路径。来源见 references/sources.md。</desc>
+  <defs><pattern id="shirt-mark" width="84" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(-9)"><path d="M20 22 l12 9 9 -14 M62 62 l10 8 8 -10" fill="none" stroke="#202321" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></pattern></defs>
+  <rect width="1920" height="1080" fill="#f7f5ec"/>
+  <g id="thought">
+    <g id="thought-blue">
+    <path d="M1296 303 L1480 266 L1494 467 L1318 506 Z" fill="#096deb" stroke="#202321" stroke-width="5"/>
+    <path d="M1331 341 l110 -20 M1334 384 l111 -21 M1340 429 l107 -22" fill="none" stroke="#fffdf4" stroke-width="11"/>
+    </g>
+    <g id="thought-red">
+    <path d="M1516 447 L1692 481 L1672 665 L1498 633 Z" fill="#ee4d27" stroke="#202321" stroke-width="5"/>
+    <path d="M1540 532 Q1609 564 1657 518 M1533 589 l106 20" fill="none" stroke="#fffdf4" stroke-width="9"/>
+    </g>
+    <g id="thought-star">
+    <path d="M1384 594 L1431 575 L1448 621 L1497 627 L1460 659 L1468 710 L1425 685 L1382 712 L1389 662 L1352 631 L1401 622 Z" fill="#f4c628" stroke="#202321" stroke-width="4"/>
+    </g>
+  </g>
+  <g id="person" stroke="#202321" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M551 1080 L580 822 Q613 738 735 715 L762 668 L896 651 L954 704 Q1072 737 1120 864 L1156 1080 Z" fill="#fffdf4"/>
+    <path d="M551 1080 L580 822 Q613 738 735 715 L762 668 L896 651 L954 704 Q1072 737 1120 864 L1156 1080 Z" fill="url(#shirt-mark)"/>
+    <path d="M747 701 L764 618 L872 583 L883 691 L843 739 L794 723 Z" fill="#fffdf4"/>
+    <path d="M745 701 L790 777 L842 740 L880 778 L907 696" fill="#fffdf4"/>
+    <path d="M705 416 Q699 341 779 323 Q874 310 918 375 L916 440 L949 487 L924 502 L933 521 L919 533 Q911 572 865 586 L849 646 L772 643 L748 557 Q696 528 705 416 Z" fill="#fffdf4"/>
+    <path d="M701 488 C654 504 633 476 647 447 C607 442 603 405 626 381 C593 357 612 321 643 321 C630 282 666 261 696 279 C702 235 746 227 773 254 C798 220 843 240 847 264 C887 236 925 270 913 303 C957 307 956 350 933 368 C942 399 918 425 890 416 C868 401 865 381 849 368 C826 397 790 412 757 409 L744 479 L722 498 Z" fill="#202321"/>
+    <path d="M723 452 Q689 431 690 476 Q696 511 724 504 L736 487 M704 469 Q718 458 718 480" fill="#fffdf4" stroke-width="3.5"/>
+    <path d="M855 434 Q877 423 895 438 M858 459 L887 465 M877 459 l-4 17 M908 443 L906 479 L917 483 M918 523 L895 519 M860 563 Q875 572 893 560" fill="none" stroke-width="4"/>
+    <path d="M1008 850 L1113 979 Q1113 1010 1083 1018 Q1044 1021 1012 980 L905 850 L952 794 Z" fill="#fffdf4"/>
+    <path d="M1008 850 L971 744 L953 656 Q941 619 923 593 L910 559 Q907 547 897 553 Q889 559 899 578 L908 599 L879 581 Q869 575 864 582 Q860 590 876 602 L895 620 L864 612 Q850 610 850 619 Q848 628 874 633 L895 641 Q879 639 866 640 Q850 643 857 653 L893 667 L906 684 L930 785 L952 854 Z" fill="#fffdf4" stroke-width="3.5"/>
+    <path d="M953 819 L1008 850 L989 880 L940 847 Z" fill="#fffdf4"/>
+    <path d="M674 885 L688 1080 M806 791 L826 1080 M957 734 Q993 754 1010 800" fill="none" stroke-width="3"/>
+    <path d="M830 821 h0 M833 896 h0 M839 974 h0" stroke-width="9"/>
+  </g>
+  <path id="connection" d="M1041 483 Q1114 443 1199 452" fill="none" stroke="#202321" stroke-width="3" stroke-dasharray="9 10"/>
+</svg>

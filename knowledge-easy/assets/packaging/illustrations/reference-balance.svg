@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <title>问题与答案之间 · 编辑插画临摹研究</title>
+  <desc>按用户指定的 BUCK / Notion Think it. Make it. 地铁海报临摹重绘；来源见 references/sources.md。人物与道具为可编辑矢量图层。</desc>
+  <rect width="1920" height="1080" fill="#f6ca23"/>
+  <g id="question" fill="none" stroke="#fffdf3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M440 376 C492 291 646 308 662 398 C677 488 552 509 552 581 L567 655" stroke-width="76"/>
+    <path d="M591 745 L593 753" stroke-width="70"/>
+  </g>
+  <g id="answer">
+    <path d="M1352 270 C1392 196 1473 199 1469 251 C1466 281 1419 339 1360 438 C1347 459 1322 449 1326 424 Z" fill="#e84918"/>
+    <circle cx="1327" cy="500" r="37" fill="#086ee8"/>
+    <path d="M824 785 C888 515 1120 313 1299 491" fill="none" stroke="#282c22" stroke-width="3"/>
+    <circle cx="824" cy="785" r="27" fill="#f6ca23" stroke="#282c22" stroke-width="3" stroke-dasharray="11 7"/>
+  </g>
+  <g id="balance" stroke="#232724" stroke-width="4" stroke-linejoin="round">
+    <path d="M1115 897 L1047 1037 L1204 1037 Z" fill="#fffef3"/>
+    <path d="M1115 897 L1204 1037 L1172 1037 Z" fill="#e0ddce" stroke="none"/>
+    <path d="M713 808 L1548 977 L1555 947 L719 780 Z" fill="#fffef3"/>
+  </g>
+  <g id="person" transform="translate(1128 485) scale(1.62) rotate(7 65 260)" stroke="#202724" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 79 C0 78 -3 57 12 47 C-4 34 9 17 25 20 C20 -1 36 -14 50 -2 C64 2 62 13 61 21 C83 17 95 33 84 49 C98 61 91 80 74 84 L60 110 Z" fill="#202724" stroke-width="2.5"/>
+    <path d="M44 69 C58 64 71 70 72 83 L69 95 L77 100 L68 104 C67 117 55 124 42 118 L38 131 L20 125 L32 105 C25 92 29 76 44 69 Z" fill="#fffdf4" stroke-width="2.1"/>
+    <path d="M39 84 Q44 79 49 82 M56 81 Q61 79 65 83" fill="none" stroke-width="1.7"/>
+    <path d="M42 90 l3 1 M59 89 l3 1 M52 90 l-1 7 5 1 M49 108 Q55 111 60 107" fill="none" stroke-width="1.7"/>
+    <path d="M-27 128 L22 125 L37 136 L64 126 L118 122 L124 145 L79 157 L79 179 L35 192 L15 158 L-30 149 Z" fill="#fffdf4" stroke-width="2.4"/>
+    <path d="M-23 135 L17 133 M-21 142 L19 141 M22 133 L69 143 M22 141 L70 151 M25 149 L72 160 M30 159 L74 169 M37 170 L76 177 M76 133 L117 128 M79 140 L119 135 M81 148 L120 142" fill="none" stroke-width="2"/>
+    <path d="M-29 134 L-38 128 L-47 111 Q-49 107 -52 109 L-48 120 L-56 111 Q-62 108 -59 114 L-52 126 L-63 119 Q-67 118 -66 123 L-54 135 L-64 131 Q-68 133 -62 138 L-43 151 L-29 148 Z" fill="#fffdf4" stroke-width="2"/>
+    <path d="M120 128 L127 119 L135 105 Q139 103 139 108 L134 118 L144 108 Q148 107 147 112 L139 125 L150 117 Q154 116 153 121 L141 134 L150 129 Q156 131 149 137 L133 148 L124 145 Z" fill="#fffdf4" stroke-width="2"/>
+    <path d="M34 179 L78 169 L94 242 L59 246 L52 207 L32 243 L3 229 Z" fill="#202724" stroke-width="2.2"/>
+    <path d="M2 228 L29 240 L20 249 Q6 246 -8 236 Q-11 229 -4 226 Z M60 242 L93 240 L97 250 Q109 255 111 261 Q99 268 78 259 L62 254 Z" fill="#fffdf4" stroke-width="2.3"/>
+    <path d="M52 198 L65 183" fill="none" stroke="#fffdf4" stroke-width="1.5"/>
+  </g>
+</svg>

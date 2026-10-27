@@ -1,0 +1,298 @@
+[
+  {
+    "id": "hero",
+    "name": "人物与问题",
+    "purpose": "让一个抽象问题具有可感受的主体。",
+    "inputs": "人物或物件素材、主词、问题、解释重点",
+    "examples": "心理：看见与理解；历史：人物与时代；社会：个人与群体",
+    "motion": "先建立完整主体，概念与问题依次进入阅读位置。",
+    "start": 0,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "left": "看<br>见",
+      "right": "理<br>解",
+      "question": "你看到的，未必是全部"
+    },
+    "media_slots": {
+      "bg": "chess",
+      "portrait-film": "blue"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "compare",
+    "name": "概念对照",
+    "purpose": "把容易混淆的两个概念放进共同尺度。",
+    "inputs": "两项概念、共同对象、各自解释",
+    "examples": "知道 / 理解；意图 / 结果；制度 / 执行",
+    "motion": "先同框，再分别强调两边；不靠红叉判断对错。",
+    "start": 8,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "a-label": "叫得出名字",
+      "b-label": "说得清原因",
+      "ta": "熟悉",
+      "tb": "理解",
+      "q": "同一件事，两种理解的深度"
+    },
+    "media_slots": {
+      "bg": "book",
+      "a-film": "book",
+      "b-film": "typing"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "chapter",
+    "name": "章节路径",
+    "purpose": "给较长的一段讲述建立路线。",
+    "inputs": "二至五个短标题、章节素材、当前项",
+    "examples": "观察 / 追问 / 解释 / 重估；起点 / 通道 / 节点 / 影响",
+    "motion": "按横向中文阅读次序建立章节，重点随当前讲述转移。",
+    "start": 16,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "把问题，一层层打开",
+      "note": "每一步，都让前一个问题变得更清楚"
+    },
+    "media_slots": {
+      "bg": "rain",
+      "film0": "chess",
+      "film1": "book",
+      "film2": "notes",
+      "film3": "street"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "evidence",
+    "name": "证据与解释",
+    "purpose": "把判断放回可观察的证据与上下文。",
+    "inputs": "资料图像、局部焦点、两层说明",
+    "examples": "书页与解读；档案与人物；图片与上下文",
+    "motion": "材料保持平面与可读，焦点从关键细节转向解释。",
+    "start": 24,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "large-label": "先看材料，再作解释",
+      "t": "证据"
+    },
+    "media_slots": {
+      "bg": "book",
+      "large-film": "book"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "relation",
+    "name": "人物与关系",
+    "purpose": "显示谁在影响谁，以及通过什么关系。",
+    "inputs": "人物或实体、关系名称、方向",
+    "examples": "朋友与选择；城市与贸易；组织与制度",
+    "motion": "主体先出现，关系随后建立，最后突出关键联系。",
+    "start": 32,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "是谁，影响了这个选择？",
+      "a-label": "身边的人",
+      "b-label": "看见的生活",
+      "c-label": "我的愿望",
+      "n1": "认同",
+      "n2": "向往"
+    },
+    "media_slots": {
+      "bg": "street",
+      "a-film": "chess",
+      "b-film": "notes",
+      "c-film": "blue"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "feedback",
+    "name": "反馈循环",
+    "purpose": "解释一个行为怎样强化自身。",
+    "inputs": "三个阶段、真实回返关系、出口",
+    "examples": "期待 / 行动 / 反馈；压力 / 回避 / 更难开始",
+    "motion": "连线逐段完成，循环闭合后停留，不持续旋转。",
+    "start": 40,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "为什么越来越难开始？",
+      "p0-label": "担心结果",
+      "p1-label": "暂时回避",
+      "p2-label": "更难开始",
+      "note": "短暂的轻松，也可能强化下一次回避"
+    },
+    "media_slots": {
+      "bg": "typing",
+      "p0-film": "clock",
+      "p1-film": "typing",
+      "p2-film": "notes"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "quantity",
+    "name": "数量与概率",
+    "purpose": "把一个显眼结果放回完整样本。",
+    "inputs": "总量、选中量、单位、数据性质",
+    "examples": "十次尝试的三个结果；不同群体的比例",
+    "motion": "先看整体，再突出子集；数值必须与对象数量一致。",
+    "start": 48,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "title": "先看见整体，再讨论结果",
+      "total": "10",
+      "total-label": "次尝试",
+      "part": "3",
+      "part-label": "次完成",
+      "note": "演示数据"
+    },
+    "media_slots": {
+      "bg": "rain"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "timeline",
+    "name": "时间与转折",
+    "purpose": "让同一对象在时间里发生变化。",
+    "inputs": "三个阶段、对象、转折点、真实年份或阶段名",
+    "examples": "一件事的前后；一个观点的形成；一个制度的变化",
+    "motion": "时间沿单一方向推进，转折点保留足够阅读时间。",
+    "start": 56,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "一个判断，是怎样改变的"
+    },
+    "media_slots": {
+      "bg": "book",
+      "time-film0": "chess",
+      "time-film1": "book",
+      "time-film2": "notes"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "map-focus",
+    "name": "地图定位",
+    "purpose": "先回答故事发生在哪里。",
+    "inputs": "地理底图、范围、焦点坐标、地名与时代",
+    "examples": "城市、山口、港口、文化区域",
+    "motion": "从区域定位到地点，镜头变化与标记使用同一坐标系。",
+    "start": 64,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "把故事，放回地图",
+      "note": "先给空间坐标，再进入人物与事件"
+    },
+    "media_slots": {
+      "bg": "book"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "map-route",
+    "name": "路线与传播",
+    "purpose": "显示行进方向、节点和先后。",
+    "inputs": "底图、路线坐标、节点、顺序、实际或示意标记",
+    "examples": "迁徙、商路、使节行程、知识传播",
+    "motion": "路线逐段生长，地名随到达出现；不把绘制速度当行程时长。",
+    "start": 72,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "沿着一条路，理解联系",
+      "note": "路线方向示意"
+    },
+    "media_slots": {
+      "bg": "book"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "map-period",
+    "name": "时期与范围对照",
+    "purpose": "比较同一底图上两个阶段的空间变化。",
+    "inputs": "两期年代、同一投影、各期边界数据及来源",
+    "examples": "疆域、行政区、控制范围、文化传播区",
+    "motion": "保持比例与观察范围，图层交替或并列，标注不确定边界。",
+    "start": 80,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "t": "保持同一尺度，才能比较",
+      "note": "同一底图 · 同一比例 · 不同观察范围"
+    },
+    "media_slots": {
+      "bg": "book"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  },
+  {
+    "id": "context",
+    "name": "局部与全景",
+    "purpose": "让被忽略的条件进入解释。",
+    "inputs": "同一素材、局部焦点、全景、判断变化",
+    "examples": "一句话的上下文；一个表情的处境；一件文物的细节",
+    "motion": "先局部，后扩展；原来的对象一直留在画面中。",
+    "start": 88,
+    "duration": 8,
+    "source": "../../base_catalog.py",
+    "text_slots": {
+      "a": "先看见一个表情",
+      "b": "再看见他所处的情境"
+    },
+    "media_slots": {
+      "bg": "chess",
+      "detail": "chess"
+    },
+    "configuration": {
+      "text": {},
+      "media": {}
+    }
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "id": "portrait-study",
+    "style": "etch",
+    "title": "让思考被看见",
+    "purpose": "依照选定参考临摹侧面人物、表情、衣褶和原色思维图形。",
+    "source": "../illustrations/reference-portrait.svg",
+    "duration": 12,
+    "labels": [
+      {
+        "id": "title",
+        "text": "让思考被看见",
+        "x": 160,
+        "y": 92,
+        "width": 1250,
+        "size": 64,
+        "font": "sans",
+        "at": 0.25,
+        "weight": 700,
+        "color": "#202724"
+      }
+    ],
+    "configuration": {},
+    "motion": [
+      {
+        "target": "person",
+        "type": "move",
+        "at": 0,
+        "duration": 0.7,
+        "from": {
+          "x": -20,
+          "opacity": 0
+        },
+        "to": {
+          "x": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "connection",
+        "type": "draw",
+        "at": 1.3,
+        "duration": 0.65
+      },
+      {
+        "target": "thought-blue",
+        "type": "move",
+        "at": 2.0,
+        "duration": 0.55,
+        "from": {
+          "x": 30,
+          "opacity": 0
+        },
+        "to": {
+          "x": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "thought-red",
+        "type": "move",
+        "at": 2.8,
+        "duration": 0.55,
+        "from": {
+          "y": 24,
+          "opacity": 0
+        },
+        "to": {
+          "y": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "thought-star",
+        "type": "move",
+        "at": 3.55,
+        "duration": 0.45,
+        "from": {
+          "scale": 0.82,
+          "opacity": 0
+        },
+        "to": {
+          "scale": 1,
+          "opacity": 1
+        }
+      }
+    ],
+    "design_reference": "art-reference-portrait"
+  },
+  {
+    "id": "balance-study",
+    "style": "print",
+    "title": "在问题和答案之间",
+    "purpose": "临摹参考海报中的人物、跷板、提问与回答之间的构图关系。",
+    "source": "../illustrations/reference-balance.svg",
+    "duration": 12,
+    "labels": [
+      {
+        "id": "title",
+        "text": "在问题和答案之间",
+        "x": 160,
+        "y": 92,
+        "width": 1250,
+        "size": 64,
+        "font": "sans",
+        "at": 0.25,
+        "weight": 700,
+        "color": "#202724"
+      }
+    ],
+    "configuration": {},
+    "motion": [
+      {
+        "target": "balance",
+        "type": "fade",
+        "at": 0,
+        "duration": 0.7
+      },
+      {
+        "target": "person",
+        "type": "fade",
+        "at": 0.3,
+        "duration": 0.6
+      },
+      {
+        "target": "question",
+        "type": "move",
+        "at": 0.1,
+        "duration": 0.6,
+        "from": {
+          "x": -24,
+          "opacity": 0
+        },
+        "to": {
+          "x": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "answer",
+        "type": "fade",
+        "at": 2.4,
+        "duration": 0.8
+      }
+    ],
+    "design_reference": "art-reference-balance"
+  },
+  {
+    "id": "writing-study",
+    "style": "print",
+    "title": "让想法落在纸上",
+    "purpose": "临摹纸张、书写手势与原色图形，保留可编辑的独立图层。",
+    "source": "../illustrations/reference-writing.svg",
+    "duration": 12,
+    "labels": [
+      {
+        "id": "title",
+        "text": "让想法落在纸上",
+        "x": 160,
+        "y": 92,
+        "width": 1050,
+        "size": 64,
+        "font": "sans",
+        "at": 0.25,
+        "weight": 700,
+        "color": "#202724"
+      }
+    ],
+    "configuration": {},
+    "motion": [
+      {
+        "target": "paper",
+        "type": "move",
+        "at": 0.1,
+        "duration": 0.7,
+        "from": {
+          "y": 32,
+          "opacity": 0
+        },
+        "to": {
+          "y": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "hand",
+        "type": "move",
+        "at": 1.1,
+        "duration": 0.8,
+        "from": {
+          "x": 100,
+          "opacity": 0
+        },
+        "to": {
+          "x": 0,
+          "opacity": 1
+        }
+      },
+      {
+        "target": "idea",
+        "type": "fade",
+        "at": 2.05,
+        "duration": 0.5
+      },
+      {
+        "target": "window",
+        "type": "move",
+        "at": 3.4,
+        "duration": 0.6,
+        "from": {
+          "y": -18,
+          "opacity": 0
+        },
+        "to": {
+          "y": 0,
+          "opacity": 1
+        }
+      }
+    ],
+    "design_reference": "art-reference-writing"
+  }
+]

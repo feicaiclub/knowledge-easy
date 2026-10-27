@@ -1,0 +1,49 @@
+/* 中文组件：材料、字级、线条各有分工。场景负责背景，组件不强加皮肤。 */
+.ev-component{position:absolute;inset:0;color:var(--paper);pointer-events:none;isolation:isolate}
+.ev-component .ev-photo,.ev-diagram-node,.ev-context-window,.ev-atlas{z-index:20}
+.ev-component .ev-svg{z-index:30;pointer-events:none}
+.ev-component>.ev-title,.ev-component>.ev-sans,.ev-component>.ev-number,.ev-map-note{z-index:40}
+.ev-component>.ev-paper,.ev-component>.ev-record{z-index:10}
+.ev-diagram-node{position:absolute}
+.ev-proof-mount{position:absolute;left:-10px;top:-10px;background:#f0eee5;border:1px solid #faf8f1;box-shadow:0 6px 14px #182a2b17}
+.ev-context-window{position:absolute;left:190px;top:220px;width:1050px;height:590px;overflow:hidden}
+.ev-title{position:absolute;font-family:PackSerif,serif;font-weight:500;letter-spacing:.5px;line-height:1.35}
+.ev-sans{position:absolute;font-family:PackSans,sans-serif;font-weight:450;letter-spacing:.2px;line-height:1.6}
+.ev-number{position:absolute;font-family:PackNumber,sans-serif;letter-spacing:1px;line-height:1.12;font-variant-numeric:tabular-nums}
+.ev-photo{position:absolute;overflow:hidden}
+.ev-photo-caption{position:absolute;left:0;right:0;bottom:0;padding:65px 28px 24px;background:linear-gradient(transparent,#102127c9);font:450 36px/1.45 PackSans;letter-spacing:.3px;color:#f4f1e8}
+.ev-paper{position:absolute;background:#f2efe6;color:#293e43}
+.ev-record{position:absolute;background:#f2efe6;color:#293e43;border-left:2px solid #9da99f}
+.ev-record-number{position:absolute;left:30px;top:30px;width:88px;height:72px;font:60px/1 PackNumber;color:#7d8c82}
+.ev-record-name{position:absolute;left:140px;top:26px;font:500 58px/1.35 PackSerif;letter-spacing:.5px}
+.ev-record-note{position:absolute;left:145px;top:119px;font:28px/1.5 PackSans;color:#677b72}
+.ev-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+.ev-node-name{margin-top:26px;text-align:center;font:500 55px/1.35 PackSerif;letter-spacing:.5px}
+.ev-hairline{position:absolute;height:1px;background:var(--gold);transform-origin:left center}
+.ev-quote-paper{left:190px;top:210px;width:1540px;height:560px}
+.ev-dateline{position:absolute;left:150px;top:125px;display:flex;gap:22px;align-items:baseline;padding:8px 0;color:var(--paper)}
+.ev-dateline b{font:44px PackNumber;color:var(--gold)}.ev-dateline span{font:28px PackSans;letter-spacing:.5px}
+.ev-milestone{position:absolute;top:180px;width:640px;height:520px;border-top:1px solid #c2a47b70;padding:32px 12px}
+.ev-milestone-date{font:116px/1.1 PackNumber;color:var(--gold);letter-spacing:1px}
+.ev-milestone-context{font:34px/1.6 PackSans;color:var(--quiet);margin-top:18px}
+.ev-milestone-statement{font:500 72px/1.4 PackSerif;letter-spacing:.5px;margin-top:65px}
+.ev-atlas{position:absolute;left:120px;top:190px;width:1680px;height:678px;background:#edece2;overflow:hidden}
+.ev-atlas .kp-map{height:678px}.ev-atlas .land{fill:#c8d0c3;stroke:#718b83;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.ev-atlas .river{stroke:#779eaa;stroke-width:1.4;opacity:.75;fill:none;vector-effect:non-scaling-stroke}
+.ev-atlas .gridline{stroke:#718b83;stroke-width:.7;opacity:.13;fill:none;vector-effect:non-scaling-stroke}
+.ev-atlas .ev-map-place{font:500 34px PackSans;fill:#294146;paint-order:stroke;stroke:#f0eee6;stroke-width:6px;stroke-linejoin:round}
+.ev-map-route{fill:none;stroke:#a75a49;stroke-width:3.5;stroke-linecap:round}
+.ev-focus-ring{fill:#a75a4910;stroke:#a75a49;stroke-width:1.6}
+.ev-map-caption{position:absolute;left:38px;bottom:24px;font:28px/1.5 PackSans;color:#526f67}
+.ev-map-note{position:absolute;padding:30px 34px;background:#f2efe6f5;color:#294146;border-left:2px solid #a75a49}
+.ev-map-note-label{font:28px/1.5 PackSans;color:#6d7f75;letter-spacing:.5px}
+.ev-map-note-title{font:500 52px/1.45 PackSerif;letter-spacing:.5px;margin-top:18px}
+.ev-map-note-small{font:28px/1.65 PackSans;color:#526f67;margin-top:16px}
+
+/* Material and hierarchy refinement; positions remain owned by the component. */
+.ev-photo{border:1px solid #f4e7c526;box-shadow:0 24px 58px #060b0d48}
+.ev-paper{background:linear-gradient(135deg,#faf2df,#e6d7bc);box-shadow:0 24px 64px #080b0f45,inset 0 0 0 1px #fff8}
+.ev-record{box-shadow:0 18px 46px #080b0f30}
+.ev-atlas{box-shadow:0 20px 60px #05080b40,inset 0 0 0 2px #dac69580}
+.ev-title{font-weight:500}
+.ev-photo-caption{background:linear-gradient(transparent,#0e1725e3);text-shadow:0 2px 9px #0009}

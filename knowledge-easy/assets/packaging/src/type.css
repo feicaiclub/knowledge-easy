@@ -1,0 +1,13 @@
+/* Glyph face, lit rim and shallow depth remain independently editable. */
+.ke-type-gold,.ke-type-ivory{font-family:PackSerif,serif;font-weight:600;letter-spacing:.065em;text-shadow:none}
+.ke-type-gold{color:#dfc793;text-shadow:-.7px -1px 0 #fff3c3,1px 1px 0 #897448,2px 2px 0 #4c422e,3px 5px 8px #0007}
+.ke-type-ivory{color:#ece3ce;text-shadow:-.6px -1px 0 #fffaf0,1px 1px 0 #94887a,2px 3px 5px #0007}
+.ke-metal{position:absolute;font-family:PackSerif,serif;font-weight:500;line-height:1.2;isolation:isolate}
+.ke-metal-word{display:flex;justify-content:center;gap:.26em;white-space:nowrap}
+.ke-glyph{display:inline-block;position:relative;font:inherit;font-style:normal;transform:scaleX(.88);transform-origin:center center;isolation:isolate}
+.ke-glyph b{display:block;position:relative;font:inherit;color:transparent;-webkit-text-fill-color:transparent;background:linear-gradient(38deg,#fff7df 0%,#f2e4bd 23%,#c5aa74 49%,#b29965 76%,#e1ca97 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-stroke:.5px #d7c090;filter:drop-shadow(-.7px 1px 0 #fff8db);z-index:2}
+.ke-glyph:before,.ke-glyph:after{content:attr(data-copy);position:absolute;inset:0;pointer-events:none;font:inherit}
+.ke-glyph:before{color:#534936;-webkit-text-stroke:.8px #282820;transform:translate(2px,-2px);text-shadow:2px 4px 0 #25291f,3px 7px 8px #0005;z-index:0}
+.ke-glyph:after{color:transparent;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.7' d='M0 0h80v80H0z'/%3E%3C/svg%3E");background-clip:text;-webkit-background-clip:text;mix-blend-mode:soft-light;opacity:.16;z-index:3}
+.ke-cinema-vignette{position:absolute;inset:0;background:linear-gradient(90deg,#060d1660,transparent 34%,transparent 66%,#060d1660);pointer-events:none}
+.ke-type-rule{height:1px;background:linear-gradient(90deg,transparent,#e9d49b,transparent);position:absolute}

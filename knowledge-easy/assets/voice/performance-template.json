@@ -1,0 +1,12 @@
+{
+  "language": "zh-CN",
+  "instruction": "按完整意群或段落填写 segments。text 保留正式稿，tts_text 仅用于读音修正；direction 写具体重音、停顿和情绪，实际传给模型，效果仍需听审。替换示例内容后作为项目的 voice-plan.json。",
+  "segments": [
+    {
+      "id": "opening",
+      "text": "知道发生了什么，只是开始。更重要的是，理解当时的人为什么会这样选择。",
+      "direction": "前句平实、连贯；第二句重读“更重要”，自然带过“的是”，再把“为什么”说清楚；句尾干脆收住。",
+      "gap_after": 0
+    }
+  ]
+}

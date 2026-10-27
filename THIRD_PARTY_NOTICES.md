@@ -1,35 +1,7 @@
-# Licenses and third-party material
+# 许可与第三方来源
 
-## Original work
+完整、随 Skill 一起分发的说明见 [许可与来源](knowledge-easy/references/sources.md)。
 
-FEICAI's original code, instructions, documentation, and independently synthesized voice reference and English pilot are provided under the [MIT License](LICENSE). The voice profile records how the reference was created. The FEICAI name and logo identify the author; the software license does not imply endorsement of a downstream project.
+本项目代码的 MIT 许可不替代字体原许可、外部模型条款或第三方视觉作品的权利。当前绘图代码未包含 Lemo-Opuscar 的绘图内核。临摹研究 SVG 保留 BUCK / Notion 的来源说明，不宣称第三方角色或构图为本项目原创。
 
-## Project branding
-
-The [Knowledge Easy banner](assets/readme/knowledge-easy-banner.png) was generated with OpenAI's image-generation tool using a portrait supplied by FEICAI for this project. The original photograph is not included. The banner and FEICAI likeness identify the project and its author; the software's MIT License does not grant rights to use the author's likeness or imply their endorsement of another project.
-
-## Fonts and map data
-
-The bundled fonts retain their SIL Open Font License terms:
-
-- [Source Serif 4](assets/packaging/fonts/source-serif-4-OFL.txt)
-- [Inter](assets/packaging/fonts/inter-OFL.txt)
-- [Noto Serif SC](assets/packaging/fonts/notoserifsc-OFL.txt)
-- [Noto Sans SC](assets/packaging/fonts/notosanssc-OFL.txt)
-- [Barlow Condensed](assets/packaging/fonts/barlow-OFL.txt)
-
-The map geometry comes from Natural Earth and is public domain. See the [source record](assets/packaging/src/maps/source.json) and [Natural Earth's terms](https://www.naturalearthdata.com/about/terms-of-use/). Historical labels, routes, and borders still need evidence for the period a film discusses.
-
-## Demonstration media
-
-The handbook's still previews and README screenshots show the visual system and completed edits. Studio screenshots were captured in an isolated demonstration workspace; sample comments are illustrative. Some contain third-party footage. Those underlying images, performances, and footage are **not relicensed under MIT**. The still previews document the layouts; they do not grant rights to extract or redistribute the underlying footage as stock media.
-
-Raw third-party sample clips and the original film/TV source footage are not distributed in this repository. Supply footage you are licensed to use when rebuilding a catalog or making a film. See [demo media](assets/packaging/demo-media/README.md) and the [recorded asset sources](references/assets.md). Mixkit's [licenses](https://mixkit.co/license/) and [terms](https://mixkit.co/terms/) govern its items separately.
-
-## External software and services
-
-Runtime packages, browsers, and model weights are installed separately and retain their own licenses and terms. This repository does not include them or grant additional rights to them. The approved stack includes Qwen3-TTS, MLX Audio, MLX Whisper, HyperFrames, GSAP, FFmpeg, and Pedalboard. Optional music and effects services require the user's own access and applicable rights.
-
-## Drawing kernels
-
-The brush-stroke and three-plate print kernels in `assets/packaging/src/artwork/brush.js` and `print.js` are adapted from [Lemo-Opuscar](https://github.com/feicaiclub/lemo-opuscar/tree/413a6bd6d78ebd3bdd5abaec9538a26867f890df), originally copyright (c) 2026 LemoLab, under MIT. The complete [license](assets/packaging/src/artwork/LEMO-LICENSE.txt) travels with those files. Knowledge Easy's drawing runtime and six example subjects/staging implementations are original. The kernels are reusable techniques; no upstream demo storyline, character or score is bundled.
+本仓库不提供第三方影视原片、外部运行环境或模型权重。

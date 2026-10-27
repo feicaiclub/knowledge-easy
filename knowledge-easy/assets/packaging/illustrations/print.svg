@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<path fill="#f2eee3" d="M0 0H1600V900H0Z"/>
+<path fill="#e7dfc9" d="M126 210H1125V748H126Z"/>
+<path fill="#68877e" d="M126 210H1125V308H126Z"/>
+<path fill="#355c5e" d="M730 748V454C730 243 1038 243 1038 454V748Z"/>
+<path fill="#e9b88b" d="M789 748V455C789 323 981 323 981 455V748Z"/>
+<path fill="#bc784e" d="M904 748V459C904 397 941 363 981 355V748Z"/>
+<path fill="#d6c3a4" d="M126 748H1125L1468 829H385Z"/>
+<path fill="#bd744b" d="M789 748H904L1189 829H1073Z"/>
+<g fill="#2e5860"><path d="M205 399H301V578H205Z"/><path d="M371 399H467V578H371Z"/><path d="M537 399H633V578H537Z"/></g>
+<g stroke="#b2c0ad" stroke-width="3"><path d="M253 399V578M419 399V578M585 399V578M205 455H301M371 455H467M537 455H633"/></g>
+<path d="M1137 749C1151 583 1149 399 1104 267" fill="none" stroke="#334c46" stroke-width="18"/>
+<path d="M1145 527Q1210 411 1280 368M1141 438Q1068 356 1016 337" fill="none" stroke="#334c46" stroke-width="10"/>
+<path id="canopy" d="M1101 462C1024 458 970 416 986 356C919 308 953 219 1027 216C1058 134 1180 138 1219 204C1305 181 1374 264 1331 336C1361 404 1285 478 1214 450C1174 487 1135 482 1101 462Z" fill="#819178"/>
+<path d="M1104 449C1109 345 1174 273 1219 204C1305 181 1374 264 1331 336C1361 404 1285 478 1214 450Z" fill="#4c7768" opacity=".75"/>
+<path d="M1034 240Q1003 300 1093 345Q1127 269 1034 240M1236 289Q1171 330 1212 405Q1279 367 1236 289" fill="#aab393"/>
+<path d="M1103 291Q1124 382 1145 438M1252 347Q1192 417 1148 495" fill="none" stroke="#edf0dd" stroke-width="2" opacity=".6"/>
+<path id="shade" d="M1138 751Q1281 731 1464 776Q1404 812 1245 799Z" fill="#58766a" opacity=".35"/>
+<g transform="translate(650 690)"><path d="M-50 -53L54 -53L54 -40L-50 -40Z" fill="#b4754b"/><path d="M-42 -40V35M46 -40V35" stroke="#334d48" stroke-width="7"/><path d="M-19 -72Q0 -109 19 -71L21 -45H-21Z" fill="#355c5e"/><circle cy="-123" r="19" fill="#b4754b"/><path d="M-18 -129Q0 -152 19 -128L8 -135L-10 -123Z" fill="#334d48"/><path d="M-8 -45L-2 -10L29 23M14 -45L29 -10L52 15" fill="none" stroke="#355c5e" stroke-width="12"/></g>
+</svg>

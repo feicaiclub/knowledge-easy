@@ -1,202 +1,73 @@
-<div align="center">
-
-**English** | [简体中文](README.zh-CN.md)
-
 # Knowledge Easy
 
-**Ideas, brought to light.**
+废才 FEICAI 的中文知识视频 Skill。覆盖文稿、素材选择、视觉设计、插画、剪辑、配音、声音与审片，也可只完成其中一个环节。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-d8b676)](LICENSE)
-[![Codex Skill](https://img.shields.io/badge/Codex-Skill-151c1c)](https://learn.chatgpt.com/docs/build-skills)
-[![English + Chinese](https://img.shields.io/badge/Films-English%20%2B%20Chinese-8db7b2)](references/language.md)
-[![FEICAI CLUB](https://img.shields.io/badge/By-FEICAI%20CLUB-2B4CF5)](https://www.feicaiclub.cn)
+## 安装
 
-Give Codex a question. Knowledge Easy researches it, shapes a story, builds the visual explanation,<br>
-and brings the finished film into a local review room.
-
-<img src="assets/readme/knowledge-easy-banner.png" alt="Knowledge Easy: FEICAI's 3D cartoon portrait beside a book and film projector, bringing ideas to light" width="100%" />
-
-[Install](#install-in-codex) · [Finished films](#from-finished-films) · [Visual system](#one-visual-language-many-kinds-of-explanation) · [Lazy Studio](#lazy-studio-a-local-review-room) · [About](#about-the-author)
-
-</div>
-
-## Install in Codex
-
-**Run this in a terminal** with Node.js 22.20+ (including npm/npx) and Git installed:
+本机有 Node.js / npm（含 npx）与 Git 后，运行：
 
 ```bash
 npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
 ```
 
-This uses Vercel's [Skills CLI](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) to download the skill from GitHub and install it for Codex. `--agent codex` selects Codex; `--global` makes it available across projects. The skill and its bundled resources go into `~/.agents/skills/knowledge-easy/`.
+更新时如需先卸载旧版：
 
-<details>
-<summary>Alternative: install directly from a Codex chat</summary>
-
-If you do not have Node.js or prefer to let Codex handle installation, paste this into a Codex chat:
-
-```text
-$skill-installer Install https://github.com/feicaiclub/knowledge-easy from the repository root (path: .), with the skill name knowledge-easy.
+```bash
+npx -y skills remove knowledge-easy --agent codex --global --yes
+npx -y skills add feicaiclub/knowledge-easy --agent codex --global --yes
 ```
 
-This is an instruction for Codex's [built-in Skill Installer](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use), not a terminal command. Choose either installation method; you do not need both.
+Codex 的安装目录为 `~/.agents/skills/knowledge-easy/`。仓库只有一个 Skill，安装命令会找到 `knowledge-easy/SKILL.md`；仓库根目录的说明、校验工具和测试不会进入 Skill。
 
-</details>
-
-Codex detects newly installed skills automatically. If Knowledge Easy does not appear, restart Codex.
-
-Then tell it what you want to make:
+使用时可以直接说：
 
 ```text
-$knowledge-easy Make an English explainer about why we rationalize decisions we have already made. Build it around a concrete story. Use the series narrator and visual system, with footage, music, and graphics that follow the argument. Deliver a finished film and open it in Lazy Studio for review.
+用 Knowledge Easy 制作一条中文知识视频。先根据这个选题和稿子确定视觉方案，使用组件源码与插画工具完成画面，按稿意安排配音和剪辑，最后检查导出的画面、动作和完整声音。
 ```
 
-You can ask for a complete film, topic ideas, a script, or a revision. Dependencies are checked and installed **when needed**, outside the skill folder. If setup fails on your machine, Codex diagnoses the cause and works through compatible alternatives, explaining meaningful differences in the result.
+也可以明确只写稿、改图或审阅源码，Skill 按请求范围执行。
 
-## From finished films
+## 文件夹与分享
 
-### History: a person's choices, seen from the inside
-
-The film about Xun Yu follows the tension between the man he helped and the dynasty he hoped to preserve. It moves between dramatic footage, geographic decisions, evidence, and reflection.
-
-<img src="assets/showcase/history-portrait.jpg" alt="Xun Yu in the finished historical explainer" width="100%" />
-
-<table>
-<tr><td width="50%"><img src="assets/showcase/history-identity.jpg" alt="Introduce the person and their position" width="100%" /><br><b>Introduce the person and their position</b></td><td width="50%"><img src="assets/showcase/history-map.jpg" alt="Make a strategic choice visible" width="100%" /><br><b>Make a strategic choice visible</b></td></tr>
-<tr><td width="50%"><img src="assets/showcase/history-context.jpg" alt="Shift attention across the same map" width="100%" /><br><b>Shift attention across the same map</b></td><td width="50%"><img src="assets/showcase/history-evidence.jpg" alt="Put a proposal beside its implications" width="100%" /><br><b>Put a proposal beside its implications</b></td></tr>
-<tr><td width="50%"><img src="assets/showcase/history-relationships.jpg" alt="Separate two centers of power" width="100%" /><br><b>Separate two centers of power</b></td><td width="50%"><img src="assets/showcase/history-roster.jpg" alt="Bring in names when the story needs them" width="100%" /><br><b>Bring in names when the story needs them</b></td></tr>
-</table>
-
-<img src="assets/showcase/history-question.jpg" alt="The central conflict in the Xun Yu film: did supporting Cao Cao still mean supporting the Han?" width="100%" />
-
-### Psychology: an everyday situation becomes a clearer judgment
-
-The sunk-cost film starts with an ordinary movie ticket and follows the reasoning into work, relationships, and the time still ahead. Real scenes give the explanation a human setting; graphics make the pattern easier to see.
-
-<table>
-<tr><td width="50%"><img src="assets/showcase/psychology-cost.jpg" alt="Money already spent. Time still ahead." width="100%" /><br><b>Money already spent. Time still ahead.</b></td><td width="50%"><img src="assets/showcase/psychology-loop.jpg" alt="Show how a decision reinforces itself" width="100%" /><br><b>Show how a decision reinforces itself</b></td></tr>
-<tr><td width="50%"><img src="assets/showcase/psychology-future.jpg" alt="Put the next choice back in view" width="100%" /><br><b>Put the next choice back in view</b></td><td width="50%"><img src="assets/showcase/psychology-street.jpg" alt="Return to life outside the diagram" width="100%" /><br><b>Return to life outside the diagram</b></td></tr>
-</table>
-
-These stills are taken from completed edits. Underlying film and stock imagery retains its original rights; see [third-party notices](THIRD_PARTY_NOTICES.md).
-
-## One visual language, many kinds of explanation
-
-The package includes **24 classic editorial designs plus three extensible code-illustration languages**. Original scene code can create new subjects, staging and motion; project-owned references and renderers can go beyond the bundle. The shared system covers typography, cards, diagrams, timelines, evidence layouts, and maps. Content, footage, coordinates, and reveal timing adapt to the story. All twelve base designs can be called directly in films and combined by region or time. Custom designs retain a handbook reference; exported frames and complete scene clips are compared before visual acceptance.
-
-<table>
-<tr><td width="50%"><img src="assets/packaging/previews/en-US/quote-reveal.jpg" alt="A thought, then its implication" width="100%" /><br><b>A thought, then its implication</b></td><td width="50%"><img src="assets/packaging/previews/zh-CN/map-route.jpg" alt="Routes and geography" width="100%" /><br><b>Routes and geography</b></td></tr>
-<tr><td width="50%"><img src="assets/packaging/previews/en-US/evidence-sheet.jpg" alt="Evidence and interpretation" width="100%" /><br><b>Evidence and interpretation</b></td><td width="50%"><img src="assets/packaging/previews/zh-CN/compare.jpg" alt="Two ideas on equal visual footing" width="100%" /><br><b>Two ideas on equal visual footing</b></td></tr>
-<tr><td width="50%"><img src="assets/packaging/previews/zh-CN/context.jpg" alt="A detail inside its context" width="100%" /><br><b>A detail inside its context</b></td><td width="50%"><img src="assets/packaging/previews/en-US/milestone-pair.jpg" alt="Two moments, one shared scale" width="100%" /><br><b>Two moments, one shared scale</b></td></tr>
-</table>
-
-- Open the [visual handbook](references/visual-handbook.html) locally after installation. It combines still references with layout and motion guidance.
-- Use the [component source](assets/packaging/src/README.md), [renderer guide](references/packaging.md), and [motion contract](assets/packaging/src/motion-contract.json) to build and extend the system.
-- Review the actual motion in each new film. A layout preview shows composition; the source and cue parameters define entrances, holds, and exits.
-
-Use graphics when they add understanding. Let the footage and narration carry the rest.
-
-## Lazy Studio: a local review room
-
-### Mark the exact frame
-
-Pause, press **M**, write a comment, and press **Enter**. The version, frame, comment, and screenshot stay together.
-
-<img src="assets/showcase/studio-mark.png" alt="Actual Lazy Studio interaction: a frame selected and a comment being entered" width="100%" />
-
-### Keep the feedback and review notes beside the picture
-
-<table>
-<tr><td width="50%"><img src="assets/showcase/studio-feedback.png" alt="Saved comments keep their original frame and version" width="100%" /><br><b>Saved comments keep their original frame and version</b></td><td width="50%"><img src="assets/showcase/studio-review.png" alt="Read the project review without leaving the film" width="100%" /><br><b>Read the project review without leaving the film</b></td></tr>
-</table>
-
-### Compare two versions at the same moment
-
-<img src="assets/showcase/studio-compare.png" alt="Lazy Studio comparing the English and Chinese component demos at the same time position" width="100%" />
-
-<sub>The comparison above uses English and Chinese demos to show the interface. It is not presented as a before-and-after edit.</sub>
-
-### Give the film the whole screen
-
-<img src="assets/showcase/studio-focus.png" alt="Lazy Studio focus view with a scene from the finished Xun Yu film" width="100%" />
-
-Notes are written to the film project's `review/feedback.md`, with version/frame records and linked screenshots. Return to the original Codex chat and say: **“My notes are ready. Read the feedback and make the changes.”** The current integration works through local files; it does not automatically attach notes to the chat composer.
-
-The screenshots were captured through actual UI interactions in a separate demonstration workspace. Sample comments are labeled as examples, and the original films and feedback records were preserved.
-
-## A consistent narrator, a different performance for each story
-
-Knowledge Easy uses the approved **Qwen3-TTS D reference and body-v1 finishing**. The speaker identity stays consistent while emphasis, emotion, pacing, and phrasing follow the subject.
-
-[Listen to the approved English pilot](assets/voice/english-pilot.wav) · [Mandarin reference](assets/voice/reference.wav) · [Voice guide](references/voice.md)
-
-The English pilot was approved through user listening. Transcription checks content and timing; it does not certify accent or naturalness.
-
-## What the workflow handles
-
-| Stage | What happens |
-| --- | --- |
-| Research and writing | Develop conversational narration and visual reasoning together; preserve the argument when shortening. |
-| Material and shot planning | Source cinematic footage and imagery, generate illustrations, or build editable graphics to explain the subject. |
-| Narration | Use the fixed reference; generate complete passages and review names, phrasing, and endpoints. |
-| Editing and graphics | Call the shared renderer and adapt the composition to the explanation. |
-| Sound | Use separate music cues, purposeful effects, transitions, and silence while keeping speech clear. |
-| Review and revision | Inspect the export, read exact-frame notes, preserve approved work, and deliver a new version. |
-
-The quality floor comes from completed films and repeated revisions. The topic still determines the story, duration, rhythm, and creative treatment.
-
-## What's included
+可以直接将整个 [knowledge-easy](knowledge-easy/) 文件夹发给别人。接收方将它放入兼容 Agent 的 Skill 目录，保留文件夹内的相对路径即可。
 
 ```text
 knowledge-easy/
-├── SKILL.md                  One skill: the production workflow
-├── references/               Visual handbook and production guides
-├── scripts/                  Setup, voice, transcription, editing, review tools
-├── assets/
-│   ├── packaging/            Renderer, fonts, maps, static visual references
-│   ├── voice/                Fixed reference, pilot, profiles, pronunciation
-│   ├── lazy-studio/          Review interface
-│   └── showcase/             Stills from finished films and real UI captures
-└── package-manifest.json     File integrity checks
+├── SKILL.md      中文制作方法与验收要求，底部保留 FEICAI 启动标识
+├── assets/       组件和插画源码、字体、地图、参考音频、Lazy Studio
+├── references/   接口、制作说明、运行方式、许可与来源
+└── scripts/      环境准备、构建、配音、转写、混音与审查工具
 ```
 
-The package contains one skill. Runtime dependencies, model weights, API keys, film projects, and demo videos are not bundled. The public handbook uses still images; production motion remains in the source code.
+不需要发送研究目录、预览网页、测试成片、缓存或本机环境。运行依赖、浏览器与模型权重在使用对应功能时准备，放在 Skill 之外。影视和库存素材不随 Skill 提供，制作时另行选择；组件目录中的视频文件名是可替换的素材槽位。
 
-## Dependencies and practical limits
+## 当前内容
 
-The default stack preserves the approved workflow: **Qwen3-TTS through MLX Audio, MLX Whisper large-v3, HyperFrames, FFmpeg, and the shared renderer**. Exact versions and model revisions are in [runtime-lock.json](scripts/runtime-lock.json).
+- 12 类基础组件和 15 个变体，可按内容组合，或注册项目自己的扩展。
+- 动态素材背景、原生虚化与明暗处理，清晰前景、中文字体和受光文字材质；纸面插画与清晰影像按镜头用途选择。
+- 分层 SVG 插画示例，以及线描、叠色和淡彩绘图工具。新题材需要重新设计对象、构图和动作，不只替换文字。
+- 默认旁白为已选定的「沉稳男声·紧凑重音版」：Qwen3-TTS CustomVoice 的 Ryan 预设配原生表达指令。各段仍需根据文稿调整重音、停顿和情绪，并独立听审。
+- Lazy Studio 保留 M → 评论 → Enter 的逐帧反馈方式；回到原对话读取反馈并返修。
 
-The original narration and transcription ran on Apple Silicon Macs. Other machines may need a compatible implementation, which Codex investigates when the skill is used. Local model downloads can be large, and synthesis speed depends on the machine. Optional music and effects services use your own account and credits. See the [runtime guide](references/runtime.md).
+完整制作指令见 [SKILL.md](knowledge-easy/SKILL.md)，命令见 [工作流](knowledge-easy/references/workflow.md)。
 
-The original generic component catalogs can be rebuilt with licensed local footage using `catalog --media-dir`; raw third-party clips are not distributed. See [demo media](assets/packaging/demo-media/README.md).
+## 环境与检查边界
 
+默认本地配音和转写依赖 MLX，需要 Apple Silicon Mac。其他系统使用这两项能力需要兼容实现，不能把复制文件夹当作所有平台均已验证。其余依赖与版本见 [运行环境](knowledge-easy/references/runtime.md) 和 [版本锁定](knowledge-easy/scripts/runtime-lock.json)。
 
-## Contributing and license
+技术检查、视觉自审和用户确认分别记录。`accept-visuals` 校验审查证据、填写情况和版本对应，不自动判断审美，也不代表整套素材、配音与混音已经自动验收。源码和预设检查通过，不等于每个新题材的成片质量已经通过。
 
-Open an [issue](https://github.com/feicaiclub/knowledge-easy/issues) with your OS, hardware, the failing step, and a redacted error message. For visual changes, show the entrance, reading order, hold, and exit; update the component and handbook together.
+维护仓库时，可以运行以下检查；它们不安装制作模型或合成旁白：
 
-Before submitting changes, run `python3 scripts/validate_package.py --manifest` and `python3 scripts/validate_package.py --verify-manifest`. Package CI checks files and references without installing production models.
+```bash
+python3 -B tools/validate_skill.py
+python3 -B -m unittest discover -s tests -p 'test_*.py' -q
+```
 
-Original code and documentation are [MIT licensed](LICENSE). Fonts retain their SIL Open Font Licenses, and map geometry comes from Natural Earth. Third-party imagery visible in screenshots is not relicensed under MIT. [Third-party notices](THIRD_PARTY_NOTICES.md).
+媒体审片测试需要已有 FFmpeg / ffprobe，仓库 CI 会准备它们。
 
-The workflow uses Qwen3-TTS, MLX Audio, MLX Whisper, HyperFrames, GSAP, FFmpeg, and Pedalboard. Lazy Studio builds on FEICAI's existing review tools and UI kit.
+## 许可与来源
 
-## About the author
+本项目自行编写的代码与说明遵循 [MIT License](LICENSE)。字体、地图、模型输出及视觉临摹示例的来源与适用边界见 [许可与来源](knowledge-easy/references/sources.md)；第三方角色与构图不作为本项目原创或纳入代码许可。运行库、浏览器和模型不打包进 Skill。
 
-**Feicai (废才)**, founder of **Feicai Club (废才俱乐部)**, is an AI builder and educator focused on agents, software, and filmmaking. Each workflow is developed through real projects, then the reusable parts are shared as open source.
-
-- Author of *驱动 AI 提示词：指令入门与场景应用* (Tsinghua University Press), a book on prompting AI and applying it to real work.
-- Creator of the Brutally Honest PM (毒舌产品经理) and Seedance Storyboarder (Seedance 分镜师) series.
-- More projects: [Ad Storyboarder](https://github.com/feicaiclub/ad-storyboarder), [previz](https://github.com/feicaiclub/previz), [video-spec-builder](https://github.com/feicaiclub/video-spec-builder), and the [DeepSeek Harness whitepaper](https://github.com/feicaiclub/deepseek-harness-whitepaper).
-
-| | |
-|:---|:---|
-| 🌐 Website | [www.feicaiclub.cn](https://www.feicaiclub.cn) |
-| 𝕏 | [@zhu185178](https://x.com/zhu185178) |
-| ▶️ YouTube | [@feicaiclub](https://www.youtube.com/@feicaiclub) |
-| 📺 Bilibili | [废才俱乐部Club](https://space.bilibili.com/3546566589679687) |
-| 📕 Xiaohongshu (RED) | [废才俱乐部](https://www.xiaohongshu.com/user/profile/5c6ec0c20000000010032d24) |
-| 🎵 Douyin | search for 废才俱乐部 |
-| 💬 WeChat Official Account | search for 废才俱乐部 |
-
-[![Feicai Club: a hands-on community for AI builders](assets/readme/feicai-club.jpg)](https://www.feicaiclub.cn)
+FEICAI 名称与启动标识保留为作者品牌，代码许可不表示作者为衍生项目背书。

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <title>让想法落在纸上 · 编辑插画临摹研究</title>
+  <desc>参考 BUCK / Notion Think it. Make it. 作品中的黑白人物、纸张、笔与原色图形。可编辑重绘，来源见 references/sources.md。</desc>
+  <defs><pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#1f2323" opacity=".25"/></pattern></defs>
+  <rect width="1920" height="1080" fill="#f6f3e9"/>
+  <g id="paper" stroke="#202422" stroke-width="4" stroke-linejoin="round">
+    <path d="M320 331 L1439 262 L1534 851 L397 926 Z" fill="#1768e6"/>
+    <path d="M359 294 L1458 316 L1451 883 L347 861 Z" fill="#fffef4"/>
+    <path d="M359 294 L1458 316 L1455 370 L355 348 Z" fill="#fffef4"/>
+    <circle cx="393" cy="323" r="7" fill="#202422"/><circle cx="418" cy="324" r="7" fill="#202422"/><circle cx="443" cy="324" r="7" fill="#202422"/>
+  </g>
+  <g id="idea">
+    <rect x="420" y="421" width="754" height="302" fill="#ff6b2b" transform="rotate(1.2 797 572)"/>
+    <path d="M484 654 L608 458 L731 659 M531 579 L682 582 M565 458 L653 460 M465 655 L538 657 M693 660 L761 662 M831 520 C860 469 919 477 927 532 L931 659 M917 565 C850 544 830 588 851 630 C868 660 905 658 931 630 M931 658 L969 659" fill="none" stroke="#202422" stroke-width="9" stroke-linecap="round"/>
+    <path d="M459 780 L786 788 M835 790 L1080 797" fill="none" stroke="#202422" stroke-width="3"/>
+  </g>
+  <g id="hand" fill="#202422" stroke="#202422" stroke-width="4" stroke-linejoin="round">
+    <path d="M1460 552 L1221 448 L1205 456 L1217 471 L1443 578 Z"/>
+    <path d="M1205 456 L1170 447 L1193 475 L1217 471 Z" fill="#fffef4"/>
+    <path d="M1920 610 L1686 586 C1646 560 1603 536 1550 538 L1472 537 L1418 501 Q1398 487 1389 500 Q1380 513 1399 529 L1444 567 L1409 584 Q1392 596 1408 609 L1434 623 Q1417 636 1438 651 L1468 668 Q1490 688 1527 678 L1605 647 Q1646 660 1686 645 L1920 752 Z"/>
+    <path d="M1453 570 Q1486 553 1520 573 M1444 617 L1488 635 M1686 586 L1665 648" fill="none" stroke="#fffef4" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <g id="window" stroke="#202422" stroke-width="4" stroke-linejoin="round">
+    <path d="M1190 160 Q1190 143 1207 143 L1587 143 Q1604 143 1604 160 L1604 351 Q1604 368 1587 368 L1207 368 Q1190 368 1190 351 Z" fill="#fffef4"/>
+    <path d="M1190 192 H1604" fill="none"/>
+    <rect x="1195" y="196" width="403" height="166" fill="url(#dots)" stroke="none"/>
+    <circle cx="1214" cy="169" r="5" fill="#202422"/><circle cx="1236" cy="169" r="5" fill="#202422"/><circle cx="1258" cy="169" r="5" fill="#202422"/>
+    <path d="M1238 218 L1345 218 L1308 277 L1345 336 L1238 336 L1276 277 Z" fill="#0875e9"/>
+    <path d="M1403 234 C1357 260 1368 328 1417 321 C1471 312 1478 244 1435 233 M1513 234 C1467 260 1478 328 1527 321 C1581 312 1588 244 1545 233" fill="#fffef4"/>
+    <path d="M1428 249 Q1403 255 1397 282 M1538 249 Q1513 255 1507 282" fill="none" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

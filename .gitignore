@@ -15,7 +15,4 @@ node_modules/
 *.ckpt
 
 # Third-party source clips are supplied locally, not redistributed.
-assets/packaging/demo-media/*.mp4
-
-# Rendered demonstration videos stay outside the installable skill.
-assets/packaging/previews/**/*.mp4
+knowledge-easy/assets/packaging/demo-media/*.mp4

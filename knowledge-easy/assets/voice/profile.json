@@ -1,0 +1,41 @@
+{
+  "status": "已由用户选定为默认参考音色",
+  "name": "沉稳男声·紧凑重音版",
+  "approved_date": "2026-10-27",
+  "reference_file": "reference.wav",
+  "reference_sha256": "f665b2da5dbd7723133385830cf6193964ff077861087a143873bbedb74cf68a",
+  "reference_text": "别人夸你脾气好：到底是说你从来不生气，还是从来没见过你生气？这两件事，差得很远。有时候你答应得很快，心里却已经不愿意了。真正的问题不是那一次翻脸，而是前面那些没说出口的拒绝。",
+  "reference_language": "zh-CN",
+  "reference_seconds": 14.72,
+  "reference_sample_rate": 24000,
+  "human_voice_recording": false,
+  "reference_source": {
+    "type": "模型预设声线合成",
+    "sample_name": "03_沉稳男声_紧凑重音版.wav"
+  },
+  "synthesis_model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit",
+  "model_revision": "41d3337e8b7f2843a75841595fc14e4b9a7a4b96",
+  "runtime": "mlx-audio 0.6.1",
+  "generation_mode": "custom_voice",
+  "speaker": "ryan",
+  "default_seed": 26102698,
+  "synthesis_settings": {
+    "temperature": 0.9,
+    "top_p": 1.0,
+    "top_k": 50,
+    "repetition_penalty": 1.05
+  },
+  "instruction_prefix": "按给定文字完整朗读，不增减字词，不添加语气词。用清晰自然的大陆普通话，保持成熟、宽厚、有支撑的男声。整体用偏快的口语节奏，意群内部连读，次要词轻带过，重点词短而有力，不拖长元音。",
+  "instruction_suffix": "像在给朋友讲透一件事，轻重有变化，不朗诵、不喊、不逐字顿读。",
+  "approved_sample": {
+    "seed": 26102698,
+    "max_tokens": 1500,
+    "direction": "开头引题后只轻停一下，再自然发问；“不生气”与“没见过”读出对照。“差得很远”干脆落下，“不愿意”有重心。最后“真正”略重，引出落点“拒绝”，连接词自然带过。",
+    "speed_or_pitch_postprocessing": false,
+    "cuts_or_splices": false,
+    "asr_text_match": 1.0,
+    "listening": "用户已选定该版音色、紧凑节奏与重音表现。"
+  },
+  "reference_policy": "reference.wav 是音色与表达的听审基准。默认使用 CustomVoice 的 Ryan 预设及原生指令生成，不将该文件传入 Base 模型重新克隆；新稿按稿意安排表达并单独听审。",
+  "lexicon": "pronunciations.json"
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lazy Studio · 审片室</title>
+  <link rel="stylesheet" href="/kit/tokens.css"><link rel="stylesheet" href="/kit/base.css">
+  <link rel="stylesheet" href="/kit/timeline.css"><link rel="stylesheet" href="/studio.css">
+  <script src="/selects.js" defer></script><script src="/app.js" defer></script>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="app-head">
+    <div class="brand"><span class="brand-symbol" aria-hidden="true"><i></i><i></i></span><strong>Lazy Studio</strong><span class="head-divider"></span><span id="projectTitle" class="project-title">正在打开审片室…</span></div>
+    <div class="head-actions"><span id="connection" class="connection"><i class="dot ok"></i><span>本地审片</span></span><button class="icon-btn" id="shortcutsBtn" aria-label="键盘快捷键" title="快捷键 ?" data-icon="keyboard"></button><button class="icon-btn" id="focusBtn" aria-label="专注模式" aria-pressed="false" title="专注模式" data-icon="panel"></button></div>
+  </header>
+  <main class="workspace">
+    <section class="viewer island" aria-label="视频预览">
+      <div class="viewer-head">
+        <div class="version-control"><span class="version-key">A</span><select id="versionA" class="select" aria-label="预览版本"></select></div>
+        <div class="seg" aria-label="预览方式"><button id="singleBtn" aria-pressed="true">单画面</button><button id="compareBtn" aria-pressed="false">版本对比</button></div>
+      </div>
+      <div class="compare-bar" id="compareBar" hidden><div class="version-control"><span class="version-key">B</span><select id="versionB" class="select" aria-label="对比版本"></select></div><div class="audio-switch"><span>声音</span><button id="listenA" class="chip" aria-pressed="true">A</button><button id="listenB" class="chip" aria-pressed="false">B</button></div><button id="swapBtn" class="pill swap-btn" title="将 B 切换为当前标记版本">交换 A/B</button><span class="compare-explain" id="compareNote">按相同时间位置对比</span></div>
+      <div class="screens" id="screens">
+        <div class="screen" id="screenA"><div class="picture-box" id="pictureA"><video id="videoA" playsinline preload="auto"></video><span class="screen-letter" id="letterA" hidden>A</span></div><span class="screen-error" id="mediaError" hidden></span></div>
+        <div class="screen" id="screenB" hidden><div class="picture-box" id="pictureB"><video id="videoB" playsinline preload="metadata" muted></video><span class="screen-letter">B</span></div><span class="screen-end" id="compareEnd" hidden>此版本已结束</span></div>
+      </div>
+      <div class="view-context"><span id="chapterLabel">正在加载视频…</span><span id="frameAccuracy" class="t3">逐帧定位</span></div>
+      <div class="tl-controls playback">
+        <div class="transport"><button id="prevFrame" class="icon-btn" data-icon="prev" aria-label="上一帧" title="上一帧 ←"></button><button id="play" class="play" data-icon="play" aria-label="播放" title="播放 / 暂停 空格"></button><button id="nextFrame" class="icon-btn" data-icon="next" aria-label="下一帧" title="下一帧 →"></button></div>
+        <span class="tc"><b id="timecode">00:00:00</b><span id="duration"> / —</span></span>
+        <label class="frame-jump">帧 <input id="frameInput" type="number" min="0" value="0" aria-label="跳转到帧"></label>
+        <div class="sp"></div>
+        <button id="mute" class="icon-btn" data-icon="volume" aria-label="静音" aria-pressed="false"></button>
+        <select id="speed" class="select speed" aria-label="播放速度"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select>
+        <button id="markBtn" class="pill on lg"><span data-icon="comment"></span><span id="markLabel">标记当前帧</span> <kbd>M</kbd></button>
+      </div>
+    </section>
+    <aside class="feedback island" id="feedbackPanel" aria-label="审片反馈">
+      <div class="feedback-head"><div><h1>审片 <span id="feedbackCount">0</span></h1><p id="saveState">评论和截图保存在本地</p></div><button id="queueBtn" class="icon-btn" data-icon="file" title="查看本地反馈文件" aria-label="查看反馈文件位置"></button></div>
+      <div class="review-tabs"><div class="seg" aria-label="审片侧栏"><button id="marksTab" aria-pressed="true">标记</button><button id="reviewTab" aria-pressed="false">审片</button></div></div>
+      <div id="feedbackList" class="feedback-list"></div>
+      <div id="selfReview" class="self-review" hidden></div>
+      <div id="emptyFeedback" class="empty-feedback"><span class="empty-icon" data-icon="comment"></span><h2>在需要修改的画面上做个标记。</h2><p>按 <kbd>M</kbd>, 写下评论，<br>再按 Enter 保存评论与截图。</p><button class="pill" id="emptyMark">标记当前帧</button></div>
+      <form id="composer" class="composer" hidden>
+        <div class="composer-top"><img id="draftPreview" class="draft-preview" alt="标记的画面" hidden><div><span id="draftHeading" class="eyebrow">标记当前帧</span><b id="draftTime" class="num"></b></div><button id="closeDraft" class="icon-btn" type="button" data-icon="close" aria-label="关闭草稿" title="草稿会保留"></button></div>
+        <div id="draftContext" class="draft-context"></div>
+        <label for="noteInput" class="sr-only">评论</label><textarea id="noteInput" class="textarea" maxlength="4000" placeholder="这个画面需要怎样修改？" rows="4"></textarea>
+        <div class="composer-bottom"><span id="draftState">Shift + Enter 换行</span><button id="saveFeedback" type="submit" class="pill on">保存 <span class="key-hint">↵</span></button></div>
+        <p id="saveError" class="err" role="alert" hidden></p>
+      </form>
+      <button class="draft-restore" id="restoreDraft" hidden>继续未保存的评论</button>
+      <div class="mark-actions" id="markActions"><button id="copyFeedback" class="pill">复制反馈</button></div>
+      <div class="feedback-foot"><span>写好后，回到原对话告诉助手。</span></div>
+    </aside>
+    <section class="timeline island" aria-label="审片时间线">
+      <div class="timeline-head"><div class="timeline-name"><b>审片时间线</b><span class="t3" id="timelineInfo">—</span></div><label class="zoom-label">缩放 <select id="zoom" class="select compact" aria-label="时间线缩放"><option value="1">适应</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></label></div>
+      <div class="timeline-body"><div class="track-labels"><span>章节</span><span>视频</span><span>声音</span><span>反馈</span></div><div class="tl-scroll" id="timelineScroll"><div class="timeline-content" id="timelineContent">
+        <div class="tl-ruler" id="ruler"></div><div class="chapter-track" id="chapters"></div><div class="filmstrip" id="filmstrip"><span>正在加载缩略图…</span></div><div class="wave-track"><svg id="wave" viewBox="0 0 1600 28" preserveAspectRatio="none" aria-label="音频波形"></svg></div><div class="feedback-track" id="markers"></div><div class="playhead" id="playhead"></div><input id="seek" class="timeline-seek" type="range" min="0" step="1" value="0" aria-label="播放帧位置">
+      </div></div></div>
+    </section>
+  </main>
+  <footer class="app-foot"><span id="mediaInfo">本地文件 · 未上传</span><span><kbd>Space</kbd> Play <kbd>←</kbd><kbd>→</kbd> 逐帧 <kbd>M</kbd> Mark <kbd>Enter</kbd> Save</span></footer>
+</div>
+<div id="toast" class="toast" role="status" hidden><span id="toastText"></span><button id="undoBtn" class="link" hidden>撤销</button></div>
+<dialog id="helpDialog"><div class="dialog-head"><h2>审片快捷键</h2><button class="icon-btn dialog-close" data-icon="close" aria-label="关闭快捷键说明"></button></div><dl><dt>播放 / 暂停</dt><dd>Space</dd><dt>上一帧 / 下一帧</dt><dd>← / →</dd><dt>前后移动 1 秒</dt><dd>Shift + ← / →</dd><dt>标记当前帧</dt><dd>M</dd><dt>保存评论</dt><dd>Enter</dd><dt>评论内换行</dt><dd>Shift + Enter</dd><dt>关闭草稿</dt><dd>Esc</dd></dl><p class="t3">输入评论时不会触发播放和逐帧快捷键。</p></dialog>
+<dialog id="filesDialog"><div class="dialog-head"><h2>本地反馈文件</h2><button class="icon-btn dialog-close" data-icon="close" aria-label="关闭文件位置"></button></div><p>每条标记在项目中保存评论、版本、准确帧和截图。回到原对话说明反馈已完成，助手即可直接读取。</p><label>Markdown</label><code id="queuePath"></code><label>原始记录</label><code id="feedbackPath"></code><a class="pill" href="/queue" target="_blank" rel="noopener">查看 Markdown</a></dialog>
+<audio id="audioA" preload="metadata"></audio><audio id="audioB" preload="metadata"></audio>
+</body>
+</html>

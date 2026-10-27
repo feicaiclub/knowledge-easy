@@ -1,0 +1,45 @@
+{
+  "etch": {
+    "name": "结构线描",
+    "engine": "etch",
+    "palette": {
+      "paper": "#f4f1e9",
+      "ink": "#293b40",
+      "accent": "#aa5141",
+      "secondary": "#82938b"
+    },
+    "reference": "art-etch",
+    "texture": true,
+    "textureStrength": 0.18
+  },
+  "print": {
+    "name": "平涂叠色",
+    "engine": "print",
+    "palette": {
+      "paper": "#f2eee3",
+      "ink": "#2e5860",
+      "accent": "#bd744b",
+      "secondary": "#7e8c72"
+    },
+    "inks": [
+      "#2e5860",
+      "#bd744b",
+      "#7e8c72"
+    ],
+    "reference": "art-print",
+    "textureStrength": 0.18
+  },
+  "wash": {
+    "name": "淡彩自然",
+    "engine": "wash",
+    "palette": {
+      "paper": "#f1eee6",
+      "ink": "#304745",
+      "accent": "#a9674d",
+      "secondary": "#748976"
+    },
+    "reference": "art-wash",
+    "texture": true,
+    "textureStrength": 0.22
+  }
+}
