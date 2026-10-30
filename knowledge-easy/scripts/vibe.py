@@ -271,7 +271,7 @@ def main():
         if name in ['register','verify','transcribe','review-visuals']:p.add_argument('--file',required=True)
         if name=='transcribe':p.add_argument('--prompt',default='',help='Optional names and terminology, not the expected transcript.')
         if name=='register':
-            p.add_argument('--label',required=True);p.add_argument('--id',required=True);p.add_argument('--audio')
+            p.add_argument('--label',required=True);p.add_argument('--id',required=True);p.add_argument('--audio');p.add_argument('--review-file',help='Review notes for this revision, relative to the project.')
         if name=='studio':
             p.add_argument('--port',type=int,default=8798);p.add_argument('--restart',action='store_true')
         if name=='render':p.add_argument('--output',default='final/film.mp4');p.add_argument('--quality',choices=['draft','looks','delivery'],default='delivery')
@@ -325,6 +325,7 @@ def main():
     elif args.cmd=='register':
         cmd=[info['python'],SKILL/'scripts/studio/project.py','--project',project,'--file',args.file,'--label',args.label,'--id',args.id]
         if args.audio:cmd+=['--audio',args.audio]
+        if args.review_file:cmd+=['--review-file',args.review_file]
         if (project/'review/timeline.json').exists():cmd+=['--timeline','review/timeline.json']
         run(cmd,env,project,capture=False)
     elif args.cmd=='studio':run([info['python'],SKILL/'scripts/studio/launch.py','--project',project,'--port',str(args.port),*(['--restart'] if args.restart else [])],env,project,capture=False)

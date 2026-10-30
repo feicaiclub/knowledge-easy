@@ -36,7 +36,7 @@
       </div>
     </section>
     <aside class="feedback island" id="feedbackPanel" aria-label="Review feedback">
-      <div class="feedback-head"><div><h1>Review <span id="feedbackCount">0</span></h1><p id="saveState">Comments and screenshots are saved locally</p></div><button id="queueBtn" class="icon-btn" data-icon="file" title="View local feedback files" aria-label="View feedback file locations"></button></div>
+      <div class="feedback-head"><div><h1>Review <span id="feedbackCount">0</span></h1><p id="feedbackVersion" class="feedback-version"></p><p id="saveState">Comments and screenshots are saved locally</p></div><button id="queueBtn" class="icon-btn" data-icon="file" title="View local feedback files" aria-label="View feedback file locations"></button></div>
       <div class="review-tabs"><div class="seg" aria-label="Review sidebar"><button id="marksTab" aria-pressed="true">Marks</button><button id="reviewTab" aria-pressed="false">Review</button></div></div>
       <div id="feedbackList" class="feedback-list"></div>
       <div id="selfReview" class="self-review" hidden></div>
@@ -63,7 +63,7 @@
 </div>
 <div id="toast" class="toast" role="status" hidden><span id="toastText"></span><button id="undoBtn" class="link" hidden>Undo</button></div>
 <dialog id="helpDialog"><div class="dialog-head"><h2>Review shortcuts</h2><button class="icon-btn dialog-close" data-icon="close" aria-label="Close shortcut help"></button></div><dl><dt>Play / pause</dt><dd>Space</dd><dt>Previous / next frame</dt><dd>← / →</dd><dt>Jump back / forward 1 second</dt><dd>Shift + ← / →</dd><dt>Mark current frame</dt><dd>M</dd><dt>Save comment</dt><dd>Enter</dd><dt>New line in comment</dt><dd>Shift + Enter</dd><dt>Close draft</dt><dd>Esc</dd></dl><p class="t3">Playback and frame-stepping shortcuts are disabled while you type a comment.</p></dialog>
-<dialog id="filesDialog"><div class="dialog-head"><h2>Local feedback files</h2><button class="icon-btn dialog-close" data-icon="close" aria-label="Close file locations"></button></div><p>Each mark saves the comment, version, exact frame, and screenshot in the project. Return to the original conversation and tell the assistant your feedback is ready; it can read the files directly.</p><label>Markdown</label><code id="queuePath"></code><label>Raw records</label><code id="feedbackPath"></code><a class="pill" href="/queue" target="_blank" rel="noopener">View Markdown</a></dialog>
+<dialog id="filesDialog"><div class="dialog-head"><h2>Local feedback files</h2><button class="icon-btn dialog-close" data-icon="close" aria-label="Close file locations"></button></div><p>Each mark saves the comment, version, exact frame, and screenshot in the project. Return to the original conversation and tell the assistant your feedback is ready; it can read the files directly.</p><label>Markdown</label><code id="queuePath"></code><label>Raw records</label><code id="feedbackPath"></code><a id="queueLink" class="pill" href="/queue" target="_blank" rel="noopener">View Markdown</a></dialog>
 <audio id="audioA" preload="metadata"></audio><audio id="audioB" preload="metadata"></audio>
 </body>
 </html>

@@ -23,3 +23,9 @@ html,body{height:100%;overflow:hidden}button,select,input,textarea{font:inherit}
 .mark-actions{padding:12px 18px 0;flex:none}.mark-actions .pill{height:34px;font-size:12px}.mark-row-actions{margin-left:auto;display:flex;gap:4px}.mark-text-action{border:0;border-radius:6px;background:transparent;color:var(--t3);font-size:11px;padding:0 7px;min-height:36px}.mark-text-action:hover{color:var(--text);background:var(--island-3)}.item-top{margin-bottom:5px}.feedback-item{padding-top:7px}.composer-top{justify-content:flex-start;gap:10px}.composer-top>div{flex:1;min-width:0}.draft-preview{width:76px;height:43px;object-fit:cover;border-radius:6px}.timeline-head .zoom-label{margin-left:auto}.feedback-foot{font-size:11px;line-height:18px;padding:14px 18px}.empty-feedback p{font-size:12px}.composer .textarea{height:104px}
 @media(max-width:800px){.for-versionA,.for-versionB{max-width:40vw;width:165px}.self-review{max-height:480px;flex:none}.review-tabs{padding:0 12px 12px}}
 
+
+/* Feedback and review notes follow the selected revision. */
+.feedback-version{font-size:11px;line-height:18px;color:var(--t2);overflow-wrap:anywhere;margin-top:5px}
+.entry-status{font-size:10px;line-height:16px;color:var(--t3);margin-left:8px}
+.item-resolution{font-size:11px;line-height:19px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--t2);margin-top:10px;padding-left:10px;border-left:2px solid var(--acc-soft)}
+.removed-feedback{margin-top:16px;border-top:1px solid var(--island-3);padding-top:12px}.removed-feedback>summary{cursor:pointer;font-size:11px;line-height:20px;color:var(--t2);padding:4px 0 10px}.removed-feedback .item-body p{color:var(--t2)}

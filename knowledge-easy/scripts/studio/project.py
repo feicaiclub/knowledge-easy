@@ -62,7 +62,7 @@ def probe(path):
             "frames": frames, "width": stream["width"], "height": stream["height"]}
 
 
-def register(root, path, label, revision_id, audio=None, timeline=None):
+def register(root, path, label, revision_id, audio=None, timeline=None, review=None):
     root = Path(root).resolve()
     if not re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", revision_id):
         raise ValueError("Revision IDs may contain letters, numbers, underscores, and hyphens only.")
@@ -80,14 +80,33 @@ def register(root, path, label, revision_id, audio=None, timeline=None):
         data = read_json(inside(root, timeline))
         revision["chapters"] = data.get("chapters", [])
         revision["objects"] = data.get("objects", [])
+    review_spec = None
+    if review:
+        notes = inside(root, review)
+        if notes.suffix.lower() not in (".md", ".txt") or notes.stat().st_size > 256 * 1024:
+            raise ValueError("Review notes must be a Markdown or text file no larger than 256 KiB.")
+        review_spec = {"path": str(notes.relative_to(root)), "title": label + " · Review"}
     if existing:
         if existing != revision:
             raise ValueError("This revision ID already refers to different content. Use a new ID to preserve feedback locations.")
+        if review_spec is not None:
+            manifest.setdefault("self_reviews", {})[revision_id] = review_spec
+            atomic_json(manifest_path, manifest)
         return revision
+    # Bind legacy notes to the version they belonged to before changing the current version.
+    previous_id = manifest.get("current_revision")
+    legacy_review = manifest.pop("self_review", None)
+    if legacy_review and previous_id:
+        manifest.setdefault("self_reviews", {}).setdefault(previous_id, legacy_review)
     manifest["revisions"].append(revision)
     manifest["current_revision"] = revision_id
+    if review_spec is not None:
+        manifest.setdefault("self_reviews", {})[revision_id] = review_spec
+    elif legacy_review and not previous_id:
+        manifest.setdefault("self_reviews", {})[revision_id] = legacy_review
     atomic_json(manifest_path, manifest)
     return revision
+
 
 
 if __name__ == "__main__":
@@ -98,8 +117,9 @@ if __name__ == "__main__":
     ap.add_argument("--id")
     ap.add_argument("--audio")
     ap.add_argument("--timeline")
+    ap.add_argument("--review-file", help="Review notes for this revision, relative to the project.")
     args = ap.parse_args()
     if not (args.file and args.label and args.id):
         ap.error("Registering a revision requires --file, --label, and --id.")
-    register(args.project, args.file, args.label, args.id, args.audio, args.timeline)
+    register(args.project, args.file, args.label, args.id, args.audio, args.timeline, args.review_file)
     print(str(Path(args.project).resolve() / "review/studio.json"))
